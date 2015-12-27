@@ -6,7 +6,7 @@ class Application {
     private errorField: HTMLElement;
 
     private settings = {
-        shortUrl: 'http://tiny.cc/QRR'
+        siteUrl: 'https://github.com/Marvin-Brouwer/QR-Redirect'
     }
 
     constructor() {
@@ -48,7 +48,7 @@ class Application {
         };
         qrcode.callback = (data: string) => {
             console.log(`Raw QR-Data: ${data}`);
-            if (data.indexOf(this.settings.shortUrl) !== 0) {
+            if (data.indexOf(this.settings.siteUrl) !== 0) {
                 this.setError('Invalid QR image');
                 return;
             }

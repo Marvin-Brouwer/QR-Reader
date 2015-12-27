@@ -1,7 +1,7 @@
 var Application = (function () {
     function Application() {
         this.settings = {
-            shortUrl: 'http://tiny.cc/QRR'
+            siteUrl: 'https://github.com/Marvin-Brouwer/QR-Redirect'
         };
         // Start by reading query
         var loadQuery = this.getParameterByName('qr');
@@ -38,7 +38,7 @@ var Application = (function () {
         };
         qrcode.callback = function (data) {
             console.log("Raw QR-Data: " + data);
-            if (data.indexOf(_this.settings.shortUrl) !== 0) {
+            if (data.indexOf(_this.settings.siteUrl) !== 0) {
                 _this.setError('Invalid QR image');
                 return;
             }
