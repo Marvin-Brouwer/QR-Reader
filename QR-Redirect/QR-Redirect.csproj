@@ -12,7 +12,7 @@
     <DebugSymbols>true</DebugSymbols>
     <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -39,6 +39,7 @@
     <Content Include="lib\gf256poly.js" />
     <Content Include="lib\grid.js" />
     <Content Include="lib\qrcode.js" />
+    <Content Include="lib\rAF.js" />
     <Content Include="lib\rsdecoder.js" />
     <Content Include="lib\test.html" />
     <Content Include="lib\version.js" />

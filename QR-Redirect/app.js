@@ -9,13 +9,16 @@ var Application = (function () {
             this.parseUrl(loadQuery);
         // Define elements
         this.form = (document.querySelector('form#mainForm'));
+        this.video = (document.querySelector('video#mainVideo'));
         this.cameraInput = (document.querySelector('form#mainForm input[name=file]'));
         this.errorField = (document.querySelector('form#mainForm label div.error'));
         // Initialize
-        this.initialize();
+        if (this.hasGetUserMedia())
+            this.initializeVideo();
+        this.initializeUpload();
         // todo: create functionality for live webcam using: http://www.webqr.com/ like functionality that actualy works
     }
-    Application.prototype.initialize = function () {
+    Application.prototype.initializeUpload = function () {
         var _this = this;
         this.cameraInput.onfocus = function (ev) { return document.body.focus(); };
         this.form.onsubmit = function (ev) {
@@ -85,6 +88,7 @@ var Application = (function () {
         }
         var url = "http" + (!!jsonData.secure ? 's' : '') + "://" + jsonData.url;
         console.log(url);
+        alert(url);
         // todo: ajax preload
         //window.location.href = url;
         return;
@@ -93,6 +97,41 @@ var Application = (function () {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'), results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+    Application.prototype.hasGetUserMedia = function () {
+        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    };
+    Application.prototype.initializeVideo = function () {
+        var _this = this;
+        var errorCallback = function (e) {
+            console.log('Reeeejected!', e);
+        };
+        navigator.getUserMedia = navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
+        console.log('1');
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({ audio: false, video: true }, function (stream) {
+                _this.video.src = window.URL.createObjectURL(stream);
+            }, errorCallback);
+            this.form.style.display = 'none';
+            this.video.style.display = 'block';
+        }
+        else {
+        }
+        var thecanvas = document.createElement('canvas');
+        var parseVideo = function () {
+            var context = thecanvas.getContext('2d');
+            // draw the video contents into the canvas x, y, width, height
+            context.drawImage(_this.video, 0, 0, thecanvas.width, thecanvas.height);
+            // get the image data from the canvas object
+            var dataURL = thecanvas.toDataURL();
+            qrcode.decode(dataURL);
+            window.requestAnimationFrame(parseVideo);
+        };
+        window.requestAnimationFrame(parseVideo);
     };
     return Application;
 })();

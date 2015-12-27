@@ -1,4 +1,4 @@
-﻿html, body, form, input {
+﻿html, body, form, input, video, canvas {
     font-family: 'Segoe UI', sans-serif;
     font-size: 1.3em;
     margin: 0;
@@ -9,10 +9,11 @@
     display: block;
 }
 
-html, body, input{
+html, body, input, canvas{
     width: 100%;
     height: 100%;
     position: relative;
+    background-color: black;
 }
 
 input{
@@ -23,7 +24,7 @@ input{
     visibility: hidden;
 }
 
-form#mainForm, form#mainForm label {
+form#mainForm, form#mainForm label, video#mainVideo {
     background-color: white;
     width: 100%;
     height: 100%;
@@ -34,6 +35,11 @@ form#mainForm, form#mainForm label {
     left: 0;
     z-index: 1;
     cursor: alias;
+}
+video#mainVideo{
+    display: none;
+    background-color: black;
+    cursor: none;
 }
 
 form#mainForm label div.label {

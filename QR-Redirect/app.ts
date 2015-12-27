@@ -2,6 +2,7 @@
 
 class Application {
     private form: HTMLFormElement;
+    private video: HTMLVideoElement;
     private cameraInput: HTMLInputElement;
     private errorField: HTMLElement;
 
@@ -16,16 +17,19 @@ class Application {
 
         // Define elements
         this.form = <HTMLFormElement>(document.querySelector('form#mainForm'));
+        this.video = <HTMLVideoElement>(document.querySelector('video#mainVideo'));
         this.cameraInput = <HTMLInputElement>(document.querySelector('form#mainForm input[name=file]'));
         this.errorField = <HTMLInputElement>(document.querySelector('form#mainForm label div.error'));
 
         // Initialize
-        this.initialize();
+        if (this.hasGetUserMedia())
+            this.initializeVideo();
+        this.initializeUpload();
 
         // todo: create functionality for live webcam using: http://www.webqr.com/ like functionality that actualy works
     }
 
-    private initialize() {
+    private initializeUpload() {
         this.cameraInput.onfocus = (ev: Event) => document.body.focus();
 
         this.form.onsubmit = (ev: Event) => {
@@ -63,7 +67,7 @@ class Application {
     private clearErrors() {
         this.errorField.innerText = '';
     }
-    private setError(text:string) {
+    private setError(text: string) {
         this.errorField.innerText = text;
     }
 
@@ -99,6 +103,7 @@ class Application {
         }
         var url = `http${!!jsonData.secure ? 's' : ''}://${jsonData.url}`;
         console.log(url);
+        alert(url);
         // todo: ajax preload
         //window.location.href = url;
         return;
@@ -109,6 +114,46 @@ class Application {
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
             results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    private hasGetUserMedia() {
+        return !!((<any>navigator).getUserMedia || (<any>navigator).webkitGetUserMedia ||
+            (<any>navigator).mozGetUserMedia || (<any>navigator).msGetUserMedia);
+    }
+
+    private initializeVideo() {
+        var errorCallback = function (e) {
+            console.log('Reeeejected!', e);
+        };
+        (<any>navigator).getUserMedia = (<any>navigator).getUserMedia ||
+            (<any>navigator).webkitGetUserMedia ||
+            (<any>navigator).mozGetUserMedia ||
+            (<any>navigator).msGetUserMedia;
+
+        console.log('1');
+        if ((<any>navigator).getUserMedia) {
+            (<any>navigator).getUserMedia({ audio: false, video: true }, stream => {
+                this.video.src = window.URL.createObjectURL(stream);
+            }, errorCallback);
+
+            this.form.style.display = 'none';
+            this.video.style.display = 'block';
+        } else {
+            //video.src = 'fallback.webm'; // fallback.
+        }
+        var thecanvas = document.createElement('canvas');
+        var parseVideo = () => {
+            var context = thecanvas.getContext('2d');
+            // draw the video contents into the canvas x, y, width, height
+            context.drawImage(this.video, 0, 0, thecanvas.width, thecanvas.height);
+
+            // get the image data from the canvas object
+            var dataURL = thecanvas.toDataURL();
+            qrcode.decode(dataURL);
+            window.requestAnimationFrame(parseVideo);
+        };
+        window.requestAnimationFrame(parseVideo);
+
     }
 }
 
