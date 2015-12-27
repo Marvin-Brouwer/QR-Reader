@@ -3,7 +3,7 @@ An online qr code redirect site
 
 ## Usage:
 Create QR code with the following data:
-```json
+```javascript
   {
     url: 'url.tld',
     secure: false
