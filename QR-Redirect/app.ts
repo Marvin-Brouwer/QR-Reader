@@ -1,4 +1,6 @@
-﻿declare var qrcode: any;
+﻿'use strict';
+
+declare var qrcode: any;
 
 class Application {
     private form: HTMLFormElement;
@@ -54,6 +56,7 @@ class Application {
             console.log(`Raw QR-Data: ${data}`);
             if (data.indexOf(this.settings.siteUrl) !== 0) {
                 this.setError('Invalid QR image');
+                window.requestAnimationFrame(() => this.reset.apply(this));
                 return;
             }
             var jsonString = data.split('?qr=')[1];
@@ -122,37 +125,51 @@ class Application {
     }
 
     private initializeVideo() {
-        var errorCallback = function (e) {
-            console.log('Reeeejected!', e);
-        };
-        (<any>navigator).getUserMedia = (<any>navigator).getUserMedia ||
-            (<any>navigator).webkitGetUserMedia ||
-            (<any>navigator).mozGetUserMedia ||
-            (<any>navigator).msGetUserMedia;
-
-        console.log('1');
-        if ((<any>navigator).getUserMedia) {
-            (<any>navigator).getUserMedia({ audio: false, video: true }, stream => {
-                this.video.src = window.URL.createObjectURL(stream);
-            }, errorCallback);
-
-            this.form.style.display = 'none';
-            this.video.style.display = 'block';
-        } else {
-            //video.src = 'fallback.webm'; // fallback.
-        }
+        var animationFrame = null;
+        var doVideoParse = false;
         var thecanvas = document.createElement('canvas');
         var parseVideo = () => {
+            if (!doVideoParse) {
+                window.cancelAnimationFrame(animationFrame);
+                animationFrame = null;
+                return;
+            }
             var context = thecanvas.getContext('2d');
             // draw the video contents into the canvas x, y, width, height
             context.drawImage(this.video, 0, 0, thecanvas.width, thecanvas.height);
 
             // get the image data from the canvas object
-            var dataURL = thecanvas.toDataURL();
-            qrcode.decode(dataURL);
+            var dataUrl = thecanvas.toDataURL();
+            qrcode.decode(dataUrl);
             window.requestAnimationFrame(parseVideo);
         };
-        window.requestAnimationFrame(parseVideo);
+        (<any>navigator).getUserMedia = (<any>navigator).getUserMedia ||
+            (<any>navigator).webkitGetUserMedia ||
+            (<any>navigator).mozGetUserMedia ||
+            (<any>navigator).msGetUserMedia;
+        if ((<any>navigator).getUserMedia) {
+            (<any>navigator).getUserMedia({ audio: false, video: true }, stream => {
+                doVideoParse = true;
+                this.video.src = window.URL.createObjectURL(stream);
+            }, e => {
+                this.form.style.display = 'block';
+                this.video.style.display = 'none';
+                doVideoParse = false;
+                if (animationFrame != null) {
+                    window.cancelAnimationFrame(animationFrame);
+                    animationFrame = null;
+                }
+            });
+
+            this.form.style.display = 'none';
+            this.video.style.display = 'block';
+        } else {
+            //video.src = 'fallback.webm'; // fallback.
+            this.form.style.display = 'block';
+            this.video.style.display = 'none';
+        }
+
+        if (doVideoParse) animationFrame = window.requestAnimationFrame(parseVideo);
 
     }
 }

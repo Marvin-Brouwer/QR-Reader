@@ -41,7 +41,6 @@
     <Content Include="lib\qrcode.js" />
     <Content Include="lib\rAF.js" />
     <Content Include="lib\rsdecoder.js" />
-    <Content Include="lib\test.html" />
     <Content Include="lib\version.js" />
     <Content Include="web.config" />
   </ItemGroup>
