@@ -1,5 +1,6 @@
-var Application = (function () {
-    function Application() {
+'use strict';
+class Application {
+    constructor() {
         this.settings = {
             siteUrl: 'https://github.com/Marvin-Brouwer/QR-Redirect'
         };
@@ -18,122 +19,135 @@ var Application = (function () {
         this.initializeUpload();
         // todo: create functionality for live webcam using: http://www.webqr.com/ like functionality that actualy works
     }
-    Application.prototype.initializeUpload = function () {
-        var _this = this;
-        this.cameraInput.onfocus = function (ev) { return document.body.focus(); };
-        this.form.onsubmit = function (ev) {
+    initializeUpload() {
+        this.cameraInput.onfocus = (ev) => document.body.focus();
+        this.form.onsubmit = (ev) => {
             ev.cancelBubble = true;
             ev.preventDefault();
             return ev;
         };
-        this.cameraInput.onclick = function (ev) { return _this.clearErrors(); };
-        this.cameraInput.onchange = function (ev) {
-            _this.clearErrors();
-            _this.setTitle('Reading...');
+        this.cameraInput.onclick = (ev) => this.clearErrors();
+        this.cameraInput.onchange = (ev) => {
+            this.clearErrors();
+            this.setTitle('Reading...');
             ev.cancelBubble = true;
             ev.preventDefault();
-            if (!_this.cameraInput.value) {
-                _this.reset();
+            if (!this.cameraInput.value) {
+                this.reset();
                 return ev;
             }
-            _this.readQR();
+            this.readQR();
             return ev;
         };
-        qrcode.callback = function (data) {
-            console.log("Raw QR-Data: " + data);
-            if (data.indexOf(_this.settings.siteUrl) !== 0) {
-                _this.setError('Invalid QR image');
+        qrcode.callback = (data) => {
+            console.log(`Raw QR-Data: ${data}`);
+            if (data.indexOf(this.settings.siteUrl) !== 0) {
+                this.setError('Invalid QR image');
+                window.requestAnimationFrame(() => this.reset.apply(this));
                 return;
             }
             var jsonString = data.split('?qr=')[1];
-            _this.parseUrl(jsonString);
-            _this.reset();
+            this.parseUrl(jsonString);
+            this.reset();
             return;
         };
         this.reset();
-    };
-    Application.prototype.clearErrors = function () {
+    }
+    clearErrors() {
         this.errorField.innerText = '';
-    };
-    Application.prototype.setError = function (text) {
+    }
+    setError(text) {
         this.errorField.innerText = text;
-    };
-    Application.prototype.setTitle = function (title) {
-        document.title = "QR-Redirect - " + title;
-    };
-    Application.prototype.reset = function () {
+    }
+    setTitle(title) {
+        document.title = `QR-Redirect - ${title}`;
+    }
+    reset() {
         this.cameraInput.value = null;
         this.setTitle('Select QR-Code');
         document.body.focus();
-    };
-    Application.prototype.readQR = function () {
-        var _this = this;
+    }
+    readQR() {
         var file = this.cameraInput.files[0];
         if (!file)
             return;
         var reader = new FileReader();
-        reader.onloadend = function () {
-            _this.setTitle('Parsing...');
-            console.log("Created DataUrl: " + reader.result);
+        reader.onloadend = () => {
+            this.setTitle('Parsing...');
+            console.log(`Created DataUrl: ${reader.result}`);
             qrcode.decode(reader.result);
         };
         reader.readAsDataURL(file);
-    };
-    Application.prototype.parseUrl = function (jsonString) {
+    }
+    parseUrl(jsonString) {
         this.setTitle('');
         var jsonData = JSON.parse(jsonString.replace(new RegExp('\'', 'g'), '"'));
         if (!jsonData || !jsonData.url) {
             this.setError('Invalid data');
             return;
         }
-        var url = "http" + (!!jsonData.secure ? 's' : '') + "://" + jsonData.url;
+        var url = `http${!!jsonData.secure ? 's' : ''}://${jsonData.url}`;
         console.log(url);
         alert(url);
         // todo: ajax preload
         //window.location.href = url;
         return;
-    };
-    Application.prototype.getParameterByName = function (name) {
+    }
+    getParameterByName(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'), results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-    Application.prototype.hasGetUserMedia = function () {
+    }
+    hasGetUserMedia() {
         return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    };
-    Application.prototype.initializeVideo = function () {
-        var _this = this;
-        var errorCallback = function (e) {
-            console.log('Reeeejected!', e);
+    }
+    initializeVideo() {
+        var animationFrame = null;
+        var doVideoParse = false;
+        var thecanvas = document.createElement('canvas');
+        var parseVideo = () => {
+            if (!doVideoParse) {
+                window.cancelAnimationFrame(animationFrame);
+                animationFrame = null;
+                return;
+            }
+            var context = thecanvas.getContext('2d');
+            // draw the video contents into the canvas x, y, width, height
+            context.drawImage(this.video, 0, 0, thecanvas.width, thecanvas.height);
+            // get the image data from the canvas object
+            var dataUrl = thecanvas.toDataURL();
+            qrcode.decode(dataUrl);
+            window.requestAnimationFrame(parseVideo);
         };
         navigator.getUserMedia = navigator.getUserMedia ||
             navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia ||
             navigator.msGetUserMedia;
-        console.log('1');
         if (navigator.getUserMedia) {
-            navigator.getUserMedia({ audio: false, video: true }, function (stream) {
-                _this.video.src = window.URL.createObjectURL(stream);
-            }, errorCallback);
+            navigator.getUserMedia({ audio: false, video: true }, stream => {
+                doVideoParse = true;
+                this.video.src = window.URL.createObjectURL(stream);
+            }, e => {
+                this.form.style.display = 'block';
+                this.video.style.display = 'none';
+                doVideoParse = false;
+                if (animationFrame != null) {
+                    window.cancelAnimationFrame(animationFrame);
+                    animationFrame = null;
+                }
+            });
             this.form.style.display = 'none';
             this.video.style.display = 'block';
         }
         else {
+            //video.src = 'fallback.webm'; // fallback.
+            this.form.style.display = 'block';
+            this.video.style.display = 'none';
         }
-        var thecanvas = document.createElement('canvas');
-        var parseVideo = function () {
-            var context = thecanvas.getContext('2d');
-            // draw the video contents into the canvas x, y, width, height
-            context.drawImage(_this.video, 0, 0, thecanvas.width, thecanvas.height);
-            // get the image data from the canvas object
-            var dataURL = thecanvas.toDataURL();
-            qrcode.decode(dataURL);
-            window.requestAnimationFrame(parseVideo);
-        };
-        window.requestAnimationFrame(parseVideo);
-    };
-    return Application;
-})();
-window.onload = function () { return new Application(); };
+        if (doVideoParse)
+            animationFrame = window.requestAnimationFrame(parseVideo);
+    }
+}
+window.onload = () => new Application();
 //# sourceMappingURL=app.js.map
