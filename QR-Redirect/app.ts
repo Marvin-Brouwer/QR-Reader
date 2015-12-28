@@ -5,6 +5,7 @@ declare var qrcode: any;
 class Application {
     private form: HTMLFormElement;
     private video: HTMLVideoElement;
+    private flashVideoEmbed: HTMLEmbedElement;
     private cameraInput: HTMLInputElement;
     private errorField: HTMLElement;
 
@@ -20,13 +21,18 @@ class Application {
         // Define elements
         this.form = <HTMLFormElement>(document.querySelector('form#mainForm'));
         this.video = <HTMLVideoElement>(document.querySelector('video#mainVideo'));
+        this.flashVideoEmbed = <HTMLEmbedElement>(document.querySelector('embed#flashVideoEmbed'));
         this.cameraInput = <HTMLInputElement>(document.querySelector('form#mainForm input[name=file]'));
         this.errorField = <HTMLInputElement>(document.querySelector('form#mainForm label div.error'));
 
         // Initialize
-        if (this.hasGetUserMedia())
-            this.initializeVideo();
-        this.initializeUpload();
+        //if (this.hasGetUserMedia()) 
+        //    this.initializeVideo();
+        //else 
+        if (true)
+            this.initializeFlash();
+        else
+            this.initializeUpload();
 
         // todo: create functionality for live webcam using: http://www.webqr.com/ like functionality that actualy works
     }
@@ -98,18 +104,22 @@ class Application {
     }
 
     public parseUrl(jsonString: string) {
-        this.setTitle('');
-        var jsonData = JSON.parse(jsonString.replace(new RegExp('\'', 'g'), '"'));
-        if (!jsonData || !jsonData.url) {
-            this.setError('Invalid data');
+        try {
+            this.setTitle('');
+            var jsonData = JSON.parse(jsonString.replace(new RegExp('\'', 'g'), '"'));
+            if (!jsonData || !jsonData.url) {
+                this.setError('Invalid data');
+                return;
+            }
+            var url = `http${!!jsonData.secure ? 's' : ''}://${jsonData.url}`;
+            console.log(url);
+            alert(url);
+            // todo: ajax preload
+            //window.location.href = url;
+        }
+        finally {
             return;
         }
-        var url = `http${!!jsonData.secure ? 's' : ''}://${jsonData.url}`;
-        console.log(url);
-        alert(url);
-        // todo: ajax preload
-        //window.location.href = url;
-        return;
     }
 
     private getParameterByName(name) {
@@ -134,6 +144,7 @@ class Application {
                 animationFrame = null;
                 return;
             }
+            console.log('video parse');
             var context = thecanvas.getContext('2d');
             // draw the video contents into the canvas x, y, width, height
             context.drawImage(this.video, 0, 0, thecanvas.width, thecanvas.height);
@@ -150,11 +161,14 @@ class Application {
         if ((<any>navigator).getUserMedia) {
             (<any>navigator).getUserMedia({ audio: false, video: true }, stream => {
                 doVideoParse = true;
+                console.log('video parse true');
                 this.video.src = window.URL.createObjectURL(stream);
+                if (doVideoParse) animationFrame = window.requestAnimationFrame(parseVideo);
             }, e => {
                 this.form.style.display = 'block';
                 this.video.style.display = 'none';
                 doVideoParse = false;
+                console.log('video parse false');
                 if (animationFrame != null) {
                     window.cancelAnimationFrame(animationFrame);
                     animationFrame = null;
@@ -172,6 +186,41 @@ class Application {
         if (doVideoParse) animationFrame = window.requestAnimationFrame(parseVideo);
 
     }
+
+    private initializeFlash() {
+        var takePicture = () => {
+
+            try {
+                (<any>this.flashVideoEmbed).ccCapture();
+            } catch (e) {
+                console.log(e);
+            }
+            window.requestAnimationFrame(takePicture);
+        };
+        (<any>this.flashVideoEmbed).onactivate = () => {
+            try {
+                // why doesn't the flash movie load?
+                (<any>this.flashVideoEmbed).ccInit();
+                //qrcode.decode();
+                // todo: http://help.adobe.com/en_US/as3/dev/WSfffb011ac560372f3fa68e8912e3ab6b8cb-8000.html#WS5b3ccc516d4fbf351e63e3d118a9b90204-7d37
+                // https://github.com/taboca/CamCanvas-API-/tree/300da2f250c76361a81a27dd35f503185bf338fe
+                // Create custom implementation of the swf that detects wether or not the camera is blocked and polish up the external calls a bit.
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        window.requestAnimationFrame(takePicture);
+    }
 }
 
 window.onload = () => new Application();
+
+// Test for ccCapture
+// ReSharper disable once TsNotResolved
+window.passLine = function (stringPixels) { 
+    //a = (intVal >> 24) & 0xff;
+
+    var coll = stringPixels.split("-");
+
+    console.log(coll[0]);
+} 

@@ -27,6 +27,7 @@
     <Content Include="lib\alignpat.js" />
     <Content Include="lib\bitmat.js" />
     <Content Include="lib\bmparser.js" />
+    <Content Include="lib\camcanvas.swf" />
     <Content Include="lib\datablock.js" />
     <Content Include="lib\databr.js" />
     <Content Include="lib\datamask.js" />
@@ -41,6 +42,7 @@
     <Content Include="lib\qrcode.js" />
     <Content Include="lib\rAF.js" />
     <Content Include="lib\rsdecoder.js" />
+    <Content Include="lib\test.html" />
     <Content Include="lib\version.js" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -71,7 +73,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>37768</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:37768/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
