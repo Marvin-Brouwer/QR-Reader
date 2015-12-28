@@ -164,8 +164,8 @@ var Application = (function () {
             animationFrame = window.requestAnimationFrame(parseVideo);
     };
     Application.prototype.initializeFlash = function () {
-        var flash = document.querySelector('object#flashVideo');
-        flash.addDomLoadEvent(function () {
+        var embed = document.querySelector('embed#flashVideoEmbed');
+        embed.addDomLoadEvent(function () {
             try {
                 embed.ccInit();
                 embed.ccCapture();
