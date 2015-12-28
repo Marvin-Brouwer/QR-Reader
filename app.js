@@ -164,25 +164,23 @@ var Application = (function () {
             animationFrame = window.requestAnimationFrame(parseVideo);
     };
     Application.prototype.initializeFlash = function () {
-        var embed = document.querySelector('embed#flashVideoEmbed');
-        embed.addDomLoadEvent(function () {
-            try {
-                embed.ccInit();
-                embed.ccCapture();
-                qrcode.decode();
-            }
-            catch (e) {
-                console.log(e);
-            }
-        });
+        try {
+            // why doesn't the flash movie load?
+            this.flashVideo.ccInit();
+            this.flashVideo.ccCapture();
+        }
+        catch (e) {
+            console.log(e);
+        }
     };
     return Application;
 })();
 window.onload = function () { return new Application(); };
+// Test for ccCapture
 // ReSharper disable once TsNotResolved
 window.passLine = function (stringPixels) {
     //a = (intVal >> 24) & 0xff;
     var coll = stringPixels.split("-");
-    alert(stringPixels);
+    console.log(coll[0]);
 };
 //# sourceMappingURL=app.js.map
