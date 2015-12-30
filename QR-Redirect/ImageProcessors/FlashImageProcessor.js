@@ -9,6 +9,9 @@ var FlashImageProcessor = (function () {
     FlashImageProcessor.flashDeclined = function () {
         this.currentFlashImageProcessor.declinedFallback();
     };
+    FlashImageProcessor.flashGetWindowDimensions = function () {
+        this.currentFlashImageProcessor.flashVideo.setDimensions(screen.availWidth, screen.availHeight);
+    };
     FlashImageProcessor.prototype.initiate = function () {
         FlashImageProcessor.currentFlashImageProcessor = this;
         this.buildHtml();

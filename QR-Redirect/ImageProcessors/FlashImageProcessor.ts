@@ -13,6 +13,9 @@ class FlashImageProcessor implements IImageProcessor {
     public static flashDeclined() {
         this.currentFlashImageProcessor.declinedFallback();
     }
+    public static flashGetWindowDimensions() {
+        (<any>this.currentFlashImageProcessor.flashVideo).setDimensions(screen.availWidth, screen.availHeight);
+    }
 
     public initiate(): void {
         FlashImageProcessor.currentFlashImageProcessor = this;
