@@ -78,14 +78,4 @@ class Application {
     }
 }
 
-// Test for ccCapture
-// ReSharper disable once TsNotResolved
-window.passLine = function (stringPixels) { 
-    //a = (intVal >> 24) & 0xff;
-
-    var coll = stringPixels.split("-");
-
-    console.log(coll[0]);
-} 
-
 window.onload = () => new Application();
