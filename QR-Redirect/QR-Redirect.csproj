@@ -22,7 +22,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.css" />
+    <Content Include="Application.css" />
     <Content Include="index.html" />
     <Content Include="lib\alignpat.js" />
     <Content Include="lib\bitmat.js" />
@@ -42,12 +42,18 @@
     <Content Include="lib\qrcode.js" />
     <Content Include="lib\rAF.js" />
     <Content Include="lib\rsdecoder.js" />
+    <Content Include="lib\swfobject.js" />
     <Content Include="lib\test.html" />
     <Content Include="lib\version.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="Application.ts" />
+    <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
+    <TypeScriptCompile Include="ImageProcessors\Html5ImageProcessor.ts" />
+    <TypeScriptCompile Include="ImageProcessors\IImageProcessor.ts" />
+    <TypeScriptCompile Include="ImageProcessors\ImageProcessorFactory.ts" />
+    <TypeScriptCompile Include="ImageProcessors\UploadImageProcessor.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

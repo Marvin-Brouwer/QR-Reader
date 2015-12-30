@@ -13,3 +13,4 @@ This will redirect to [marvin-brouwer.github.io/QR-Redirect](https://github.com/
 * The decoder used for the QRcode reading is from LazarSoft [https://github.com/LazarSoft/jsqrcode](https://github.com/LazarSoft/jsqrcode)
 * The camcanvas swf file for old browser fallback: http://www.taboca.com/p/camcanvas/
 * https://github.com/MitosEHR/MitosEHR-Official/tree/master/lib/jsqrcode
+* https://github.com/swfobject/swfobject

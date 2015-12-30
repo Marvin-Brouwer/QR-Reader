@@ -67,4 +67,4 @@ var Application = (function () {
     return Application;
 })();
 window.onload = function () { return new Application(); };
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=Application.js.map

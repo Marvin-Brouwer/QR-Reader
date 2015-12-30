@@ -39,7 +39,12 @@ form#mainForm, form#mainForm label, video#mainVideo, object, embed {
 video#mainVideo{
     display: none;
     background-color: black;
-    cursor: none;
+    cursor: no-drop;
+}
+object#flashVideo, object{
+    visibility: hidden;
+    background-color: black;
+    cursor: no-drop;
 }
 
 form#mainForm label div.label {

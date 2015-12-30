@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>QR-Redirect - Loading...</title>
-    <link rel="stylesheet" href="app.css" type="text/css" />
+    <link rel="stylesheet" href="Application.css" type="text/css" />
 
     <script type="text/javascript" src="lib/rAF.js"></script>
     <script type="text/javascript" src="lib/grid.js"></script>
@@ -25,22 +25,14 @@
     <script type="text/javascript" src="lib/alignpat.js"></script>
     <script type="text/javascript" src="lib/databr.js"></script>
 
-    <script defer src="app.js"></script>
+    <script type="text/javascript" src="lib/swfobject.js"></script>
 </head>
 <body>
-    <form id="mainForm" action="" method="POST" enctype="multipart/form-data">
-        <label>
-            <div class="label">Tap to select QR-Code</div>
-            <div class="error"></div>
-            <input type="file" name="file" accept="image/*;capture=camera" capture="camera" />
-        </label>
-    </form>
-    <video id="mainVideo" muted autoplay="autoplay" loop="true" preload="false"></video>
-    <object id="flashVideo" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="100%" height="100%">
-        <param name="movie" value="lib/camcanvas.swf" />
-        <param name="quality" value="high" />
-        <param name="allowScriptAccess" value="always" />
-        <embed allowScriptAccess="always" id="flashVideoEmbed" src="lib/camcanvas.swf" quality="high" width="100%" height="100%" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true" />
-    </object>
+    <script src="ImageProcessors/UploadImageProcessor.js"></script>
+    <script src="ImageProcessors/FlashImageProcessor.js"></script>
+    <script src="ImageProcessors/Html5ImageProcessor.js"></script>
+    <script src="ImageProcessors/ImageProcessorFactory.js"></script>
+
+    <script defer src="Application.js"></script>
 </body>
 </html>
