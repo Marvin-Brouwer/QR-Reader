@@ -16,8 +16,21 @@ var FlashImageProcessor = (function () {
         qrcode.callback = this.qrCallback.bind(this);
     };
     FlashImageProcessor.prototype.buildHtml = function () {
-        swfobject.embedSWF('lib/camcanvas.swf', document.body, '100%', '100%', 10, '0x00000', 'high');
+        swfobject.embedSWF('lib/camcanvas.swf', document.body, '100%', '100%', 10);
         this.flashVideo = document.querySelector('object');
+        this.flashVideo.setAttribute('wmode', 'transparent');
+        var movieParam = document.createElement('param');
+        movieParam.name = 'movie';
+        movieParam.value = 'lib/camcanvas.swf';
+        var qualityParam = document.createElement('param');
+        qualityParam.name = 'quality';
+        qualityParam.value = 'high';
+        var allowScriptAccessParam = document.createElement('param');
+        allowScriptAccessParam.name = 'allowScriptAccess';
+        allowScriptAccessParam.value = 'always';
+        this.flashVideo.appendChild(movieParam);
+        this.flashVideo.appendChild(qualityParam);
+        this.flashVideo.appendChild(allowScriptAccessParam);
     };
     FlashImageProcessor.prototype.initializeFlash = function () {
         var _this = this;
@@ -28,7 +41,10 @@ var FlashImageProcessor = (function () {
             catch (e) {
                 console.log(e);
             }
-            window.requestAnimationFrame(takePicture);
+        };
+        this.flashVideo.onload = function () {
+            _this.flashVideo.focus();
+            _this.flashVideo.click();
         };
         this.flashVideo.onactivate = function () {
             try {
@@ -38,7 +54,7 @@ var FlashImageProcessor = (function () {
                 // todo: http://help.adobe.com/en_US/as3/dev/WSfffb011ac560372f3fa68e8912e3ab6b8cb-8000.html#WS5b3ccc516d4fbf351e63e3d118a9b90204-7d37
                 // https://github.com/taboca/CamCanvas-API-/tree/300da2f250c76361a81a27dd35f503185bf338fe
                 // Create custom implementation of the swf that detects wether or not the camera is blocked and polish up the external calls a bit.
-                window.requestAnimationFrame(takePicture);
+                window.setInterval(takePicture, 1000);
             }
             catch (e) {
                 console.log(e);
@@ -51,11 +67,4 @@ var FlashImageProcessor = (function () {
     };
     return FlashImageProcessor;
 })();
-// Test for ccCapture
-// ReSharper disable once TsNotResolved
-window.passLine = function (stringPixels) {
-    //a = (intVal >> 24) & 0xff;
-    var coll = stringPixels.split("-");
-    //console.log(coll[0]);
-};
 //# sourceMappingURL=FlashImageProcessor.js.map

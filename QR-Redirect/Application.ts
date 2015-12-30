@@ -34,7 +34,6 @@ class Application {
 
     public reset() {
         this.setTitle('Select QR-Code');
-        document.body.focus();
     }
 
     public qrCallback(data: string, errorFunc: (error:string) => void) {
@@ -78,5 +77,15 @@ class Application {
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 }
+
+// Test for ccCapture
+// ReSharper disable once TsNotResolved
+window.passLine = function (stringPixels) { 
+    //a = (intVal >> 24) & 0xff;
+
+    var coll = stringPixels.split("-");
+
+    console.log(coll[0]);
+} 
 
 window.onload = () => new Application();

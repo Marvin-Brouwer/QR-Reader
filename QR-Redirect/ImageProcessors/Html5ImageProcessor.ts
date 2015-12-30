@@ -41,7 +41,7 @@
         let thecanvas = document.createElement('canvas');
         let parseVideo = () => {
             if (!doVideoParse) {
-                window.cancelAnimationFrame(animationFrame);
+                window.clearInterval(animationFrame);
                 animationFrame = null;
                 this.declinedFallback(); // It's either broke or declined
                 return;
@@ -54,18 +54,18 @@
             // get the image data from the canvas object
             let dataUrl = thecanvas.toDataURL();
             qrcode.decode(dataUrl);
-            window.requestAnimationFrame(parseVideo);
         };
 
         (<any>navigator).getUserMedia({ audio: false, video: true }, stream => {
             doVideoParse = true;
             this.video.src = window.URL.createObjectURL(stream);
-            if (doVideoParse) animationFrame = window.requestAnimationFrame(parseVideo);
+            this.video.play();
+            animationFrame = window.setInterval(parseVideo, 200);
         }, e => {
             this.video.style.display = 'none';
             doVideoParse = false;
             if (animationFrame != null) {
-                window.cancelAnimationFrame(animationFrame);
+                window.clearInterval(animationFrame);
                 animationFrame = null;
             }
             this.declinedFallback(); // It's either broke or declined
@@ -73,10 +73,6 @@
 
         this.video.style.display = 'block';
 
-        if (doVideoParse) {
-            this.video.play();
-            animationFrame = window.requestAnimationFrame(parseVideo);
-        }
     }
 
     public qrCallback(data: string): void {

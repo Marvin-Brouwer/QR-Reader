@@ -21,7 +21,6 @@ var Application = (function () {
     };
     Application.prototype.reset = function () {
         this.setTitle('Select QR-Code');
-        document.body.focus();
     };
     Application.prototype.qrCallback = function (data, errorFunc) {
         var _this = this;
@@ -66,5 +65,12 @@ var Application = (function () {
     };
     return Application;
 })();
+// Test for ccCapture
+// ReSharper disable once TsNotResolved
+window.passLine = function (stringPixels) {
+    //a = (intVal >> 24) & 0xff;
+    var coll = stringPixels.split("-");
+    console.log(coll[0]);
+};
 window.onload = function () { return new Application(); };
 //# sourceMappingURL=Application.js.map

@@ -40,7 +40,6 @@
     <Content Include="lib\gf256poly.js" />
     <Content Include="lib\grid.js" />
     <Content Include="lib\qrcode.js" />
-    <Content Include="lib\rAF.js" />
     <Content Include="lib\rsdecoder.js" />
     <Content Include="lib\swfobject.js" />
     <Content Include="lib\test.html" />

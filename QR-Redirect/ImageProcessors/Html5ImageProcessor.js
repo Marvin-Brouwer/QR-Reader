@@ -35,7 +35,7 @@ var Html5ImageProcessor = (function () {
         var thecanvas = document.createElement('canvas');
         var parseVideo = function () {
             if (!doVideoParse) {
-                window.cancelAnimationFrame(animationFrame);
+                window.clearInterval(animationFrame);
                 animationFrame = null;
                 _this.declinedFallback(); // It's either broke or declined
                 return;
@@ -47,27 +47,22 @@ var Html5ImageProcessor = (function () {
             // get the image data from the canvas object
             var dataUrl = thecanvas.toDataURL();
             qrcode.decode(dataUrl);
-            window.requestAnimationFrame(parseVideo);
         };
         navigator.getUserMedia({ audio: false, video: true }, function (stream) {
             doVideoParse = true;
             _this.video.src = window.URL.createObjectURL(stream);
-            if (doVideoParse)
-                animationFrame = window.requestAnimationFrame(parseVideo);
+            _this.video.play();
+            animationFrame = window.setInterval(parseVideo, 200);
         }, function (e) {
             _this.video.style.display = 'none';
             doVideoParse = false;
             if (animationFrame != null) {
-                window.cancelAnimationFrame(animationFrame);
+                window.clearInterval(animationFrame);
                 animationFrame = null;
             }
             _this.declinedFallback(); // It's either broke or declined
         });
         this.video.style.display = 'block';
-        if (doVideoParse) {
-            this.video.play();
-            animationFrame = window.requestAnimationFrame(parseVideo);
-        }
     };
     Html5ImageProcessor.prototype.qrCallback = function (data) {
         Application.current.qrCallback(data, function (error) { });
