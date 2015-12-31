@@ -1,4 +1,6 @@
-﻿class Html5ImageProcessor implements IImageProcessor {
+﻿'use strict';
+
+class Html5ImageProcessor implements IImageProcessor {
     public nextFallback(): void { }
     public declinedFallback(): void { }
     private video: HTMLVideoElement;

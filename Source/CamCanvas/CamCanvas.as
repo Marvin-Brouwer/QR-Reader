@@ -4,15 +4,15 @@ import flash.external.ExternalInterface;
 import flash.display.BitmapData;
 import flash.geom.Matrix;
 
-class CamCanvas {
-
-	public static var _camCanvas: CamCanvas;
+class camcanvas {
 
 	public static function exportCapture(input:String):String {
-		CamCanvas._camCanvas.snap();
+		ExternalInterface.call("console.log", "capture");
+		snap();
 		return input;
 	}
 	public static function exportInit(input:Number, x:Number, y:Number):String {
+		ExternalInterface.call("console.log", "export init");
 		if(input) { 
 			_root.cam = Camera.get(input);
 		} else { 
@@ -27,7 +27,7 @@ class CamCanvas {
 //		_root.cam = Camera.get();
 //		_root.cam.setMode(320,240, 24)
 
-		_root.attachMovie("VideoPanel", "webcamVideo", 1);
+		_root.attachMovie("ObjetVideo", "webcamVideo", 1);
 		_root.webcamVideo.attachVideo(_root.cam);
 		_root.webcamVideo._x = 0;
 
@@ -49,25 +49,27 @@ class CamCanvas {
 
 	
 	public static function main() {		
+		ExternalInterface.call("console.log", "initializing CamCanvas");
 
 		_root.refFunc = exportCapture;
 		_root.refFunc2 = exportCameraList;
 		_root.refFunc3 = exportInit;
 
-		CamCanvas._camCanvas = new CamCanvas();
-		CamCanvas._camCanvas.initialize();
-
-		exportInit(320,240, 24)
-
-	}
-
-	public function initialize(){
 		ExternalInterface.addCallback("ccCapture", _root, _root.refFunc);
 		ExternalInterface.addCallback("ccList", _root, _root.refFunc2);
 		ExternalInterface.addCallback("ccInit", _root, _root.refFunc3);
+
+		// this is just for testing purposes
+		exportInit(9,200,200);
+		exportCapture("internal");
+		var carmeralist = exportCameraList("internal");
+		if(cameralist == "")
+		ExternalInterface.call("FlashImageProcessor.flashDeclined", "");
+
+
 	}
 	
-	public function snap() {
+	public static function snap() {
 
 		var snapshot:flash.display.BitmapData = new flash.display.BitmapData(_root.webcamVideo._width,_root.webcamVideo.height,true);
 		snapshot.draw(_root.webcamVideo);

@@ -1,27 +1,30 @@
-var FlashImageProcessor = (function () {
-    function FlashImageProcessor() {
-    }
-    FlashImageProcessor.prototype.nextFallback = function () { };
-    FlashImageProcessor.prototype.declinedFallback = function () { };
-    FlashImageProcessor.flashAccepted = function () {
+'use strict';
+class FlashImageProcessor {
+    nextFallback() { }
+    declinedFallback() { }
+    static flashAccepted() {
         //this.currentFlashImageProcessor.declinedFallback();
-    };
-    FlashImageProcessor.flashDeclined = function () {
+    }
+    static flashDeclined() {
         this.currentFlashImageProcessor.declinedFallback();
-    };
-    FlashImageProcessor.flashGetWindowDimensions = function () {
+    }
+    static flashGetWindowDimensions() {
         this.currentFlashImageProcessor.flashVideo.setDimensions(screen.availWidth, screen.availHeight);
-    };
-    FlashImageProcessor.prototype.initiate = function () {
+    }
+    initiate() {
         FlashImageProcessor.currentFlashImageProcessor = this;
         this.buildHtml();
         this.initializeFlash();
         qrcode.callback = this.qrCallback.bind(this);
-    };
-    FlashImageProcessor.prototype.buildHtml = function () {
-        swfobject.embedSWF('CamCanvas.swf', document.body, '100%', '100%', 10);
+    }
+    buildHtml() {
+        swfobject.embedSWF('CamCanvas.swf', document.querySelector('body'), '100%', '100%', 10);
         this.flashVideo = document.querySelector('object');
         this.flashVideo.setAttribute('wmode', 'transparent');
+        this.flashVideo.onloadeddata = () => alert('data');
+        this.flashVideo.onended = () => alert('end');
+        this.flashVideo.onbeforeactivate = () => alert('act');
+        this.flashVideo.onplay = () => alert('play');
         var movieParam = document.createElement('param');
         movieParam.name = 'movie';
         movieParam.value = 'CamCanvas.swf';
@@ -34,25 +37,24 @@ var FlashImageProcessor = (function () {
         this.flashVideo.appendChild(movieParam);
         this.flashVideo.appendChild(qualityParam);
         this.flashVideo.appendChild(allowScriptAccessParam);
-    };
-    FlashImageProcessor.prototype.initializeFlash = function () {
-        var _this = this;
-        var takePicture = function () {
+    }
+    initializeFlash() {
+        var takePicture = () => {
             try {
-                _this.flashVideo.ccCapture();
+                this.flashVideo.ccCapture();
             }
             catch (e) {
                 console.log(e);
             }
         };
-        this.flashVideo.onload = function () {
-            _this.flashVideo.focus();
-            _this.flashVideo.click();
+        this.flashVideo.onload = () => {
+            this.flashVideo.focus();
+            this.flashVideo.click();
         };
-        this.flashVideo.onactivate = function () {
+        this.flashVideo.onactivate = () => {
             try {
                 // why doesn't the flash movie load?
-                _this.flashVideo.ccInit();
+                this.flashVideo.ccInit();
                 //qrcode.decode();
                 // todo: http://help.adobe.com/en_US/as3/dev/WSfffb011ac560372f3fa68e8912e3ab6b8cb-8000.html#WS5b3ccc516d4fbf351e63e3d118a9b90204-7d37
                 // https://github.com/taboca/CamCanvas-API-/tree/300da2f250c76361a81a27dd35f503185bf338fe
@@ -64,15 +66,14 @@ var FlashImageProcessor = (function () {
             }
         };
         this.flashVideo.style.visibility = 'visible';
-    };
-    FlashImageProcessor.prototype.qrCallback = function (data) {
-        Application.current.qrCallback(data, function (error) { });
-    };
-    return FlashImageProcessor;
-})();
+    }
+    qrCallback(data) {
+        Application.current.qrCallback(data, (error) => { });
+    }
+}
 // Test for ccCapture
 // ReSharper disable once TsNotResolved
-var passLine = function (stringPixels) {
+var passLine = stringPixels => {
     //a = (intVal >> 24) & 0xff;
     var coll = stringPixels.split("-");
     //console.log(coll[0]);

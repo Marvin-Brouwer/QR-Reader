@@ -1,14 +1,13 @@
-var UploadImageProcessor = (function () {
-    function UploadImageProcessor() {
-    }
-    UploadImageProcessor.prototype.nextFallback = function () { };
-    UploadImageProcessor.prototype.declinedFallback = function () { };
-    UploadImageProcessor.prototype.initiate = function () {
+'use strict';
+class UploadImageProcessor {
+    nextFallback() { }
+    declinedFallback() { }
+    initiate() {
         this.buildHtml();
         this.initializeUpload();
         qrcode.callback = this.qrCallback.bind(this);
-    };
-    UploadImageProcessor.prototype.buildHtml = function () {
+    }
+    buildHtml() {
         this.form = document.createElement('form');
         this.form.id = 'mainForm';
         this.form.action = '';
@@ -30,55 +29,52 @@ var UploadImageProcessor = (function () {
         label.appendChild(this.cameraInput);
         this.form.appendChild(label);
         document.body.appendChild(this.form);
-    };
-    UploadImageProcessor.prototype.initializeUpload = function () {
-        var _this = this;
-        this.cameraInput.onfocus = function (ev) { return document.body.focus(); };
-        this.form.onsubmit = function (ev) {
+    }
+    initializeUpload() {
+        this.cameraInput.onfocus = (ev) => document.body.focus();
+        this.form.onsubmit = (ev) => {
             ev.cancelBubble = true;
             ev.preventDefault();
             return ev;
         };
-        this.cameraInput.onclick = function (ev) { return _this.clearErrors(); };
-        this.cameraInput.onchange = function (ev) {
-            _this.clearErrors();
+        this.cameraInput.onclick = (ev) => this.clearErrors();
+        this.cameraInput.onchange = (ev) => {
+            this.clearErrors();
             Application.current.setTitle('Reading...');
             ev.cancelBubble = true;
             ev.preventDefault();
-            if (!_this.cameraInput.value) {
-                _this.reset();
+            if (!this.cameraInput.value) {
+                this.reset();
                 return ev;
             }
-            _this.readQR();
+            this.readQR();
             return ev;
         };
-    };
-    UploadImageProcessor.prototype.readQR = function () {
+    }
+    readQR() {
         var file = this.cameraInput.files[0];
         if (!file)
             return;
         var reader = new FileReader();
-        reader.onloadend = function () {
+        reader.onloadend = () => {
             Application.current.setTitle('Parsing...');
-            console.log("Created DataUrl: " + reader.result);
+            console.log(`Created DataUrl: ${reader.result}`);
             qrcode.decode(reader.result);
         };
         reader.readAsDataURL(file);
-    };
-    UploadImageProcessor.prototype.reset = function () {
+    }
+    reset() {
         this.cameraInput.value = null;
         Application.current.reset();
-    };
-    UploadImageProcessor.prototype.clearErrors = function () {
+    }
+    clearErrors() {
         this.errorField.innerText = '';
-    };
-    UploadImageProcessor.prototype.setError = function (text) {
+    }
+    setError(text) {
         this.errorField.innerText = text;
-    };
-    UploadImageProcessor.prototype.qrCallback = function (data) {
-        var _this = this;
-        Application.current.qrCallback(data, function (error) { return _this.setError(error); });
-    };
-    return UploadImageProcessor;
-})();
+    }
+    qrCallback(data) {
+        Application.current.qrCallback(data, (error) => this.setError(error));
+    }
+}
 //# sourceMappingURL=UploadImageProcessor.js.map

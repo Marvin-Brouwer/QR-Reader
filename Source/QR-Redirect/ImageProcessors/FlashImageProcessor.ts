@@ -1,4 +1,6 @@
-﻿declare var swfobject :any;
+﻿'use strict';
+
+declare var swfobject :any;
 
 class FlashImageProcessor implements IImageProcessor {
     public nextFallback(): void { }
@@ -25,9 +27,13 @@ class FlashImageProcessor implements IImageProcessor {
     }
 
     private buildHtml() {
-        swfobject.embedSWF('CamCanvas.swf', document.body, '100%', '100%', 10);
+        swfobject.embedSWF('CamCanvas.swf', document.querySelector('body'), '100%', '100%', 10);
         this.flashVideo = <HTMLObjectElement>document.querySelector('object');
-        this.flashVideo.setAttribute('wmode','transparent');
+        this.flashVideo.setAttribute('wmode', 'transparent');
+        this.flashVideo.onloadeddata = () => alert('data');
+        this.flashVideo.onended = () => alert('end');
+        this.flashVideo.onbeforeactivate = () => alert('act');
+        this.flashVideo.onplay = () => alert('play');
         var movieParam = document.createElement('param');
         movieParam.name = 'movie';
         movieParam.value = 'CamCanvas.swf';
@@ -78,7 +84,7 @@ class FlashImageProcessor implements IImageProcessor {
 
 // Test for ccCapture
 // ReSharper disable once TsNotResolved
-var passLine = function (stringPixels) { 
+var passLine = stringPixels => { 
     //a = (intVal >> 24) & 0xff;
 
     var coll = stringPixels.split("-");

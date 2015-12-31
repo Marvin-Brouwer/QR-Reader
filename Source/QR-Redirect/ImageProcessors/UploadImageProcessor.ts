@@ -1,4 +1,6 @@
-﻿class UploadImageProcessor implements IImageProcessor {
+﻿'use strict';
+
+class UploadImageProcessor implements IImageProcessor {
     public nextFallback(): void { }
     public declinedFallback(): void { }
     private form: HTMLFormElement;

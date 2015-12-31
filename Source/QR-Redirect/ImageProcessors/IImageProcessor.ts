@@ -1,4 +1,6 @@
-﻿interface IImageProcessor {
+﻿'use strict';
+
+interface IImageProcessor {
     nextFallback: () => void;
     declinedFallback: () => void;
     initiate: () => void;
