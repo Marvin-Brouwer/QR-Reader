@@ -57,6 +57,8 @@ class CamCanvas {
 		CamCanvas._camCanvas = new CamCanvas();
 		CamCanvas._camCanvas.initialize();
 
+		exportInit(320,240, 24)
+
 	}
 
 	public function initialize(){
