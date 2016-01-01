@@ -36,7 +36,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Gruntfile.js" />
+    <None Include="Gruntfile.js" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <Content Include="CamCanvas.as" />
     <Content Include="CamCanvas.xml" />
