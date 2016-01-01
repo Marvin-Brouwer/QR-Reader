@@ -12,11 +12,17 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'), 
+        pkg: grunt.file.readJSON('package.json'),
         shell: {
+            folderInsurance: {
+                command: function () {
+                    return '' +
+                        'if not exist "' + rootFolder + '/bin" mkdir "' + rootFolder + '/bin/"';
+                }
+            },
             swfCompile: {
                 command: function () {
-                    return ''+
+                    return '' +
                         '"' + solutionFolder + '/Compilers/SWFMil/swfmill.exe" ' +
                         'simple "' + rootFolder + '/CamCanvas.xml" ' +
                         '"' + rootFolder + '/bin/CamCanvas.swf"';
@@ -43,6 +49,6 @@ module.exports = function (grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['shell:swfCompile', 'shell:asCompile', 'copy']);
+    grunt.registerTask('default', ['shell:folderInsurance', 'shell:swfCompile', 'shell:asCompile', 'copy']);
 
 };
