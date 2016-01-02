@@ -73,7 +73,7 @@ module.exports = function (grunt) {
         uglify: {
             release: {
                 files: {
-                    'bin/Release/Content/Application.js': [solutionFolder + '/Source/QR-Redirect/Content/Application.js']
+                    'bin/Application.js': [solutionFolder + '/Source/QR-Redirect/Content/Application.js']
                 }
             }
         },
@@ -87,6 +87,12 @@ module.exports = function (grunt) {
                             'Content/**'
                         ], 
                         flatten: false, dest: solutionFolder + '/Publish/'
+                    },
+                    {
+                        expand: true, cwd: solutionFolder + '/Source/Application/bin/', src: [
+                            'Application.js'
+                        ], 
+                        flatten: false, dest: solutionFolder + '/Publish/Content'
                     }
                 ]
             },
@@ -100,7 +106,7 @@ module.exports = function (grunt) {
     });
     
     // Default task(s).
-    grunt.registerTask('release', ['copy:release', 'uglify']);
+    grunt.registerTask('release', ['uglify','copy:release']);
     grunt.registerTask('default', ['typescript','concat:default','copy:default', 'release']);
 
 };
