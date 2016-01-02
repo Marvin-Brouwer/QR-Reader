@@ -11,7 +11,8 @@ var FlashImageProcessor = (function () {
         this.currentFlashImageProcessor.nextFallback();
     };
     FlashImageProcessor.renderVideo = function (data) {
-        console.log(data);
+        //console.log(data);
+        qrcode.decode(data);
     };
     FlashImageProcessor.prototype.initiate = function () {
         FlashImageProcessor.currentFlashImageProcessor = this;

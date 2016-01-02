@@ -23,13 +23,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Application.css" />
-    <Content Include="CamCanvas.swf" />
     <Content Include="HaxeCam.swf" />
     <Content Include="index.html" />
     <Content Include="lib\alignpat.js" />
     <Content Include="lib\bitmat.js" />
     <Content Include="lib\bmparser.js" />
-    <Content Include="lib\camcanvas.swf" />
     <Content Include="lib\datablock.js" />
     <Content Include="lib\databr.js" />
     <Content Include="lib\datamask.js" />
@@ -44,7 +42,6 @@
     <Content Include="lib\qrcode.js" />
     <Content Include="lib\rsdecoder.js" />
     <Content Include="lib\swfobject.js" />
-    <Content Include="lib\test.html" />
     <Content Include="lib\version.js" />
     <Content Include="web.config" />
   </ItemGroup>

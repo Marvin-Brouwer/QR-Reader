@@ -17,7 +17,8 @@ class FlashImageProcessor implements IImageProcessor {
         this.currentFlashImageProcessor.nextFallback();
     }
     public static renderVideo(data:string) {
-        console.log(data);
+        //console.log(data);
+        qrcode.decode(data);
     }
 
     public initiate(): void {

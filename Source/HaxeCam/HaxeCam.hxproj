@@ -16,6 +16,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
+    <class path="lib\adobe" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -24,7 +25,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="Main" />
     <option enabledebug="True" />
-    <option additional="" />
+    <option additional="-D FAST_ONLY" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
@@ -40,7 +41,6 @@
     <asset path="lib\libspark.org QRCodeReader\com\logosware\event" />
     <asset path="lib\libspark.org QRCodeReader\com" />
     <asset path="lib\libspark.org QRCodeReader\com\logosware" />
-    <asset path="lib" />
     <asset path="lib\blooddy_crypto_0.3.5" />
     <asset path="lib\libspark.org QRCodeReader\QRCodeReader2.swf" />
     <asset path="lib\G8Num.swf" mode="IncludedLibrary" />
@@ -52,7 +52,6 @@
     <asset path="lib\QRdecoderEvent.swf" />
     <asset path="lib\QRreaderEvent.swf" />
     <asset path="lib\G4Num.swf" />
-    <asset path="lib\QRCodeReader.swc" />
   </library>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
