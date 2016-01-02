@@ -22,6 +22,10 @@ class FlashImageProcessor implements IImageProcessor {
     }
 
     public initiate(): void {
+        if (swfobject.getFlashPlayerVersion().major === 0) {
+            this.nextFallback();
+            return;
+        }
         FlashImageProcessor.currentFlashImageProcessor = this;
         this.buildHtml();
         this.initializeFlash();
