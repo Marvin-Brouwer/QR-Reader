@@ -17,7 +17,7 @@ class Application {
 
         // Start processors
         new ImageProcessorFactory(new UploadImageProcessor())
-            //.addImageProcessor(new Html5ImageProcessor())
+            .addImageProcessor(new Html5ImageProcessor())
             .addImageProcessor(new FlashImageProcessor())
             .initiate();
         

@@ -6,17 +6,18 @@ class FlashImageProcessor implements IImageProcessor {
     public nextFallback(): void { }
     public declinedFallback(): void { }
     private flashVideo: HTMLObjectElement;
+    private flashVideoEmbed: HTMLEmbedElement;
 
     // This is necessary for the ExternalModule flash implementation
     private static currentFlashImageProcessor: FlashImageProcessor;
-    public static flashAccepted() {
-        //this.currentFlashImageProcessor.declinedFallback();
-    }
     public static flashDeclined() {
         this.currentFlashImageProcessor.declinedFallback();
     }
-    public static flashGetWindowDimensions() {
-        (<any>this.currentFlashImageProcessor.flashVideo).setDimensions(screen.availWidth, screen.availHeight);
+    public static cameraNotSupported() {
+        this.currentFlashImageProcessor.nextFallback();
+    }
+    public static renderVideo(data:string) {
+        console.log(data);
     }
 
     public initiate(): void {
@@ -27,53 +28,37 @@ class FlashImageProcessor implements IImageProcessor {
     }
 
     private buildHtml() {
-        swfobject.embedSWF('CamCanvas.swf', document.querySelector('body'), '100%', '100%', 10);
+        var flashvars = {
+            deniedMethod: 'FlashImageProcessor.flashDeclined',
+            exportDataMethod: 'FlashImageProcessor.renderVideo',
+            notSupportedMethod: 'FlashImageProcessor.cameraNotSupported'
+        };
+        var params = {
+            //menu: 'false',
+            scale: 'noScale',
+            allowFullscreen: 'true',
+            allowScriptAccess: 'always',
+            bgcolor: '#000',
+            movie: 'HaxeCam.swf',
+            quality: 'high'
+        };
+        var attributes = {
+            id: 'flashVideo',
+            wmode: 'transparent'
+        };
+        swfobject.embedSWF('HaxeCam.swf', document.querySelector('#appBody'), '100%', '100%', 20,null,flashvars,params,attributes);
         this.flashVideo = <HTMLObjectElement>document.querySelector('object');
-        this.flashVideo.setAttribute('wmode', 'transparent');
-        this.flashVideo.onloadeddata = () => alert('data');
-        this.flashVideo.onended = () => alert('end');
-        this.flashVideo.onbeforeactivate = () => alert('act');
-        this.flashVideo.onplay = () => alert('play');
-        var movieParam = document.createElement('param');
-        movieParam.name = 'movie';
-        movieParam.value = 'CamCanvas.swf';
-        var qualityParam = document.createElement('param');
-        qualityParam.name = 'quality';
-        qualityParam.value = 'high';
-        var allowScriptAccessParam = document.createElement('param');
-        allowScriptAccessParam.name = 'allowScriptAccess';
-        allowScriptAccessParam.value = 'always';
-        this.flashVideo.appendChild(movieParam);
-        this.flashVideo.appendChild(qualityParam);
-        this.flashVideo.appendChild(allowScriptAccessParam);
     }
 
     private initializeFlash() {
-        var takePicture = () => {
-
-            try {
-                (<any>this.flashVideo).ccCapture();
-            } catch (e) {
-                console.log(e);
-            }
-        };
         (<any>this.flashVideo).onload = () => {
             this.flashVideo.focus();
             this.flashVideo.click();
         };
-        (<any>this.flashVideo).onactivate = () => {
-            try {
-                // why doesn't the flash movie load?
-                (<any>this.flashVideo).ccInit();
-                //qrcode.decode();
-                // todo: http://help.adobe.com/en_US/as3/dev/WSfffb011ac560372f3fa68e8912e3ab6b8cb-8000.html#WS5b3ccc516d4fbf351e63e3d118a9b90204-7d37
-                // https://github.com/taboca/CamCanvas-API-/tree/300da2f250c76361a81a27dd35f503185bf338fe
-                // Create custom implementation of the swf that detects wether or not the camera is blocked and polish up the external calls a bit.
-                window.setInterval(takePicture,1500);
-            } catch (e) {
-                console.log(e);
-            }
-        }
+        window.onfocus = document.onfocus = (<HTMLBodyElement>document.querySelector('body')).onfocus = () => {
+            this.flashVideo.focus();
+            this.flashVideo.click();
+        };
         this.flashVideo.style.visibility = 'visible';
     }
 
@@ -81,13 +66,3 @@ class FlashImageProcessor implements IImageProcessor {
         Application.current.qrCallback(data, (error) => { });
     }
 }
-
-// Test for ccCapture
-// ReSharper disable once TsNotResolved
-var passLine = stringPixels => { 
-    //a = (intVal >> 24) & 0xff;
-
-    var coll = stringPixels.split("-");
-
-    //console.log(coll[0]);
-} 
