@@ -3875,7 +3875,7 @@ var FlashImageProcessor = (function () {
             id: 'flashVideo',
             wmode: 'transparent'
         };
-        swfobject.embedSWF('HaxeCam.swf', document.querySelector('#appBody'), '100%', '100%', 20, null, flashvars, params, attributes);
+        swfobject.embedSWF(params.movie, document.querySelector('#appBody'), '100%', '100%', 20, null, flashvars, params, attributes);
         this.flashVideo = document.querySelector('object');
     };
     FlashImageProcessor.prototype.initializeFlash = function () {
