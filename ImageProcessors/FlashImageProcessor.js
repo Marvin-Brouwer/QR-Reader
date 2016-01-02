@@ -15,6 +15,10 @@ var FlashImageProcessor = (function () {
         qrcode.decode(data);
     };
     FlashImageProcessor.prototype.initiate = function () {
+        if (swfobject.getFlashPlayerVersion().major === 0) {
+            this.nextFallback();
+            return;
+        }
         FlashImageProcessor.currentFlashImageProcessor = this;
         this.buildHtml();
         this.initializeFlash();
