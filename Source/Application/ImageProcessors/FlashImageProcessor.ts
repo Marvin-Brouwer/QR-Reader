@@ -44,7 +44,7 @@ class FlashImageProcessor implements IImageProcessor {
             allowFullscreen: 'true',
             allowScriptAccess: 'always',
             bgcolor: '#000',
-            movie: 'HaxeCam.swf',
+            movie: 'Content/HaxeCam.swf',
             quality: 'high'
         };
         var attributes = {

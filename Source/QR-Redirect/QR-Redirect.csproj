@@ -22,36 +22,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Application.css" />
-    <Content Include="HaxeCam.swf" />
+    <Content Include="Content\Application.css" />
+    <Content Include="Content\Application.js" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\HaxeCam.swf" />
     <Content Include="index.html" />
-    <Content Include="lib\alignpat.js" />
-    <Content Include="lib\bitmat.js" />
-    <Content Include="lib\bmparser.js" />
-    <Content Include="lib\datablock.js" />
-    <Content Include="lib\databr.js" />
-    <Content Include="lib\datamask.js" />
-    <Content Include="lib\decoder.js" />
-    <Content Include="lib\detector.js" />
-    <Content Include="lib\errorlevel.js" />
-    <Content Include="lib\findpat.js" />
-    <Content Include="lib\formatinf.js" />
-    <Content Include="lib\gf256.js" />
-    <Content Include="lib\gf256poly.js" />
-    <Content Include="lib\grid.js" />
-    <Content Include="lib\qrcode.js" />
-    <Content Include="lib\rsdecoder.js" />
-    <Content Include="lib\swfobject.js" />
-    <Content Include="lib\version.js" />
     <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Application.ts" />
-    <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
-    <TypeScriptCompile Include="ImageProcessors\Html5ImageProcessor.ts" />
-    <TypeScriptCompile Include="ImageProcessors\IImageProcessor.ts" />
-    <TypeScriptCompile Include="ImageProcessors\ImageProcessorFactory.ts" />
-    <TypeScriptCompile Include="ImageProcessors\UploadImageProcessor.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

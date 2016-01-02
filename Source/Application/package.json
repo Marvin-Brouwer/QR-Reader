@@ -1,0 +1,21 @@
+{
+  "name": "QR-Redirect.Application",
+  "version": "1.0.0",
+  "description": "Application",
+  "main": "app.js",
+  "author": {
+    "name": "Marvin Brouwer"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-commands": "^0.1.8",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "^0.11.0",
+    "grunt-typescript": "^0.8.0"
+  },
+  "scripts": {
+    "start": "grunt --debug --verbose"
+  }
+}
