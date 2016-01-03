@@ -14,7 +14,7 @@ class ImageProcessorFactory {
         return this;
     }
 
-    public initiate() {
+    public initiate() : ImageProcessorFactory  {
         for (let i = 0; i < this.imageProcessors.length; i++) {
             let imageProcessor = this.imageProcessors[i];
             let nextImageProcessor = this.imageProcessors[i + 1] || null;
@@ -26,5 +26,6 @@ class ImageProcessorFactory {
 
         // ReSharper disable once WrongExpressionStatement
         this.imageProcessors[0].initiate();
+        return this;
     }
 }

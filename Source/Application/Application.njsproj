@@ -36,6 +36,12 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Application.ts" />
+    <TypeScriptCompile Include="DataProcessors\DataType.ts" />
+    <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\DataProcessorFactory.ts" />
+    <TypeScriptCompile Include="DataProcessors\TextDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
+    <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\Html5ImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\IImageProcessor.ts" />
@@ -46,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ImageProcessors\" />
+    <Folder Include="DataProcessors\" />
+    <Folder Include="Extensions\" />
     <Folder Include="Scripts\lib\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />

@@ -19,6 +19,7 @@ var ImageProcessorFactory = (function () {
         }
         // ReSharper disable once WrongExpressionStatement
         this.imageProcessors[0].initiate();
+        return this;
     };
     return ImageProcessorFactory;
 })();

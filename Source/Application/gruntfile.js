@@ -22,7 +22,9 @@ var jsFiles = [
     // SWF Object
     'Scripts/lib/swfobject.js',
     // Application
+    'Extensions/*.js',
     'ImageProcessors/*.js',
+    'DataProcessors/*.js',
     'Application.js'
 ];  
 

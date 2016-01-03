@@ -16,7 +16,7 @@ class UploadImageProcessor implements IImageProcessor {
     private buildHtml() {
         this.form = document.createElement('form');
         this.form.id = 'mainForm';
-        this.form.action = '';
+        this.form.action = String();
         this.form.method = 'POST';
         this.form.enctype = 'multipart/form-data';
         var label = document.createElement('label');
@@ -79,7 +79,7 @@ class UploadImageProcessor implements IImageProcessor {
     }
 
     private clearErrors() {
-        this.errorField.innerText = '';
+        this.errorField.innerText = String();
     }
 
     private setError(text: string) {

@@ -12,7 +12,7 @@ var UploadImageProcessor = (function () {
     UploadImageProcessor.prototype.buildHtml = function () {
         this.form = document.createElement('form');
         this.form.id = 'mainForm';
-        this.form.action = '';
+        this.form.action = String();
         this.form.method = 'POST';
         this.form.enctype = 'multipart/form-data';
         var label = document.createElement('label');
@@ -71,7 +71,7 @@ var UploadImageProcessor = (function () {
         Application.current.reset();
     };
     UploadImageProcessor.prototype.clearErrors = function () {
-        this.errorField.innerText = '';
+        this.errorField.innerText = String();
     };
     UploadImageProcessor.prototype.setError = function (text) {
         this.errorField.innerText = text;
