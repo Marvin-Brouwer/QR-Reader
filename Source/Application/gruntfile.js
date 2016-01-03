@@ -73,7 +73,7 @@ module.exports = function (grunt) {
         uglify: {
             release: {
                 files: {
-                    'bin/Application.js': [solutionFolder + '/Source/QR-Redirect/Content/Application.js']
+                    'bin/Application.js': [solutionFolder + '/Source/QR-Reader/Content/Application.js']
                 }
             }
         },
@@ -82,7 +82,7 @@ module.exports = function (grunt) {
                 files: [
                   // includes files within path
                     {
-                        expand: true,cwd:solutionFolder + '/Source/QR-Redirect/', src: [
+                        expand: true,cwd:solutionFolder + '/Source/QR-Reader/', src: [
                             'index.html',
                             'Content/**'
                         ], 
@@ -99,7 +99,7 @@ module.exports = function (grunt) {
             default: {
                 files: [
                   // includes files within path
-                    { expand: true, src: ['bin/Application.js'], flatten: true, dest: solutionFolder + '/Source/QR-Redirect/Content/', filter: 'isFile' }
+                    { expand: true, src: ['bin/Application.js'], flatten: true, dest: solutionFolder + '/Source/QR-Reader/Content/', filter: 'isFile' }
                 ]
             }
         }

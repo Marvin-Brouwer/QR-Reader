@@ -17,7 +17,7 @@ var Application = (function () {
         this.reset();
     };
     Application.prototype.setTitle = function (title) {
-        document.title = "QR-Redirect - " + title;
+        document.title = "QR-Reader - " + title;
     };
     Application.prototype.reset = function () {
         this.setTitle('Select QR-Code');
@@ -61,7 +61,7 @@ var Application = (function () {
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
     Application.settings = {
-        siteUrl: 'https://github.com/Marvin-Brouwer/QR-Redirect'
+        siteUrl: 'https://github.com/Marvin-Brouwer/QR-Reader'
     };
     return Application;
 })();

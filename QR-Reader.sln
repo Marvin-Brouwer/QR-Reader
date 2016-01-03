@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QR-Redirect", "Source\QR-Redirect\QR-Redirect.csproj", "{B5A77136-704D-477F-B64F-56B5872A6B6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QR-Reader", "Source\QR-Reader\QR-Reader.csproj", "{B5A77136-704D-477F-B64F-56B5872A6B6D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{369858F1-4829-4A8F-A631-0623A2877C15} = {369858F1-4829-4A8F-A631-0623A2877C15}
 	EndProjectSection

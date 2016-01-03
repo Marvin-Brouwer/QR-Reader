@@ -1,5 +1,5 @@
 {
-  "name": "QR-Redirect.Application",
+  "name": "QR-Reader.Application",
   "version": "1.0.0",
   "description": "Application",
   "main": "app.js",

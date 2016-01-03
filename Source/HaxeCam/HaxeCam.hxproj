@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="..\QR-Redirect\HaxeCam.swf" />
+    <movie path="..\QR-Reader\HaxeCam.swf" />
     <movie fps="30" />
     <movie width="640" />
     <movie height="480" />

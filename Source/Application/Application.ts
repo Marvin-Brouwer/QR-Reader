@@ -6,7 +6,7 @@ class Application {
     public static current:Application;
 
     public static settings = {
-        siteUrl: 'https://github.com/Marvin-Brouwer/QR-Redirect'
+        siteUrl: 'https://github.com/Marvin-Brouwer/QR-Reader'
     }
 
     constructor() {
@@ -29,7 +29,7 @@ class Application {
         this.reset();
     }
     public setTitle(title: string) {
-        document.title = `QR-Redirect - ${title}`;
+        document.title = `QR-Reader - ${title}`;
     }
 
     public reset() {
