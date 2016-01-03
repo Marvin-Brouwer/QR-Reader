@@ -1,4 +1,4 @@
-﻿html, body, form, input, video, canvas, object, embed {
+﻿html, body, form, input, video, canvas, object, embed, header {
     font-family: 'Segoe UI', sans-serif;
     font-size: 1.3em;
     margin: 0;
@@ -24,7 +24,7 @@ input{
     visibility: hidden;
 }
 
-form#mainForm, form#mainForm label, video#mainVideo, object, embed {
+form#mainForm, form#mainForm label, video#mainVideo, object, embed, header[role=heading] {
     background-color: white;
     width: 100%;
     height: 100%;
@@ -47,7 +47,7 @@ object#flashVideo, object{
     cursor: no-drop;
 }
 
-form#mainForm label div.label {
+form#mainForm label div.label, header[role=heading] h1 {
     position: absolute;
     top: 50%;
     right: 0;

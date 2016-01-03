@@ -18,7 +18,7 @@ var UploadImageProcessor = (function () {
         var label = document.createElement('label');
         var innerLabel = document.createElement('div');
         innerLabel.setAttribute('class', 'label');
-        innerLabel.innerText = 'Tap to select QR-Code';
+        innerLabel.innerText = 'Tap to select<wbr/> QR-Code';
         this.errorField = document.createElement('div');
         this.errorField.setAttribute('class', 'error');
         this.cameraInput = document.createElement('input');
