@@ -69,3 +69,12 @@ form#mainForm label div.error {
     margin: 0;
     text-align: center;
 }
+
+.no-break {
+    white-space: nowrap;
+    -webkit-line-break: strict;
+    -moz-line-break: strict;
+    -ms-line-break: strict;
+    -o-line-break: strict;
+    line-break: strict;
+}

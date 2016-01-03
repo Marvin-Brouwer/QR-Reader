@@ -22,7 +22,7 @@ class UploadImageProcessor implements IImageProcessor {
         var label = document.createElement('label');
         var innerLabel = document.createElement('div');
         innerLabel.setAttribute('class', 'label');
-        innerLabel.innerText = 'Tap to select<wbr/> QR-Code';
+        innerLabel.innerHTML = 'Tap to select<wbr/> <span class="no-break">QR-Code</span>';
         this.errorField = document.createElement('div');
         this.errorField.setAttribute('class', 'error');
         this.cameraInput = document.createElement('input');
