@@ -1,5 +1,9 @@
 ﻿/// <binding BeforeBuild='default' AfterBuild='default' />
-
+var projectBanner =
+    '/* A disclaimer will be written down here' + '\n' +
+    ' * stating the origin of the project and where the list of respective creits can be found.' + '\n' +
+    ' * Also: safety disclaimer.' + '\n' +
+    ' */';
 var jsFiles = [
     // QrDecode
     'Scripts/lib/grid.js',
@@ -26,7 +30,7 @@ var jsFiles = [
     'ImageProcessors/*.js',
     'DataProcessors/*.js',
     'Application.js'
-];  
+];
 
 module.exports = function (grunt) {
     var rootFolder = process.cwd().replace(/\\/g, '/');
@@ -74,6 +78,10 @@ module.exports = function (grunt) {
         },
         uglify: {
             release: {
+                options: {
+                    banner: projectBanner,
+                    wrap: true
+                },
                 files: {
                     'bin/Application.js': [solutionFolder + '/Source/QR-Reader/Content/Application.js']
                 }
@@ -84,7 +92,7 @@ module.exports = function (grunt) {
                 files: [
                   // includes files within path
                     {
-                        expand: true,cwd:solutionFolder + '/Source/QR-Reader/', src: [
+                        expand: true, cwd: solutionFolder + '/Source/QR-Reader/', src: [
                             'index.html',
                             'Content/**'
                         ], 
@@ -108,7 +116,7 @@ module.exports = function (grunt) {
     });
     
     // Default task(s).
-    grunt.registerTask('release', ['default','uglify','copy:release']);
-    grunt.registerTask('default', ['typescript','concat:default','copy:default']);
+    grunt.registerTask('release', ['default', 'uglify', 'copy:release']);
+    grunt.registerTask('default', ['typescript', 'concat:default', 'copy:default']);
 
 };

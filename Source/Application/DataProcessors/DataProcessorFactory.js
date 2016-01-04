@@ -1,25 +1,25 @@
 'use strict';
-class DataProcessorFactory {
-    constructor() {
+var DataProcessorFactory = (function () {
+    function DataProcessorFactory() {
         this.dataProcessors = new Array();
     }
-    addDataProcessor(dataProcessor) {
+    DataProcessorFactory.prototype.addDataProcessor = function (dataProcessor) {
         var key = DataType[dataProcessor.dataType];
-        this.dataProcessors.push({ key, dataProcessor });
+        this.dataProcessors.push({ key: key, dataProcessor: dataProcessor });
         return this;
-    }
-    calculate(data) {
+    };
+    DataProcessorFactory.prototype.calculate = function (data) {
         data = data.trim();
-        console.log(`Raw QR-Data: ${data}`);
+        console.log("Raw QR-Data: " + data);
         if (data === 'error decoding QR Code') {
             throw new TypeError(data);
         }
-        let dataType = EnumExtensions.toArray(DataType).firstOrDefault((x) => {
+        var dataType = EnumExtensions.toArray(DataType).firstOrDefault(function (x) {
             if (DataType[x] === null || !DataType[x].test)
                 return false; // Make sure it's a regex
             return DataType[x].test(data);
         });
-        let selectedProcessor = this.dataProcessors.first(x => x.key === dataType);
+        var selectedProcessor = this.dataProcessors.first(function (x) { return x.key === dataType; });
         if (!selectedProcessor)
             throw new ReferenceError('The processor for this dataType is missing!');
         var processor = selectedProcessor.dataProcessor;
@@ -28,10 +28,11 @@ class DataProcessorFactory {
         //    var sure = window.confirm('sure?');
         //    if (sure) executionEvent();
         //}
-        processor.errorCallback = (errorMessage) => {
+        processor.errorCallback = function (errorMessage) {
             alert(errorMessage);
         };
         processor.initiate(data);
-    }
-}
+    };
+    return DataProcessorFactory;
+})();
 //# sourceMappingURL=DataProcessorFactory.js.map

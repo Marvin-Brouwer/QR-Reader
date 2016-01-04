@@ -4289,7 +4289,7 @@ var VCardDataProcessor = (function () {
             var hiddenElement = document.createElement('a');
             hiddenElement.href = 'data:attachment/text,' + encodeURI(data);
             hiddenElement.target = '_blank';
-            hiddenElement.setAttribute('download', (vcardData['Full name'] + new Date().toISOString().slice(0, 10)) + ".vcf");
+            hiddenElement.setAttribute('download', vcardData['Full name'] + " (" + new Date().toISOString().slice(0, 10) + ").vcf");
             hiddenElement.click();
         }
     };

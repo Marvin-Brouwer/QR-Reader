@@ -1,6 +1,6 @@
 'use strict';
-class Application {
-    constructor() {
+var Application = (function () {
+    function Application() {
         this.setTitle('Loading...');
         Application.current = this;
         // Start processors 
@@ -15,16 +15,16 @@ class Application {
             .addDataProcessor(new VCardDataProcessor());
         this.initialize();
     }
-    initialize() {
+    Application.prototype.initialize = function () {
         this.reset();
-    }
-    setTitle(title) {
-        document.title = `QR-Reader - ${title}`;
-    }
-    reset() {
+    };
+    Application.prototype.setTitle = function (title) {
+        document.title = "QR-Reader - " + title;
+    };
+    Application.prototype.reset = function () {
         this.setTitle('Select QR-Code');
-    }
-    qrCallback(data, errorFunc) {
+    };
+    Application.prototype.qrCallback = function (data, errorFunc) {
         try {
             this.dataProcessorFactory.calculate(data);
         }
@@ -32,7 +32,8 @@ class Application {
             errorFunc(e.message);
         }
         return;
-    }
-}
-window.onload = () => new Application();
+    };
+    return Application;
+})();
+window.onload = function () { return new Application(); };
 //# sourceMappingURL=Application.js.map
