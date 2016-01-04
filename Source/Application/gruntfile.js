@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild='default' />
+﻿/// <binding BeforeBuild='default' AfterBuild='default' />
 
 var jsFiles = [
     // QrDecode
@@ -108,7 +108,7 @@ module.exports = function (grunt) {
     });
     
     // Default task(s).
-    grunt.registerTask('release', ['uglify','copy:release']);
-    grunt.registerTask('default', ['typescript','concat:default','copy:default', 'release']);
+    grunt.registerTask('release', ['default','uglify','copy:release']);
+    grunt.registerTask('default', ['typescript','concat:default','copy:default']);
 
 };

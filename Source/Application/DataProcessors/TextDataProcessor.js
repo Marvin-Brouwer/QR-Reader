@@ -1,12 +1,11 @@
 'use-strict';
-var TextDataProcessor = (function () {
-    function TextDataProcessor() {
+class TextDataProcessor {
+    constructor() {
         this.dataType = DataType.Text;
     }
-    TextDataProcessor.prototype.initiate = function (data) {
+    initiate(data) {
         // todo: show in an <texarea readonly> <inside a noscript>
-        alert("Text value: \n" + data);
-    };
-    return TextDataProcessor;
-})();
+        alert(`Text value: \n${data}`);
+    }
+}
 //# sourceMappingURL=TextDataProcessor.js.map

@@ -1,20 +1,18 @@
 'use strict';
-var FlashImageProcessor = (function () {
-    function FlashImageProcessor() {
-    }
-    FlashImageProcessor.prototype.nextFallback = function () { };
-    FlashImageProcessor.prototype.declinedFallback = function () { };
-    FlashImageProcessor.flashDeclined = function () {
+class FlashImageProcessor {
+    nextFallback() { }
+    declinedFallback() { }
+    static flashDeclined() {
         this.currentFlashImageProcessor.declinedFallback();
-    };
-    FlashImageProcessor.cameraNotSupported = function () {
+    }
+    static cameraNotSupported() {
         this.currentFlashImageProcessor.nextFallback();
-    };
-    FlashImageProcessor.renderVideo = function (data) {
+    }
+    static renderVideo(data) {
         //console.log(data);
         qrcode.decode(data);
-    };
-    FlashImageProcessor.prototype.initiate = function () {
+    }
+    initiate() {
         if (swfobject.getFlashPlayerVersion().major === 0) {
             this.nextFallback();
             return;
@@ -23,8 +21,8 @@ var FlashImageProcessor = (function () {
         this.buildHtml();
         this.initializeFlash();
         qrcode.callback = this.qrCallback.bind(this);
-    };
-    FlashImageProcessor.prototype.buildHtml = function () {
+    }
+    buildHtml() {
         var flashvars = {
             deniedMethod: 'FlashImageProcessor.flashDeclined',
             exportDataMethod: 'FlashImageProcessor.renderVideo',
@@ -45,22 +43,20 @@ var FlashImageProcessor = (function () {
         };
         swfobject.embedSWF(params.movie, document.querySelector('#appBody'), '100%', '100%', 20, null, flashvars, params, attributes);
         this.flashVideo = document.querySelector('object');
-    };
-    FlashImageProcessor.prototype.initializeFlash = function () {
-        var _this = this;
-        this.flashVideo.onload = function () {
-            _this.flashVideo.focus();
-            _this.flashVideo.click();
+    }
+    initializeFlash() {
+        this.flashVideo.onload = () => {
+            this.flashVideo.focus();
+            this.flashVideo.click();
         };
-        window.onfocus = document.onfocus = document.querySelector('body').onfocus = function () {
-            _this.flashVideo.focus();
-            _this.flashVideo.click();
+        window.onfocus = document.onfocus = document.querySelector('body').onfocus = () => {
+            this.flashVideo.focus();
+            this.flashVideo.click();
         };
         this.flashVideo.style.visibility = 'visible';
-    };
-    FlashImageProcessor.prototype.qrCallback = function (data) {
-        Application.current.qrCallback(data, function (error) { });
-    };
-    return FlashImageProcessor;
-})();
+    }
+    qrCallback(data) {
+        Application.current.qrCallback(data, (error) => { });
+    }
+}
 //# sourceMappingURL=FlashImageProcessor.js.map

@@ -20,7 +20,8 @@ class Application {
             .initiate();
         this.dataProcessorFactory = new DataProcessorFactory()
             .addDataProcessor(new TextDataProcessor())
-            .addDataProcessor(new UrlDataProcessor());
+            .addDataProcessor(new UrlDataProcessor())
+            .addDataProcessor(new VCardDataProcessor());
         
         this.initialize();
     }

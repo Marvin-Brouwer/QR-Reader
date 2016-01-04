@@ -14,6 +14,7 @@ class DataProcessorFactory {
     }
 
     public calculate(data: string) {
+        data = data.trim();
         console.log(`Raw QR-Data: ${data}`);
         if (data === 'error decoding QR Code') {
             throw new TypeError(data);

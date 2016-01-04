@@ -2,8 +2,8 @@
 var DataType;
 (function (DataType) {
     DataType[DataType["Text"] = null] = "Text";
-    DataType[DataType["Url"] = (/^(\s)*(https?:\/\/)([a-zA-Z0-9\_\-\.\/\?\=\&\#\:\[\]\{\}]+[a-zA-Z0-9\?\&\#\/\]\}?])(\s)*$/gi)] = "Url";
-    DataType[DataType["VCard"] = (new RegExp('^todo$', 'gi'))] = "VCard";
+    DataType[DataType["Url"] = (/^(\s)*(https?:\/\/)([a-zA-Z0-9\_\-\.\/\?\=\&\#\:\[\]\{\}]+[a-zA-Z0-9\?\&\#\/\]\}?])(\s)*$/i)] = "Url";
+    DataType[DataType["VCard"] = (/(BEGIN:VCARD(\s*)){1}(\w*\W*\s*?)*((\s*?)END:VCARD){1}/mi)] = "VCard";
     DataType[DataType["SMS"] = (new RegExp('^todo$', 'gi'))] = "SMS";
     DataType[DataType["Call"] = (new RegExp('^todo$', 'gi'))] = "Call";
     DataType[DataType["GeoLocation"] = (new RegExp('^todo$', 'gi'))] = "GeoLocation";

@@ -1,6 +1,6 @@
 'use strict';
-var Application = (function () {
-    function Application() {
+class Application {
+    constructor() {
         this.setTitle('Loading...');
         Application.current = this;
         // Start processors 
@@ -11,19 +11,20 @@ var Application = (function () {
             .initiate();
         this.dataProcessorFactory = new DataProcessorFactory()
             .addDataProcessor(new TextDataProcessor())
-            .addDataProcessor(new UrlDataProcessor());
+            .addDataProcessor(new UrlDataProcessor())
+            .addDataProcessor(new VCardDataProcessor());
         this.initialize();
     }
-    Application.prototype.initialize = function () {
+    initialize() {
         this.reset();
-    };
-    Application.prototype.setTitle = function (title) {
-        document.title = "QR-Reader - " + title;
-    };
-    Application.prototype.reset = function () {
+    }
+    setTitle(title) {
+        document.title = `QR-Reader - ${title}`;
+    }
+    reset() {
         this.setTitle('Select QR-Code');
-    };
-    Application.prototype.qrCallback = function (data, errorFunc) {
+    }
+    qrCallback(data, errorFunc) {
         try {
             this.dataProcessorFactory.calculate(data);
         }
@@ -31,8 +32,7 @@ var Application = (function () {
             errorFunc(e.message);
         }
         return;
-    };
-    return Application;
-})();
-window.onload = function () { return new Application(); };
+    }
+}
+window.onload = () => new Application();
 //# sourceMappingURL=Application.js.map

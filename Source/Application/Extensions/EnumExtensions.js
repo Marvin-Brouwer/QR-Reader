@@ -1,65 +1,61 @@
 'use-strict';
-var EnumExtensions = (function () {
-    function EnumExtensions() {
-    }
+class EnumExtensions {
     // I want to infer the enum from the type but I guess TypeScript doesn't support that,
     // it's shame I cant typecast the enumeration property tho.
-    EnumExtensions.toArray = function (enumeration, removeNulls) {
-        if (removeNulls === void 0) { removeNulls = false; }
-        var i = 0;
+    static toArray(enumeration, removeNulls = false) {
+        let i = 0;
         return Object.keys(enumeration)
-            .filter(function (_) { var match = i % 2 === 0; i++; return match; });
-    };
-    EnumExtensions.first = function (enumerable, expression) {
+            .filter(_ => { var match = i % 2 === 0; i++; return match; });
+    }
+    static first(enumerable, expression) {
         return enumerable
             .find(expression)[0] || null;
-    };
-    EnumExtensions.getDefault = function (enumerable) {
+    }
+    static getDefault(enumerable) {
         return (!!enumerable[0]) ? enumerable[0] : null;
-    };
-    EnumExtensions.firstOrDefault = function (enumerable, expression) {
+    }
+    static firstOrDefault(enumerable, expression) {
         return enumerable.first(expression) || enumerable.getDefault();
-    };
+    }
     // For performance
-    EnumExtensions.filter = function (callbackfn, thisArg) {
+    static filter(callbackfn, thisArg) {
         // http://www.jedi.be/blog/2008/10/10/is-your-jquery-or-javascript-getting-slow-or-bad-performance/
-        var results = new Array();
+        let results = new Array();
         if (!thisArg)
             return results;
-        for (var i = 0, length_1 = thisArg.length; i < length_1; i++) {
+        for (let i = 0, length = thisArg.length; i < length; i++) {
             if (!callbackfn(thisArg[i], i, thisArg))
                 continue;
             results.push(thisArg[i]);
         }
         return results;
-    };
-    EnumExtensions.find = function (callbackfn, thisArg) {
+    }
+    static find(callbackfn, thisArg) {
         // http://www.jedi.be/blog/2008/10/10/is-your-jquery-or-javascript-getting-slow-or-bad-performance/
-        var results = new Array();
+        let results = new Array();
         if (!thisArg)
             return results;
-        for (var i = 0, length_2 = thisArg.length; i < length_2; i++) {
+        for (let i = 0, length = thisArg.length; i < length; i++) {
             if (!callbackfn(thisArg[i], i, thisArg))
                 continue;
             results.push(thisArg[i]);
             return results;
         }
         return results;
-    };
-    EnumExtensions.map = function (callbackfn, thisArg) {
-        var results = new Array();
+    }
+    static map(callbackfn, thisArg) {
+        let results = new Array();
         if (!thisArg)
             return results;
-        var count = thisArg.length;
-        var i = 0;
+        let count = thisArg.length;
+        let i = 0;
         while (i < count) {
             results.push(callbackfn(thisArg[i], i, thisArg));
             i++;
         }
         return results;
-    };
-    return EnumExtensions;
-})();
+    }
+}
 // ReSharper disable CallerCalleeUsing
 // So why doesn't enum inherit Enumerator<number>?
 // ReSharper disable once Lambda => arrow functions can't resolve argumenst.callee aparently
