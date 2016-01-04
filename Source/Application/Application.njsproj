@@ -39,6 +39,7 @@
     <TypeScriptCompile Include="DataProcessors\DataType.ts" />
     <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\DataProcessorFactory.ts" />
+    <TypeScriptCompile Include="DataProcessors\VCardDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\TextDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
