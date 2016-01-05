@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='default' AfterBuild='default' />
+﻿/// <binding BeforeBuild='default' />
 var projectBanner =
     '/* A disclaimer will be written down here' + '\n' +
     ' * stating the origin of the project and where the list of respective creits can be found.' + '\n' +
@@ -80,7 +80,15 @@ module.exports = function (grunt) {
             release: {
                 options: {
                     banner: projectBanner,
-                    wrap: true
+                    enclose: true,
+                    wrap: true,
+                    mangle: {
+                        'sort': true,
+                        'toplevel': true
+                    },
+                    compressor: {
+                        'drop_console': true
+                    }
                 },
                 files: {
                     'bin/Application.js': [solutionFolder + '/Source/QR-Reader/Content/Application.js']
