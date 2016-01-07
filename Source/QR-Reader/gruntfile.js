@@ -1,9 +1,18 @@
 /// <binding BeforeBuild='default' />
-var projectBanner =
-    '/* A disclaimer will be written down here' + '\n' +
-    ' * stating the origin of the project and where the list of respective creits can be found.' + '\n' +
-    ' * Also: safety disclaimer.' + '\n' +
-    ' */';
+var projectBanner = '' +
+'/*'                                                                            +'\n'+
+' * Copyright 2015, Multiple autors'                                            +'\n'+
+' *'                                                                            +'\n'+
+' * Licensed under the Apache License, Version 2.0 (the "License");'            +'\n'+
+' * you may not use this file except in compliance with the License.'           +'\n'+
+' * You may obtain a copy of the License at'                                    +'\n'+
+' * http://www.apache.org/licenses/LICENSE-2.0'                                 +'\n'+
+' *'                                                                            +'\n'+
+' * For more information about the used libraries, licenses, '                  +'\n'+
+' * authors and contributors see:'                                              +'\n'+
+' * https://github.com/Marvin-Brouwer/QR-Redirect'                              +'\n'+
+' *'                                                                            +'\n'+
+' */';
 var jsFiles = [
     // QrDecode
     'Scripts/lib/grid.js',
@@ -73,14 +82,6 @@ module.exports = function (grunt) {
                 src: jsFiles,
                 dest: 'bin/Content/Application.js'
             }
-            //release: {
-            //    options: {
-            //        stripBanners: false,
-            //        sourceMap: true
-            //    },
-            //    src: jsFiles,
-            //    dest: 'bin/Content/Concat.js'
-            //}
         },
         htmlmin: {
             default: {
@@ -94,43 +95,25 @@ module.exports = function (grunt) {
             },
         },
         uglify: {
-            //release: {
-            //    options: {
-            //        banner: projectBanner,
-            //        enclose: true,
-            //        wrap: true,
-            //        mangle: {
-            //            'sort': true,
-            //            'toplevel': true
-            //        },
-            //        compressor: {
-            //            'drop_console': true
-            //        }
-            //    },
-            //    files: {
-            //        'wwwroot/Content/Application.js': [solutionFolder + '/Source/QR-Reader/Content/Application.js']
-            //    }
-            //}
+            release: {
+                options: {
+                    banner: projectBanner,
+                    enclose: true,
+                    wrap: true,
+                    mangle: {
+                        'sort': true,
+                        'toplevel': true
+                    },
+                    compressor: {
+                        'drop_console': true
+                    }
+                },
+                files: {
+                    '../../Publish/Application.js': ['wwwroot/Content/Application.js']
+                }
+            }
         },
         copy: {
-            //release: {
-            //    files: [
-            //      // includes files within path
-            //        {
-            //            expand: true, cwd: solutionFolder + '/Source/QR-Reader/', src: [
-            //                'index.html',
-            //                'Content/**'
-            //            ], 
-            //            flatten: false, dest: solutionFolder + '/Publish/'
-            //        },
-            //        {
-            //            expand: true, cwd: solutionFolder + '/Source/Application/wwwroot/Content/', src: [
-            //                'Application.js'
-            //            ], 
-            //            flatten: false, dest: solutionFolder + '/Publish/Content'
-            //        }
-            //    ]
-            //},
             default: {
                 files: [
                     {
@@ -143,12 +126,23 @@ module.exports = function (grunt) {
                         filter: 'isFile'
                     }
                 ]
+            },
+            release: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['wwwroot/*'],
+                        flatten: true,
+                        dest: `${solutionFolder}/Publish/`,
+                        filter: 'isFile'
+                    }
+                ]
             }
         }
     });
     
     // Default task(s).
-    //grunt.registerTask('release', ['default', 'uglify', 'copy:release']);
+    grunt.registerTask('release', ['default', 'uglify']);
     grunt.registerTask('default', ['typescript', 'concat:default', 'htmlmin', 'copy:default']);
 
 };
