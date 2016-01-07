@@ -54,6 +54,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-typescript');
     
     // Project configuration.
@@ -95,6 +96,19 @@ module.exports = function (grunt) {
                 }
             },
         },
+        cssmin: {
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: [{
+                    expand: false,
+                    src: ['Static/Content/Application.css'],
+                    dest: '../../Publish/Content/Application.css',
+                }]
+            }
+        },
         uglify: {
             release: {
                 options: {
@@ -110,7 +124,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '../../Publish/Application.js': ['wwwroot/Content/Application.js']
+                    '../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
                 }
             }
         },
@@ -132,9 +146,10 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['wwwroot/*'],
-                        flatten: true,
-                        dest: `${solutionFolder}/Publish/`,
+                        cwd: 'wwwroot/',
+                        src: ['**'],
+                        flatten: false,
+                        dest: '../../Publish/',
                         filter: 'isFile'
                     }
                 ]
@@ -143,7 +158,7 @@ module.exports = function (grunt) {
     });
     
     // Default task(s).
-    grunt.registerTask('release', ['default', 'uglify']);
+    grunt.registerTask('release', ['default', 'copy:release', 'cssmin', 'uglify']);
     grunt.registerTask('default', ['typescript', 'concat:default', 'htmlmin', 'copy:default']);
 
 };
