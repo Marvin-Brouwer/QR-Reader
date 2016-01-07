@@ -200,4 +200,7 @@ FakesAssemblies/
 
 # Current project
 .js
-#!/wwwroot
+!gruntfile.js
+!server.js
+!/Scripts/*
+!/wwwroot/*
