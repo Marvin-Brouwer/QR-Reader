@@ -4053,32 +4053,6 @@ var Html5ImageProcessor = (function () {
 'use strict';
 //
 'use strict';
-var ImageProcessorFactory = (function () {
-    function ImageProcessorFactory(defaultImageProcessor) {
-        this.defaultImageProcessor = defaultImageProcessor;
-        this.imageProcessors = new Array();
-    }
-    ImageProcessorFactory.prototype.addImageProcessor = function (imageProcessor) {
-        this.imageProcessors.push(imageProcessor);
-        return this;
-    };
-    ImageProcessorFactory.prototype.initiate = function () {
-        for (var i = 0; i < this.imageProcessors.length; i++) {
-            var imageProcessor = this.imageProcessors[i];
-            var nextImageProcessor = this.imageProcessors[i + 1] || null;
-            imageProcessor.nextFallback = nextImageProcessor != null ?
-                nextImageProcessor.initiate.bind(nextImageProcessor) :
-                this.defaultImageProcessor.initiate.bind(this.defaultImageProcessor);
-            imageProcessor.declinedFallback = this.defaultImageProcessor.initiate.bind(this.defaultImageProcessor);
-        }
-        // ReSharper disable once WrongExpressionStatement
-        this.imageProcessors[0].initiate();
-        return this;
-    };
-    return ImageProcessorFactory;
-})();
-//
-'use strict';
 var UploadImageProcessor = (function () {
     function UploadImageProcessor() {
     }
@@ -4278,6 +4252,70 @@ var VCardDataProcessor = (function () {
         }
     };
     return VCardDataProcessor;
+})();
+//
+'use strict';
+var DataProcessorFactory = (function () {
+    function DataProcessorFactory() {
+        this.dataProcessors = new Array();
+    }
+    DataProcessorFactory.prototype.addDataProcessor = function (dataProcessor) {
+        var key = DataType[dataProcessor.dataType];
+        this.dataProcessors.push({ key: key, dataProcessor: dataProcessor });
+        return this;
+    };
+    DataProcessorFactory.prototype.calculate = function (data) {
+        data = data.trim();
+        console.log("Raw QR-Data: " + data);
+        if (data === 'error decoding QR Code') {
+            throw new TypeError(data);
+        }
+        var dataType = EnumExtensions.toArray(DataType).firstOrDefault(function (x) {
+            if (DataType[x] === null || !DataType[x].test)
+                return false; // Make sure it's a regex
+            return DataType[x].test(data);
+        });
+        var selectedProcessor = this.dataProcessors.first(function (x) { return x.key === dataType; });
+        if (!selectedProcessor)
+            throw new ReferenceError('The processor for this dataType is missing!');
+        var processor = selectedProcessor.dataProcessor;
+        //processor.afterSuccessCallback = (executionEvent: () => void) =>
+        //{
+        //    var sure = window.confirm('sure?');
+        //    if (sure) executionEvent();
+        //}
+        processor.errorCallback = function (errorMessage) {
+            alert(errorMessage);
+        };
+        processor.initiate(data);
+    };
+    return DataProcessorFactory;
+})();
+//
+'use strict';
+var ImageProcessorFactory = (function () {
+    function ImageProcessorFactory(defaultImageProcessor) {
+        this.defaultImageProcessor = defaultImageProcessor;
+        this.imageProcessors = new Array();
+    }
+    ImageProcessorFactory.prototype.addImageProcessor = function (imageProcessor) {
+        this.imageProcessors.push(imageProcessor);
+        return this;
+    };
+    ImageProcessorFactory.prototype.initiate = function () {
+        for (var i = 0; i < this.imageProcessors.length; i++) {
+            var imageProcessor = this.imageProcessors[i];
+            var nextImageProcessor = this.imageProcessors[i + 1] || null;
+            imageProcessor.nextFallback = nextImageProcessor != null ?
+                nextImageProcessor.initiate.bind(nextImageProcessor) :
+                this.defaultImageProcessor.initiate.bind(this.defaultImageProcessor);
+            imageProcessor.declinedFallback = this.defaultImageProcessor.initiate.bind(this.defaultImageProcessor);
+        }
+        // ReSharper disable once WrongExpressionStatement
+        this.imageProcessors[0].initiate();
+        return this;
+    };
+    return ImageProcessorFactory;
 })();
 //
 'use strict';

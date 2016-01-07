@@ -38,6 +38,7 @@ var jsFiles = [
     'Extensions/*.js',
     'ImageProcessors/*.js',
     'DataProcessors/*.js',
+    'Factories/*.js',
     'Application.js'
 ];
 
