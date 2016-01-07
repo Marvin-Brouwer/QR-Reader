@@ -3908,9 +3908,6 @@ Array.prototype['find'] = function (callbackfn) { return EnumExtensions.find(cal
 Array.prototype['map'] = function (callbackfn) { return EnumExtensions.map(callbackfn, this); };
 // ReSharper restore CallerCalleeUsing 
 //
-String.prototype.empty = new String();
-String.prototype.type = typeof (String.empty);
-//
 'use strict';
 var FlashImageProcessor = (function () {
     function FlashImageProcessor() {
