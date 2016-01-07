@@ -3,35 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QR-Reader", "Source\QR-Reader\QR-Reader.csproj", "{B5A77136-704D-477F-B64F-56B5872A6B6D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{369858F1-4829-4A8F-A631-0623A2877C15} = {369858F1-4829-4A8F-A631-0623A2877C15}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CFB636EF-F912-4F5F-AF91-012B1A6B3E44}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Source\QR-Reader\global.json = Source\QR-Reader\global.json
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Application", "Source\Application\Application.njsproj", "{369858F1-4829-4A8F-A631-0623A2877C15}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "QR-Redirect", "Source\QR-Reader\QR-Redirect.njsproj", "{369858F1-4829-4A8F-A631-0623A2877C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|Web = Debug|Web
+		Release|Web = Release|Web
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B5A77136-704D-477F-B64F-56B5872A6B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5A77136-704D-477F-B64F-56B5872A6B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5A77136-704D-477F-B64F-56B5872A6B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5A77136-704D-477F-B64F-56B5872A6B6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{369858F1-4829-4A8F-A631-0623A2877C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{369858F1-4829-4A8F-A631-0623A2877C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{369858F1-4829-4A8F-A631-0623A2877C15}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{369858F1-4829-4A8F-A631-0623A2877C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{369858F1-4829-4A8F-A631-0623A2877C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{369858F1-4829-4A8F-A631-0623A2877C15}.Debug|Web.ActiveCfg = Debug|Any CPU
+		{369858F1-4829-4A8F-A631-0623A2877C15}.Release|Web.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
