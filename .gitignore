@@ -199,7 +199,8 @@ FakesAssemblies/
 *.opt
 
 # Current project
-.js
+*.map
+*.js
 !gruntfile.js
 !server.js
 !/Scripts/*
