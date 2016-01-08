@@ -1,13 +1,13 @@
 ﻿'use strict';
 
-class DataProcessorFactory {
+class DataProcessorFacade {
     private dataProcessors: IEnumerable<{ key:String,dataProcessor:IDataProcessor}>;
 
     constructor() {
-        this.dataProcessors = <IEnumerable<{ key: String, dataProcessor: IDataProcessor }>>new Array();
+        this.dataProcessors = <IEnumerable<{ key: String, dataProcessor: IDataProcessor }>>(<any>(new Array()));
     }
 
-    public addDataProcessor(dataProcessor: IDataProcessor): DataProcessorFactory {
+    public addDataProcessor(dataProcessor: IDataProcessor): DataProcessorFacade {
         var key = DataType[dataProcessor.dataType];
         this.dataProcessors.push({ key , dataProcessor});
         return this;

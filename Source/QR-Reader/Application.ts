@@ -5,8 +5,8 @@ declare var qrcode: any;
 class Application {
     public static current: Application;
 
-    private imageProcessorFactory: ImageProcessorFactory;
-    private dataProcessorFactory: DataProcessorFactory;
+    private imageProcessorFactory: ImageProcessorFacade;
+    private dataProcessorFactory: DataProcessorFacade;
 
     constructor() {
         this.setTitle('Loading...');
@@ -14,11 +14,11 @@ class Application {
 
         // Start processors 
         // I realize thei're not Factories but I don't have a better word for this
-        this.imageProcessorFactory = new ImageProcessorFactory(new UploadImageProcessor())
+        this.imageProcessorFactory = new ImageProcessorFacade(new UploadImageProcessor())
             .addImageProcessor(new Html5ImageProcessor())
             .addImageProcessor(new FlashImageProcessor())
             .initiate();
-        this.dataProcessorFactory = new DataProcessorFactory()
+        this.dataProcessorFactory = new DataProcessorFacade()
             .addDataProcessor(new TextDataProcessor())
             .addDataProcessor(new UrlDataProcessor())
             .addDataProcessor(new VCardDataProcessor());

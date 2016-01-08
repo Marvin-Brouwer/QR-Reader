@@ -5,6 +5,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>Application</Name>
     <RootNamespace>Application</RootNamespace>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -22,7 +24,7 @@
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <ProjectView>ProjectFiles</ProjectView>
     <NodejsPort>8080</NodejsPort>
-    <EnableTypeScript>false</EnableTypeScript>
+    <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -47,7 +49,7 @@
     <TypeScriptCompile Include="Application.ts" />
     <TypeScriptCompile Include="DataProcessors\DataType.ts" />
     <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />
-    <TypeScriptCompile Include="Factories\DataProcessorFactory.ts" />
+    <TypeScriptCompile Include="Facades\DataProcessorFacade.ts" />
     <TypeScriptCompile Include="DataProcessors\VCardDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\TextDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
@@ -55,7 +57,7 @@
     <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\Html5ImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\IImageProcessor.ts" />
-    <TypeScriptCompile Include="Factories\ImageProcessorFactory.ts" />
+    <TypeScriptCompile Include="Facades\ImageProcessorFacade.ts" />
     <TypeScriptCompile Include="ImageProcessors\UploadImageProcessor.ts" />
     <Content Include="package.json" />
   </ItemGroup>
@@ -63,7 +65,7 @@
     <Folder Include="ImageProcessors\" />
     <Folder Include="DataProcessors\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Factories\" />
+    <Folder Include="Facades\" />
     <Folder Include="Scripts\lib\" />
     <Folder Include="Scripts\" />
     <Folder Include="Static\" />
@@ -94,7 +96,21 @@
     <Compile Include="server.js" />
     <Content Include="wwwroot\Content\Application.js" />
   </ItemGroup>
-  <!--<Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>False</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <TypeScriptModuleKind>System</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-class ImageProcessorFactory {
+class ImageProcessorFacade {
     private imageProcessors : Array<IImageProcessor>;
     private defaultImageProcessor: IImageProcessor;
 
@@ -9,12 +9,12 @@ class ImageProcessorFactory {
         this.imageProcessors = new Array<IImageProcessor>();
     }
 
-    public addImageProcessor(imageProcessor: IImageProcessor) : ImageProcessorFactory {
+    public addImageProcessor(imageProcessor: IImageProcessor) : ImageProcessorFacade {
         this.imageProcessors.push(imageProcessor);
         return this;
     }
 
-    public initiate() : ImageProcessorFactory  {
+    public initiate() : ImageProcessorFacade  {
         for (let i = 0; i < this.imageProcessors.length; i++) {
             let imageProcessor = this.imageProcessors[i];
             let nextImageProcessor = this.imageProcessors[i + 1] || null;

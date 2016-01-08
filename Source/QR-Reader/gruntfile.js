@@ -38,7 +38,7 @@ var jsFiles = [
     'Extensions/*.js',
     'ImageProcessors/*.js',
     'DataProcessors/*.js',
-    'Factories/*.js',
+    'Facades/*.js',
     'Application.js'
 ];
 
@@ -97,15 +97,15 @@ module.exports = function (grunt) {
             },
         },
         cssmin: {
-            options: {
-                shorthandCompacting: false,
-                roundingPrecision: -1
-            },
             target: {
+                options: {
+                    banner: projectBanner // <-- This doesn't work, why U no work???
+                },
                 files: [{
                     expand: false,
                     src: ['Static/Content/Application.css'],
                     dest: '../../Publish/Content/Application.css',
+                    ext: '.css'
                 }]
             }
         },
