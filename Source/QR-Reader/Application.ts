@@ -21,7 +21,8 @@ class Application {
             .addDataProcessor(new UrlDataProcessor())
             .addDataProcessor(new VCardDataProcessor())
             .addDataProcessor(new SMSDataProcessor())
-            .addDataProcessor(new PhoneCallDataProcessor());
+            .addDataProcessor(new PhoneCallDataProcessor())
+            .addDataProcessor(new GeoLocationDataProcessor());
         
         this.initialize();
     }

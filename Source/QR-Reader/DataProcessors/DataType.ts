@@ -6,7 +6,7 @@ enum DataType {
     VCard = <any>(/(BEGIN:VCARD(\s*)){1}(\w*\W*\s*?)*((\s*?)END:VCARD){1}/mi),
     SMS = <any>(/^(sms(to)?(:)?(\s)?)/mi),
     PhoneCall = <any>(/^(tel(:)?(\s)?)/mi),
-    GeoLocation = <any>(new RegExp('^todo$', 'gi')),
+    GeoLocation = <any>(/^(geo(:)?(\s)?)/mi),
     Event = <any>(new RegExp('^todo$', 'gi')),
     Email = <any>(new RegExp('^todo$', 'gi')),
     WifiData = <any>(new RegExp('^todo$', 'gi'))
