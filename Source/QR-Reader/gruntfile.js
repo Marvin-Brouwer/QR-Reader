@@ -10,7 +10,7 @@ var projectBanner = '' +
 ' *'                                                                            +'\n'+
 ' * For more information about the used libraries, licenses, '                  +'\n'+
 ' * authors and contributors see:'                                              +'\n'+
-' * https://github.com/Marvin-Brouwer/QR-Redirect'                              +'\n'+
+' * https://github.com/Marvin-Brouwer/QR-Redirect#credits'                      +'\n'+
 ' *'                                                                            +'\n'+
 ' */';
 var jsFiles = [
@@ -35,6 +35,7 @@ var jsFiles = [
     // SWF Object
     'Scripts/lib/swfobject.js',
     // Application
+    'Helpers/*.js',
     'Extensions/*.js',
     'ImageProcessors/*.js',
     'DataProcessors/*.js',
@@ -70,6 +71,8 @@ module.exports = function (grunt) {
                     noImplicitAny: false,
                     removeComments: false,
                     preserveConstEnums: true,
+                    experimentalDecorators: true,
+                    emitDecoratorMetadata: true,
                     //outDir: 'bin', <-- not working
                     sourceMap: true
                 }

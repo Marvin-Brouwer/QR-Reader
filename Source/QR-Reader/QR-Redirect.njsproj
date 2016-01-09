@@ -49,11 +49,14 @@
     <TypeScriptCompile Include="Application.ts" />
     <TypeScriptCompile Include="DataProcessors\DataType.ts" />
     <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\SMSDataProcessor.ts" />
     <TypeScriptCompile Include="Facades\DataProcessorFacade.ts" />
     <TypeScriptCompile Include="DataProcessors\VCardDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\TextDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
+    <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
+    <TypeScriptCompile Include="Helpers\DownloadHelper.ts" />
     <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\Html5ImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\IImageProcessor.ts" />
@@ -66,6 +69,7 @@
     <Folder Include="DataProcessors\" />
     <Folder Include="Extensions\" />
     <Folder Include="Facades\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Scripts\lib\" />
     <Folder Include="Scripts\" />
     <Folder Include="Static\" />
