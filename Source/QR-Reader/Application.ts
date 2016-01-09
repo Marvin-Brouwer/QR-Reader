@@ -9,6 +9,7 @@ class Application {
     private dataProcessorFacade: DataProcessorFacade;
 
     constructor() {
+        this.forceHttps();
         Application.current = this;
 
         // Start processors 
@@ -36,6 +37,11 @@ class Application {
             errorFunc(e.message);
         }
         return;
+    }
+
+    private forceHttps() {
+        if (window.location.protocol !== 'https:')
+            UrlHelper.redirect(window.location.href.replace(/^(http(s)?:\/\/)(\s)?/i,'https://'));
     }
 }
 

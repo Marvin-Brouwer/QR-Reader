@@ -7,6 +7,7 @@
     <RootNamespace>Application</RootNamespace>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <LaunchUrl>https://localhost:8080</LaunchUrl>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,12 +50,14 @@
     <TypeScriptCompile Include="Application.ts" />
     <TypeScriptCompile Include="DataProcessors\DataType.ts" />
     <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\PhoneCallDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\SMSDataProcessor.ts" />
     <TypeScriptCompile Include="Facades\DataProcessorFacade.ts" />
     <TypeScriptCompile Include="DataProcessors\VCardDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\TextDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
+    <TypeScriptCompile Include="Helpers\DeviceHelper.ts" />
     <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
     <TypeScriptCompile Include="Helpers\DownloadHelper.ts" />
     <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
