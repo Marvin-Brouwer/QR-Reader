@@ -7,7 +7,8 @@ enum DataType {
     SMS = <any>(/^(sms(to)?(:)?(\s)?)/mi),
     PhoneCall = <any>(/^(tel(:)?(\s)?)/mi),
     GeoLocation = <any>(/^(geo(:)?(\s)?)/mi),
-    Event = <any>(new RegExp('^todo$', 'gi')),
+    // Extend: https://en.wikipedia.org/wiki/ICalendar
+    VEvent = <any>(/(BEGIN:V(\w*\W*)?(\s*)){1}(\w*\W*\s*?)*((\s*?)END:V(\w*\W*)?){1}/mi),
     Email = <any>(new RegExp('^todo$', 'gi')),
     WifiData = <any>(new RegExp('^todo$', 'gi'))
 }

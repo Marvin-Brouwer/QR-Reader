@@ -5,7 +5,7 @@
         let fullName = data.match(/(FN\:)(.*)/i)[2];
         // somehow my map wont promt,alert,confirm
         let sure = confirm(`vCard: \n${fullName}`);
-        if (sure) DownloadHelper.presentDownload(fullName, data);
+        if (sure) DownloadHelper.presentDownload(fullName, 'vcf', data);
     }
 
     // Leave these

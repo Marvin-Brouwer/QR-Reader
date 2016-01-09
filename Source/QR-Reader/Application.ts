@@ -15,14 +15,15 @@ class Application {
         // Start processors 
         this.imageProcessorFacade = new ImageProcessorFacade(new UploadImageProcessor())
             .addImageProcessor(new Html5ImageProcessor())
-            .addImageProcessor(new FlashImageProcessor())
+            .addImageProcessor(new FlashImageProcessor());
         this.dataProcessorFacade = new DataProcessorFacade()
             .addDataProcessor(new TextDataProcessor())
             .addDataProcessor(new UrlDataProcessor())
             .addDataProcessor(new VCardDataProcessor())
             .addDataProcessor(new SMSDataProcessor())
             .addDataProcessor(new PhoneCallDataProcessor())
-            .addDataProcessor(new GeoLocationDataProcessor());
+            .addDataProcessor(new GeoLocationDataProcessor())
+            .addDataProcessor(new VEventDataProcessor());
         
         this.initialize();
     }

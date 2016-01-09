@@ -48,6 +48,7 @@
     <Content Include="wwwroot\Content\richSnippets.json" />
     <Content Include="wwwroot\index.html" />
     <TypeScriptCompile Include="Application.ts" />
+    <TypeScriptCompile Include="DataProcessors\VEventDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\DataType.ts" />
     <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\PhoneCallDataProcessor.ts" />
