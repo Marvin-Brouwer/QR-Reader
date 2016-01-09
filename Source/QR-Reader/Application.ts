@@ -9,33 +9,24 @@ class Application {
     private dataProcessorFacade: DataProcessorFacade;
 
     constructor() {
-        this.setTitle('Loading...');
         Application.current = this;
 
         // Start processors 
-        // I realize thei're not Factories but I don't have a better word for this
         this.imageProcessorFacade = new ImageProcessorFacade(new UploadImageProcessor())
             .addImageProcessor(new Html5ImageProcessor())
             .addImageProcessor(new FlashImageProcessor())
-            .initiate();
         this.dataProcessorFacade = new DataProcessorFacade()
             .addDataProcessor(new TextDataProcessor())
             .addDataProcessor(new UrlDataProcessor())
             .addDataProcessor(new VCardDataProcessor())
-            .addDataProcessor(new SMSDataProcessor());
+            .addDataProcessor(new SMSDataProcessor())
+            .addDataProcessor(new PhoneCallDataProcessor());
         
         this.initialize();
     }
 
     private initialize() {
-        this.reset();
-    }
-    public setTitle(title: string) {
-        document.title = `QR-Reader - ${title}`;
-    }
-
-    public reset() {
-        this.setTitle('Select QR-Code');
+        this.imageProcessorFacade.initiate();
     }
 
     public qrCallback(data: string, errorFunc: (error: string) => void) {

@@ -22,7 +22,7 @@
 </head>
 <body itemscope itemtype="http://schema.org/WebApplication">
     <img itemprop="image" src="Content/Logo.png" alt="QR-Reader logo" width="500" height="500" />
-    <img itemprop="thumbnailUrl" src="Content/Logo.png" alt="QR-Reader logo" width="500" height="500" />
+    <meta itemprop="thumbnailUrl" content="Content/Logo.png" width="500" height="500" />
     <header role="heading">
         <h1 itemprop="name">QR Reader</h1>
         <h2 itemprop="description">An online tool for <wbr />reading <span class="no-break">QR-Codes</span></h2>
@@ -31,42 +31,51 @@
         <meta itemprop="operatingSystem" content="Web browser" />
         <meta itemprop="isBasedOnUrl" content="//webqr.com" />
     </header>
-    <section role="permissions" itemprop="permissions">
-        <p>This web application requires JavaScript to run and wil overlay this entire content.</p>
-        <p>Also this web application requires access to your camera or filesystem</p>
-    </section>
     <section role="description">
-        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <p>Project started by: <span itemprop="name">Marvin Brouwer</span></p>
-            <ul>
-                <li><a itemprop="url" href="//twitter.com/MarvinBrouwer">Follow me on Twitter</a></li>
-                <li><a itemprop="sameAs" href="//github.com/Marvin-Brouwer">Fork me on GitHub</a></li>
-                <li><a itemprop="sameAs" href="//nl.linkedin.com/in/marvinbrouwer">Find me on LinkedIn</a></li>
-            </ul>
-        </div>
-        <p>Find out more on:</p>
-        <ul>
-            <li><a itemprop="sameAs" href="//github.com/Marvin-Brouwer/QR-Reader">marvin-brouwer.github.io/QR-Reader</a></li>
-        </ul>
-        <p>You can open this application by browsing to:</p>
-        <ul>
-            <li><a itemprop="url" href="https://marvin-brouwer.github.io/QR-Reader">marvin-brouwer.github.io/QR-Reader</a></li>
-            <li><a itemprop="sameAs" href="//tiny.cc/qrr">tiny.cc/qrr</a></li>
-        </ul>
-        <p>Contributors:</p>
-        <p>None yet!</p>
-        <!--<ul>
-            <li><span itemprop="name">Person</span>
+        <h3>About the application:</h3>
+        <section role="permissions" itemprop="permissions">
+            <p>
+                This web application requires JavaScript to run and wil overlay this entire content. <br />
+                Also this web application requires access to your camera or filesystem
+            </p>
+        </section>
+        <section role="content">
+            <!-- A little shoutout because this tool helped me a lot! -->
+            <p>If you want to easily generate QR-Codes, navigate to: <a href="//goqr.me">goqr.me</a>.</p>
+        </section>
+        <section role="content">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <p>Project started by: <span itemprop="name">Marvin Brouwer</span></p>
                 <ul>
-                    <li><a itemprop="url" href="//">Follow me on Twitter</a></li>
-                    <li><a itemprop="sameAs" href="//">Fork me on GitHub</a></li>
-                    <li><a itemprop="sameAs" href="//">Find me on LinkedIn</a></li>
+                    <li><a itemprop="url" href="//twitter.com/MarvinBrouwer">Follow me on Twitter</a></li>
+                    <li><a itemprop="sameAs" href="//github.com/Marvin-Brouwer">Fork me on GitHub</a></li>
+                    <li><a itemprop="sameAs" href="//nl.linkedin.com/in/marvinbrouwer">Find me on LinkedIn</a></li>
                 </ul>
-            </li>
-        </ul>-->
+            </div>
+            <p>Find out more on:</p>
+            <ul>
+                <li><a itemprop="sameAs" href="//github.com/Marvin-Brouwer/QR-Reader">marvin-brouwer.github.io/QR-Reader</a></li>
+            </ul>
+            <p>You can open this application by browsing to:</p>
+            <ul>
+                <li><a itemprop="url" href="https://marvin-brouwer.github.io/QR-Reader">marvin-brouwer.github.io/QR-Reader</a></li>
+                <li><a itemprop="sameAs" href="//tiny.cc/qrr">tiny.cc/qrr</a></li>
+            </ul>
+            <h3>Contributors:</h3>
+            <p>None yet!</p>
+            <!--<ul>
+                <li><span itemprop="name">Person</span>
+                    <ul>
+                        <li><a itemprop="url" href="//">Follow me on Twitter</a></li>
+                        <li><a itemprop="sameAs" href="//">Fork me on GitHub</a></li>
+                        <li><a itemprop="sameAs" href="//">Find me on LinkedIn</a></li>
+                    </ul>
+                </li>
+            </ul>-->
+        </section>
     </section>
     <section role="disclaimer">
-        <p>Copyright <span itemprop="copyrightYear">2015</span>, Multiple autors</p>
+        <h3>Copyright <span itemprop="copyrightYear">2015</span>, Multiple autors</h3>
         <p>
             Licensed under the Apache License, Version 2.0 (the "License");<br />
             you may not use this file except in compliance with the License.<br />
@@ -74,7 +83,8 @@
             <a itemprop="license" href="//www.apache.org/licenses/LICENSE-2.0">www.apache.org/licenses/LICENSE-2.0</a>
         </p>
     </section>
-    <section id="appBody">
+    <section id="appBody" role="mainContent">
+        <!-- ReSharper disable once Html.PathError -->
         <script defer src="Content/Application.js"></script>
     </section>
     <!--External LD doesn't work: <script type="application/ld+json" src="Content/richSnippets.json"></script>-->

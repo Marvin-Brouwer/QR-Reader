@@ -48,7 +48,6 @@ class UploadImageProcessor implements IImageProcessor {
         this.cameraInput.onclick = (ev: Event) => this.clearErrors();
         this.cameraInput.onchange = (ev: Event) => {
             this.clearErrors();
-            Application.current.setTitle('Reading...');
             ev.cancelBubble = true;
             ev.preventDefault();
             if (!this.cameraInput.value) {
@@ -56,6 +55,7 @@ class UploadImageProcessor implements IImageProcessor {
                 return ev;
             }
             this.readQR();
+            this.reset();
             return ev;
         };
     }
@@ -66,7 +66,6 @@ class UploadImageProcessor implements IImageProcessor {
 
         var reader = new FileReader();
         reader.onloadend = () => {
-            Application.current.setTitle('Parsing...');
             console.log(`Created DataUrl: ${reader.result}`);
             qrcode.decode(reader.result);
         }
@@ -75,7 +74,6 @@ class UploadImageProcessor implements IImageProcessor {
 
     private reset() {
         this.cameraInput.value = null;
-        Application.current.reset();
     }
 
     private clearErrors() {

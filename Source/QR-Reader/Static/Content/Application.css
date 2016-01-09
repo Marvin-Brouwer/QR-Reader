@@ -97,7 +97,7 @@ form#mainForm label div.error {
         right: 10px;
         z-index: 0;
     }
-    header,section {
+    header, body > section {
         height: auto;
         margin: 0 510px 0 10px;
         padding: 0;
@@ -113,7 +113,7 @@ form#mainForm label div.error {
     img[itemprop="thumbnailUrl"] {
         display: none;
     }
-    header,section {
+    header, body > section {
         height: auto;
         margin: 0 10px 0 10px;
         padding: 0;
