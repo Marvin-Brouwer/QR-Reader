@@ -5,7 +5,7 @@ class GeoLocationDataProcessor implements IDataProcessor {
     private staticMapsUrl: string = 'http://maps.google.com/maps/api/staticmap';
 
     public initiate(data: string): void {
-        var coordinates = data.replace(<any>DataType.GeoLocation, String()).split(',');
+        let coordinates = data.replace(<any>this.dataType, String()).split(',');
 
         prompt('Show this image', this.buildStaticMapImage(coordinates)); // google map
         if (!DeviceHelper.isTouchEnabled()) 

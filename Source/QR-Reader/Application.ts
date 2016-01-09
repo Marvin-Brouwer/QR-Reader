@@ -23,7 +23,9 @@ class Application {
             .addDataProcessor(new SMSDataProcessor())
             .addDataProcessor(new PhoneCallDataProcessor())
             .addDataProcessor(new GeoLocationDataProcessor())
-            .addDataProcessor(new VEventDataProcessor());
+            .addDataProcessor(new VEventDataProcessor())
+            .addDataProcessor(new MATMsgDataProcessor())
+            .addDataProcessor(new EmailDataProcessor());
         
         this.initialize();
     }
