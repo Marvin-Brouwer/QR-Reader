@@ -48,6 +48,7 @@
     <Content Include="wwwroot\Content\richSnippets.json" />
     <Content Include="wwwroot\index.html" />
     <TypeScriptCompile Include="Application.ts" />
+    <TypeScriptCompile Include="DataProcessors\NetworkDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\MATMsgDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\EmailDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\VEventDataProcessor.ts" />
@@ -62,6 +63,7 @@
     <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Helpers\DeviceHelper.ts" />
+    <TypeScriptCompile Include="Helpers\PatternHelper.ts" />
     <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
     <TypeScriptCompile Include="Helpers\DownloadHelper.ts" />
     <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />

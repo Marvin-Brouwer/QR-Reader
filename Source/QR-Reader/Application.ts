@@ -25,7 +25,8 @@ class Application {
             .addDataProcessor(new GeoLocationDataProcessor())
             .addDataProcessor(new VEventDataProcessor())
             .addDataProcessor(new MATMsgDataProcessor())
-            .addDataProcessor(new EmailDataProcessor());
+            .addDataProcessor(new EmailDataProcessor())
+            .addDataProcessor(new NetworkDataProcessor());
         
         this.initialize();
     }

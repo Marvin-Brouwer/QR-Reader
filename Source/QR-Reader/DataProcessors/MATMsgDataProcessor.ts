@@ -8,18 +8,11 @@
     }
 
     private convertToMailto(innerData: string): string {
-        let filterRegEx = (key) => new RegExp(`(${key}:\\s*)([^;]+)+`, 'mi');
-        let valueOrNull = (key) => {
-            let match = innerData.match(filterRegEx(key));
-            return !filterRegEx(key).test(innerData) ? String()
-                : match.length !== 3 ? String()
-                    : match[2];
-        };
-        let to = valueOrNull('to');
-        let cc = valueOrNull('cc');
-        let bcc = valueOrNull('bcc');
-        let subject = valueOrNull('sub');
-        let body = valueOrNull('body');
+        let to = PatternHelper.matchBetweenKeyAndSemicolon('to', innerData);
+        let cc = PatternHelper.matchBetweenKeyAndSemicolon('cc', innerData);
+        let bcc = PatternHelper.matchBetweenKeyAndSemicolon('bcc', innerData);
+        let subject = PatternHelper.matchBetweenKeyAndSemicolon('sub', innerData);
+        let body = PatternHelper.matchBetweenKeyAndSemicolon('body', innerData);
         return `mailto:${to}?cc=${cc}&bcc=${bcc}&subject=${subject}&body=${body}`;
     }
 

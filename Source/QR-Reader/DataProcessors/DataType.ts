@@ -11,5 +11,5 @@ enum DataType {
     VEvent = <any>(/(BEGIN:V(\w*\W*)?(\s*)){1}(\w*\W*\s*?)*((\s*?)END:V(\w*\W*)?){1}/mi),
     Email = <any>(/^(mailto:(\s)?)/i),
     MATMsg = <any>(/^(MATMSG(:)?(\s)?)/i),
-    WifiData = <any>(new RegExp('^todo$', 'gi'))
+    WifiData = <any>((/^(WIFI(:)?(\s)?)/i))
 }
