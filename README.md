@@ -10,5 +10,6 @@ This will redirect to [marvin-brouwer.github.io/QR-Reader](https://marvin-brouwe
 * The camcanvas swf file for old browser fallback: http://www.taboca.com/p/camcanvas/
 * The algorythm for decoding bitmaps to base 64: https://code.google.com/p/as3crypto/
 * The algorythm for enoding bitmaps to png: http://moodycamel.com/blog/2011/a-better-png-encoder-for-flash
+* A tool for creating QR-Codes that helped me developing: http://moodycamel.com/blog/2011/a-better-png-encoder-for-flash
 * https://github.com/MitosEHR/MitosEHR-Official/tree/master/lib/jsqrcode
 * https://github.com/swfobject/swfobject
