@@ -2,8 +2,8 @@
 An online tool for reading QR-Codes
 
 ## Usage
-Navigate with any smartphone to [http://tiny.cc/qrr](tiny.cc/qrr) and scan the url to navigate to.  
-This will redirect to [marvin-brouwer.github.io/QR-Reader](https://marvin-brouwer.github.io/QR-Reader/) but it's easier to type
+Navigate with any smartphone to [tiny.cc/qrr](http://tiny.cc/qrr) and scan the url to navigate to.  
+This will redirect to [http**s**://marvin-brouwer.github.io/QR-Reader](https://marvin-brouwer.github.io/QR-Reader/) but it's easier to type
 
 ## Credits
 * The decoder used for the QRcode reading is from LazarSoft:  
