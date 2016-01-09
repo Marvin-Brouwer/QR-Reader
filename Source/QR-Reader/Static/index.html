@@ -15,19 +15,69 @@
 
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR-Reader</title>
-	<link rel="shortcut icon" href="Content/favicon.ico">
+    <link rel="shortcut icon" href="Content/favicon.ico">
     <link rel="stylesheet" href="Content/Application.css" type="text/css" />
 </head>
-<body>
+<body itemscope itemtype="http://schema.org/WebApplication">
+    <img itemprop="image" src="Content/Logo.png" alt="QR-Reader logo" width="500" height="500" />
+    <img itemprop="thumbnailUrl" src="Content/Logo.png" alt="QR-Reader logo" width="500" height="500" />
     <header role="heading">
-        <h1>An online tool for<wbr/> reading <span class="no-break">QR-Codes</span></h1>
+        <h1 itemprop="name">QR Reader</h1>
+        <h2 itemprop="description">An online tool for <wbr />reading <span class="no-break">QR-Codes</span></h2>
+        <meta itemprop="applicationCategory" content="http://schema.org/WebApplication" />
+        <meta itemprop="applicationSubCategory" content="QR-Code scanner" />
+        <meta itemprop="operatingSystem" content="Web browser" />
+        <meta itemprop="isBasedOnUrl" content="//webqr.com" />
     </header>
+    <section role="permissions" itemprop="permissions">
+        <p>This web application requires JavaScript to run and wil overlay this entire content.</p>
+        <p>Also this web application requires access to your camera or filesystem</p>
+    </section>
+    <section role="description">
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <p>Project started by: <span itemprop="name">Marvin Brouwer</span></p>
+            <ul>
+                <li><a itemprop="url" href="//twitter.com/MarvinBrouwer">Follow me on Twitter</a></li>
+                <li><a itemprop="sameAs" href="//github.com/Marvin-Brouwer">Fork me on GitHub</a></li>
+                <li><a itemprop="sameAs" href="//nl.linkedin.com/in/marvinbrouwer">Find me on LinkedIn</a></li>
+            </ul>
+        </div>
+        <p>Find out more on:</p>
+        <ul>
+            <li><a itemprop="sameAs" href="//github.com/Marvin-Brouwer/QR-Reader">marvin-brouwer.github.io/QR-Reader</a></li>
+        </ul>
+        <p>You can open this application by browsing to:</p>
+        <ul>
+            <li><a itemprop="url" href="https://marvin-brouwer.github.io/QR-Reader">marvin-brouwer.github.io/QR-Reader</a></li>
+            <li><a itemprop="sameAs" href="//tiny.cc/qrr">tiny.cc/qrr</a></li>
+        </ul>
+        <p>Contributors:</p>
+        <p>None yet!</p>
+        <!--<ul>
+            <li><span itemprop="name">Person</span>
+                <ul>
+                    <li><a itemprop="url" href="//">Follow me on Twitter</a></li>
+                    <li><a itemprop="sameAs" href="//">Fork me on GitHub</a></li>
+                    <li><a itemprop="sameAs" href="//">Find me on LinkedIn</a></li>
+                </ul>
+            </li>
+        </ul>-->
+    </section>
+    <section role="disclaimer">
+        <p>Copyright <span itemprop="copyrightYear">2015</span>, Multiple autors</p>
+        <p>
+            Licensed under the Apache License, Version 2.0 (the "License");<br />
+            you may not use this file except in compliance with the License.<br />
+            You may obtain a copy of the License at<br />
+            <a itemprop="license" href="//www.apache.org/licenses/LICENSE-2.0">www.apache.org/licenses/LICENSE-2.0</a>
+        </p>
+    </section>
     <section id="appBody">
         <script defer src="Content/Application.js"></script>
     </section>
-    <script type="application/ld+json" src="Content/richSnippets.json"></script>
+    <!--External LD doesn't work: <script type="application/ld+json" src="Content/richSnippets.json"></script>-->
 </body>
 </html>
