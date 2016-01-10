@@ -1,6 +1,4 @@
-﻿'use-strict';
-
-class TextDataProcessor implements IDataProcessor {
+﻿class TextDataProcessor implements IDataProcessor {
     public dataType: DataType = DataType.Text;
 
     public initiate(data: string): void {

@@ -78,7 +78,7 @@ class Html5ImageProcessor implements IImageProcessor {
     }
 
     public qrCallback(data: string): void {
-        Application.current.qrCallback(data, (error) => {});
+        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error) => {});
     }
 
 }

@@ -13,7 +13,7 @@ var projectBanner = '' +
 ' * https://github.com/Marvin-Brouwer/QR-Redirect#credits'                      +'\n'+
 ' *'                                                                            +'\n'+
 ' */';
-var jsFiles = [
+var libFiles = [
     // QrDecode
     'Scripts/lib/grid.js',
     'Scripts/lib/version.js',
@@ -33,8 +33,13 @@ var jsFiles = [
     'Scripts/lib/alignpat.js',
     'Scripts/lib/databr.js',
     // SWF Object
-    'Scripts/lib/swfobject.js',
+    'Scripts/lib/swfobject.js'
+];
+var jsFiles = [
+    // IOC
+    'Scripts/SIOCC-TS/SIOCC-TS.js',
     // Application
+    'Strict.js',
     'Helpers/*.js',
     'Extensions/*.js',
     'ImageProcessors/*.js',
@@ -57,6 +62,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-typescript');
+    grunt.loadNpmTasks('grunt-babel');
+    //grunt.loadNpmTasks('babel=preset-es2015');
     
     // Project configuration.
     grunt.initConfig({
@@ -66,7 +73,7 @@ module.exports = function (grunt) {
                 src: ['**/*.ts', '!node_modules/**/*.*', '!wwwroot/**/*.*'],
                 //options: (grunt.file.readJSON('tsconfig.json').compilerOptions)
                 options: {// none of these options work :S
-                    //target: 'es2015','// todo: fix with babel (I want to use the newest Typescript options)
+                    target: 'es6',// todo: fix with babel (I want to use the newest Typescript options)
                     //module: 'es2015',
                     noImplicitAny: false,
                     removeComments: false,
@@ -74,18 +81,46 @@ module.exports = function (grunt) {
                     experimentalDecorators: true,
                     emitDecoratorMetadata: true,
                     //outDir: 'bin', <-- not working
-                    sourceMap: true
+                    sourceMap: true,
+                    noResolve: true
                 }
             }
         },
         concat: {
-            default: {
+            lib: {
+                options: {
+                    stripBanners: false,
+                    sourceMap: true
+                },
+                src: libFiles,
+                dest: 'bin/Content/Library.js'
+            },
+            app: {
                 options: {
                     stripBanners: false,
                     sourceMap: true
                 },
                 src: jsFiles,
+                dest: 'bin/Content/Bundle.js'
+            },
+            main: {
+                options: {
+                    stripBanners: false,
+                    sourceMap: true
+                },
+                src: [ 'bin/Content/Library.js','bin/Content/Babel.js'],
                 dest: 'bin/Content/Application.js'
+            }
+        },
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['es2015']
+            },
+            dist: {
+                files: {
+                    'bin/Content/Babel.js': 'bin/Content/Bundle.js'
+                }
             }
         },
         htmlmin: {
@@ -107,7 +142,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: false,
                     src: ['Static/Content/Application.css'],
-                    dest: '../../Publish/Content/Application.css',
+                    dest: 'wwwroot/Content/Application.css',
                     ext: '.css'
                 }]
             }
@@ -138,7 +173,7 @@ module.exports = function (grunt) {
                         expand: true,
                         src: [
                           'bin/Content/Application.js',
-                          'Static/Content/*'],
+                          'wwwroot/Content/*'],
                         flatten: true,
                         dest: 'wwwroot/Content/',
                         filter: 'isFile'
@@ -161,7 +196,7 @@ module.exports = function (grunt) {
     });
     
     // Default task(s).
-    grunt.registerTask('release', ['default', 'copy:release', 'cssmin', 'uglify']);
-    grunt.registerTask('default', ['typescript', 'concat:default', 'htmlmin', 'copy:default']);
+    grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
+    grunt.registerTask('default', ['typescript', 'concat:app', 'concat:lib', 'babel', 'concat:main', 'cssmin', 'htmlmin', 'copy:default']);
 
 };

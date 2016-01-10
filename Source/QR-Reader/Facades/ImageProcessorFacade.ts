@@ -4,8 +4,7 @@ class ImageProcessorFacade {
     private imageProcessors : Array<IImageProcessor>;
     private defaultImageProcessor: IImageProcessor;
 
-    constructor(defaultImageProcessor: IImageProcessor) {
-        this.defaultImageProcessor = defaultImageProcessor;
+    constructor() {
         this.imageProcessors = new Array<IImageProcessor>();
     }
 
@@ -13,8 +12,15 @@ class ImageProcessorFacade {
         this.imageProcessors.push(imageProcessor);
         return this;
     }
+    public setDefaultImageProcessor(defaultImageProcessor: IImageProcessor) : ImageProcessorFacade {
+        this.defaultImageProcessor = defaultImageProcessor;
+        return this;
+    }
 
-    public initiate() : ImageProcessorFacade  {
+    public initiate(): ImageProcessorFacade {
+        if (!this.defaultImageProcessor)
+            throw new ReferenceError('You need to set a default processor before instantiating, ' +
+                'use: setDefaultImageProcessor(defaultImageProcessor: IImageProcessor)');
         for (let i = 0; i < this.imageProcessors.length; i++) {
             let imageProcessor = this.imageProcessors[i];
             let nextImageProcessor = this.imageProcessors[i + 1] || null;

@@ -35,18 +35,14 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts.map" />
+    <Content Include="Scripts\SIOCC-TS\SIOCC-TS.js.map" />
     <Content Include="Static\Content\Application.css" />
     <Content Include="Static\Content\favicon.ico" />
     <Content Include="Static\Content\HaxeCam.swf" />
     <Content Include="Static\Content\Logo.png" />
     <Content Include="Static\Content\richSnippets.json" />
     <Content Include="Static\index.html" />
-    <Content Include="wwwroot\Content\Application.css" />
-    <Content Include="wwwroot\Content\favicon.ico" />
-    <Content Include="wwwroot\Content\HaxeCam.swf" />
-    <Content Include="wwwroot\Content\Logo.png" />
-    <Content Include="wwwroot\Content\richSnippets.json" />
-    <Content Include="wwwroot\index.html" />
     <TypeScriptCompile Include="Application.ts" />
     <TypeScriptCompile Include="DataProcessors\NetworkDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\MATMsgDataProcessor.ts" />
@@ -72,6 +68,8 @@
     <TypeScriptCompile Include="Facades\ImageProcessorFacade.ts" />
     <TypeScriptCompile Include="ImageProcessors\UploadImageProcessor.ts" />
     <Content Include="package.json" />
+    <TypeScriptCompile Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts" />
+    <TypeScriptCompile Include="Strict.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ImageProcessors\" />
@@ -81,10 +79,9 @@
     <Folder Include="Helpers\" />
     <Folder Include="Scripts\lib\" />
     <Folder Include="Scripts\" />
+    <Folder Include="Scripts\SIOCC-TS\" />
     <Folder Include="Static\" />
     <Folder Include="Static\Content\" />
-    <Folder Include="wwwroot\" />
-    <Folder Include="wwwroot\Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="gruntfile.js" />
@@ -106,8 +103,8 @@
     <Content Include="Scripts\lib\rsdecoder.js" />
     <Content Include="Scripts\lib\swfobject.js" />
     <Content Include="Scripts\lib\version.js" />
+    <Content Include="Scripts\SIOCC-TS\SIOCC-TS.js" />
     <Compile Include="server.js" />
-    <Content Include="wwwroot\Content\Application.js" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <TypeScriptTarget>ES6</TypeScriptTarget>

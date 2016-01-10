@@ -2,36 +2,44 @@
 
 declare var qrcode: any;
 
-class Application {
-    public static current: Application;
-
+class Application extends ioc.ApplicationContext {
     private imageProcessorFacade: ImageProcessorFacade;
     private dataProcessorFacade: DataProcessorFacade;
 
     constructor() {
-        this.forceHttps();
-        Application.current = this;
-
-        // Start processors 
-        this.imageProcessorFacade = new ImageProcessorFacade(new UploadImageProcessor())
-            .addImageProcessor(new Html5ImageProcessor())
-            .addImageProcessor(new FlashImageProcessor());
-        this.dataProcessorFacade = new DataProcessorFacade()
-            .addDataProcessor(new TextDataProcessor())
-            .addDataProcessor(new UrlDataProcessor())
-            .addDataProcessor(new VCardDataProcessor())
-            .addDataProcessor(new SMSDataProcessor())
-            .addDataProcessor(new PhoneCallDataProcessor())
-            .addDataProcessor(new GeoLocationDataProcessor())
-            .addDataProcessor(new VEventDataProcessor())
-            .addDataProcessor(new MATMsgDataProcessor())
-            .addDataProcessor(new EmailDataProcessor())
-            .addDataProcessor(new NetworkDataProcessor());
-        
-        this.initialize();
+        super('QR-Reader');
     }
 
-    private initialize() {
+    public register(container: ioc.Container): void {
+        // Register Instances
+        container.register<ImageProcessorFacade>(ImageProcessorFacade)
+            .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
+            .setResolveFunc(instance => instance
+                .addImageProcessor(new Html5ImageProcessor())
+                .addImageProcessor(new FlashImageProcessor())
+                .setDefaultImageProcessor(new UploadImageProcessor()));
+        container.register<DataProcessorFacade>(DataProcessorFacade)
+            .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
+            .setResolveFunc(instance => instance
+                .addDataProcessor(new TextDataProcessor())
+                .addDataProcessor(new UrlDataProcessor())
+                .addDataProcessor(new VCardDataProcessor())
+                .addDataProcessor(new SMSDataProcessor())
+                .addDataProcessor(new PhoneCallDataProcessor())
+                .addDataProcessor(new GeoLocationDataProcessor())
+                .addDataProcessor(new VEventDataProcessor())
+                .addDataProcessor(new MATMsgDataProcessor())
+                .addDataProcessor(new EmailDataProcessor())
+                .addDataProcessor(new NetworkDataProcessor()));
+
+        this.initiate(container);
+    }
+
+    public initiate(container: ioc.Container): void {
+        this.imageProcessorFacade = container.resolve(ImageProcessorFacade);
+        this.dataProcessorFacade = container.resolve(DataProcessorFacade);
+
+        // Initiate
         this.imageProcessorFacade.initiate();
     }
 
@@ -43,11 +51,10 @@ class Application {
         }
         return;
     }
-
-    private forceHttps() {
-        if (window.location.protocol !== 'https:')
-            UrlHelper.redirect(window.location.href.replace(/^(http(s)?:\/\/)(\s)?/i,'https://'));
-    }
 }
 
-window.onload = () => new Application();
+window.onload = () => {
+    if (window.location.protocol !== 'https:')
+        UrlHelper.redirect(window.location.href.replace(/^(http(s)?:\/\/)(\s)?/i, 'https://'));
+    return new Application();
+};

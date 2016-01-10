@@ -1,6 +1,4 @@
-﻿'use-strict';
-
-class UrlDataProcessor implements IDataProcessor {
+﻿class UrlDataProcessor implements IDataProcessor {
     public dataType: DataType = DataType.Url;
 
     public initiate(data: string): void {

@@ -85,6 +85,6 @@ class UploadImageProcessor implements IImageProcessor {
     }
 
     public qrCallback(data: string): void {
-        Application.current.qrCallback(data, (error) => this.setError(error));
+        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error) => this.setError(error));
     }
 }

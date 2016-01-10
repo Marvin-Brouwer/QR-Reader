@@ -1,6 +1,4 @@
-﻿'use-strict';
-
-class EnumExtensions {
+﻿class EnumExtensions {
     // I want to infer the enum from the type but I guess TypeScript doesn't support that,
     // it's shame I cant typecast the enumeration property tho.
     public static toArray<T>(enumeration: any, removeNulls = false): IEnumerable<T> {
@@ -22,7 +20,10 @@ class EnumExtensions {
     }
 
     // For performance
-    public static filter<T>(callbackfn: (value: T, index: number, array: IEnumerable<T>) => boolean, thisArg?: IEnumerable<T>): IEnumerable<T> {
+    public static $filter(callbackfn: (value: any, index: number, array: IEnumerable<any> | any[]) => boolean, thisArg?: IEnumerable<any>): any[]{
+        return <any>(this.filter<any>(callbackfn, thisArg));
+    }
+    public static filter<T>(callbackfn: (value: T, index: number, array: IEnumerable<T>) => boolean, thisArg?: IEnumerable<T>): IEnumerable<T>{
         // http://www.jedi.be/blog/2008/10/10/is-your-jquery-or-javascript-getting-slow-or-bad-performance/
         let results = <IEnumerable<T>><any>new Array();
         if (!thisArg) return results;
@@ -31,6 +32,10 @@ class EnumExtensions {
             results.push(thisArg[i]);
         }
         return results;
+    }
+
+    public static $find(callbackfn: (value: any, index: number, array: IEnumerable<any> | any[]) => boolean, thisArg?: IEnumerable<any>): any[]{
+        return <any>(this.find<any>(callbackfn, thisArg));
     }
     public static find<T>(callbackfn: (value: T, index: number, array: IEnumerable<T>) => boolean, thisArg?: IEnumerable<T>): IEnumerable<T> {
         // http://www.jedi.be/blog/2008/10/10/is-your-jquery-or-javascript-getting-slow-or-bad-performance/
@@ -42,6 +47,10 @@ class EnumExtensions {
             return results;
         }
         return results;
+    }
+
+    public static $map(callbackfn: (value: any, index: number, array: IEnumerable<any> | any[]) => any, thisArg?: IEnumerable<any>): any[]{
+        return <any>(this.map<any, any>(callbackfn, thisArg));
     }
     public static map<T, TOut>(callbackfn: (value: T, index: number, array: IEnumerable<T>) => TOut, thisArg?: IEnumerable<T>): IEnumerable<TOut> {
         let results = <IEnumerable<TOut>><any>new Array();
@@ -217,7 +226,7 @@ Array.prototype['first'] = function (expression) { return EnumExtensions.first(t
 Array.prototype['firstOrDefault'] = function (expression) { return EnumExtensions.firstOrDefault(this, expression); };
 Array.prototype['getDefault'] = function () { return EnumExtensions.getDefault(this); };
 
-Array.prototype['filter'] = function (callbackfn) { return EnumExtensions.filter(callbackfn, this); };
-Array.prototype['find'] = function (callbackfn) { return EnumExtensions.find(callbackfn, this); };
-Array.prototype['map'] = function (callbackfn) { return EnumExtensions.map(callbackfn, this); };
+Array.prototype['filter'] = function (callbackfn) { return EnumExtensions.$filter(callbackfn, this); };
+Array.prototype['find'] = function (callbackfn) { return EnumExtensions.$find(<any>callbackfn, this); };
+Array.prototype['map'] = function (callbackfn) { return EnumExtensions.$map(<any>callbackfn, this); };
 // ReSharper restore CallerCalleeUsing

@@ -1,8 +1,8 @@
 ﻿'use strict';
 
 class DataProcessorFacade {
-    private dataProcessors: IEnumerable<{ key:String,dataProcessor:IDataProcessor}>;
-
+    private dataProcessors: IEnumerable<{ key: String, dataProcessor: IDataProcessor }>;
+    
     constructor() {
         this.dataProcessors = <IEnumerable<{ key: String, dataProcessor: IDataProcessor }>>(<any>(new Array()));
     }

@@ -1,6 +1,4 @@
-﻿'use-strict';
-
-class PatternHelper {
+﻿class PatternHelper {
     public static matchBetweenKeyAndSemicolon(key: string, data: string): string {
         let filterRegEx = (key) => new RegExp(`(${key}:\\s*)([^;]+)+`, 'mi');
         let match = data.match(filterRegEx(key));
