@@ -1,6 +1,4 @@
-﻿'use strict';
-
-declare var qrcode: any;
+﻿declare var qrcode: any;
 
 class Application extends ioc.ApplicationContext {
     private imageProcessorFacade: ImageProcessorFacade;
@@ -12,6 +10,8 @@ class Application extends ioc.ApplicationContext {
 
     public register(container: ioc.Container): void {
         // Register Instances
+        container.register<PopupManager>(PopupManager)
+            .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
         container.register<ImageProcessorFacade>(ImageProcessorFacade)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
             .setResolveFunc(instance => instance

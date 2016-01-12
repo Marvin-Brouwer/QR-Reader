@@ -1,0 +1,126 @@
+﻿html, body, form, video, canvas, input[type=file], object, embed {
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    color: gray;
+    display: block;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+body{
+    overflow-y: visible;
+}
+html {
+    overflow-y: auto;
+}
+
+form, input[type=file], video, canvas, object, embed {
+    font-size: 1.3em;
+    overflow: visible;
+}
+
+input[type=file], canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: black;
+}
+
+input[type=file] {
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -1;
+    visibility: hidden;
+}
+
+form#mainForm, form#mainForm label, video#mainVideo, object, embed {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    cursor: alias;
+}
+
+video#mainVideo {
+    display: none;
+    background-color: black;
+    cursor: no-drop;
+}
+
+object#flashVideo, object {
+    visibility: hidden;
+    background-color: black;
+    cursor: no-drop;
+}
+
+form#mainForm label {
+    div.label {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        margin: -1.3em 0 0 0;
+        text-align: center;
+    }
+
+    div.error {
+        position: absolute;
+        color: crimson;
+        top: 50%;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        margin: 0;
+        text-align: center;
+    }
+}
+
+.no-break {
+    white-space: nowrap;
+    -webkit-line-break: strict;
+    -moz-line-break: strict;
+    -ms-line-break: strict;
+    -o-line-break: strict;
+    line-break: strict;
+}
+
+h1 {
+    display: inline-block;
+    height: 40px;
+    padding: 10px 0 0 5px;
+    margin: 0;
+}
+
+img[itemprop="image"],
+img[itemprop="thumbnailUrl"] {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+header {
+    height: auto;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+body > section {
+    margin: 0 10px 0 10px;
+    padding: 0;
+}

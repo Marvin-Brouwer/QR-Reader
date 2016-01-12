@@ -45,6 +45,8 @@ var jsFiles = [
     'ImageProcessors/*.js',
     'DataProcessors/*.js',
     'Facades/*.js',
+    'Managers/*.js',
+    'Views/*.js', 
     'Application.js'
 ];
 
@@ -63,7 +65,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-babel');
-    //grunt.loadNpmTasks('babel=preset-es2015');
+    grunt.loadNpmTasks('grunt-contrib-less');
     
     // Project configuration.
     grunt.initConfig({
@@ -82,7 +84,8 @@ module.exports = function (grunt) {
                     emitDecoratorMetadata: true,
                     //outDir: 'bin', <-- not working
                     sourceMap: true,
-                    noResolve: true
+                    noResolve: true,
+                    jsx: 'preserve'
                 }
             }
         },
@@ -129,10 +132,14 @@ module.exports = function (grunt) {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files: {
-                   'wwwroot/index.html' : 'Static/index.html',
-                }
-            },
+                files: [{
+                    'wwwroot/index.html': ['Static/index.html']
+                }, {
+                    'wwwroot/ror.xml': ['Static/ror.xml']
+                }, {
+                    'wwwroot/sitemap.xml': ['Static/sitemap.xml']
+                }]
+            }
         },
         cssmin: {
             target: {
@@ -171,9 +178,15 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: [
-                          'bin/Content/Application.js',
-                          'wwwroot/Content/*'],
+                        cwd: 'Static/',
+                        src: ['**'],
+                        flatten: false,
+                        dest: 'wwwroot/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        src: ['bin/Content/Application.js'],
                         flatten: true,
                         dest: 'wwwroot/Content/',
                         filter: 'isFile'
@@ -192,11 +205,29 @@ module.exports = function (grunt) {
                     }
                 ]
             }
+        },
+        less:{
+            default: {
+                options: {
+                    compress: true,
+                    // todo: research
+                    //plugins: [
+                    //  new (require('less-plugin-autoprefix'))({ browsers: ["last 2 versions"] }),
+                    //  new (require('less-plugin-clean-css'))(cleanCssOptions)
+                    //],
+                    banner: projectBanner
+                },
+                files: {
+                    "wwwroot/Content/Application.css": 'Layout/*.less'
+                }
+            }
         }
     });
     
     // Default task(s).
     grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
-    grunt.registerTask('default', ['typescript', 'concat:app', 'concat:lib', 'babel', 'concat:main', 'cssmin', 'htmlmin', 'copy:default']);
+    grunt.registerTask('default',
+        ['typescript', 'concat:app', 'concat:lib',
+        'babel', 'concat:main', 'less', 'htmlmin', 'copy:default']);
 
 };

@@ -37,12 +37,17 @@
   <ItemGroup>
     <Content Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts.map" />
     <Content Include="Scripts\SIOCC-TS\SIOCC-TS.js.map" />
-    <Content Include="Static\Content\Application.css" />
-    <Content Include="Static\Content\favicon.ico" />
     <Content Include="Static\Content\HaxeCam.swf" />
-    <Content Include="Static\Content\Logo.png" />
-    <Content Include="Static\Content\richSnippets.json" />
+    <Content Include="Static\Content\Images\Thumbnail.png" />
+    <Content Include="Static\Content\Images\FavIcon.ico" />
+    <Content Include="Static\Content\Images\Logo.png" />
+    <Content Include="Static\robots.txt" />
     <Content Include="Static\index.html" />
+    <Content Include="Static\ror.xml" />
+    <Content Include="Static\sitemap.xml" />
+    <Content Include="Layout\Main.less" />
+    <Content Include="Layout\Popup.less" />
+    <Content Include="Static\urllist.txt" />
     <TypeScriptCompile Include="Application.ts" />
     <TypeScriptCompile Include="DataProcessors\NetworkDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\MATMsgDataProcessor.ts" />
@@ -70,6 +75,7 @@
     <Content Include="package.json" />
     <TypeScriptCompile Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts" />
     <TypeScriptCompile Include="Strict.ts" />
+    <TypeScriptCompile Include="Managers\PopupManager.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ImageProcessors\" />
@@ -77,6 +83,9 @@
     <Folder Include="Extensions\" />
     <Folder Include="Facades\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Static\Content\Images\" />
+    <Folder Include="Layout\" />
     <Folder Include="Scripts\lib\" />
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\SIOCC-TS\" />
