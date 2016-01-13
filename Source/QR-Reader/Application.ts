@@ -12,6 +12,8 @@ class Application extends ioc.ApplicationContext {
         // Register Instances
         container.register<PopupManager>(PopupManager)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
+        container.register<TabManager>(TabManager)
+            .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
         container.register<ImageProcessorFacade>(ImageProcessorFacade)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
             .setResolveFunc(instance => instance
@@ -39,8 +41,31 @@ class Application extends ioc.ApplicationContext {
         this.imageProcessorFacade = container.resolve(ImageProcessorFacade);
         this.dataProcessorFacade = container.resolve(DataProcessorFacade);
 
-        // Initiate
-        this.imageProcessorFacade.initiate();
+        // Check consent
+        UserMediaHelper.getUserMedia({ video: true, audio: false });
+        
+        // Let agree to terms
+        let popupManager = <PopupManager>container.resolve(PopupManager);
+        let tabManager = <TabManager>container.resolve(TabManager);
+        let popupContent = <any>document.querySelector('.popupContent');
+        let helpButton = <any>document.querySelector('.help');
+        popupContent.onscroll = (ev: WheelEvent) => {
+            let target = <HTMLDivElement>ev.target;
+            if (target.scrollTop === (target.scrollHeight - target.offsetHeight)) {
+                popupManager.setButtonState(true);
+                popupContent.onscroll = null;
+            }
+        };
+        tabManager.setActive('toa');
+        popupManager.show(false, false, () => {
+            // Initiate application
+            this.imageProcessorFacade.initiate();
+            helpButton.onclick = () => {
+                tabManager.setActive('about');
+                popupManager.show();
+            };
+            popupManager.hide();
+        });
     }
 
     public qrCallback(data: string, errorFunc: (error: string) => void) {

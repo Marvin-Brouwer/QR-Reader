@@ -34,6 +34,7 @@
 
         /*todo: make responsive*/
         .popup {
+            display:block;
             position: absolute;
             left: 0;
             right: 0;
@@ -49,13 +50,16 @@
             .popupHeader{
                 height: 45px;
                 overflow: hidden;
-                border-bottom:5px solid white;
+                margin-bottom:5px;
                 display:none;
             }
             .popupContent{
-                margin-bottom:50px;
+                height: 400px;
                 overflow-x:hidden;
                 overflow-y:auto;
+            }
+            .popupContent.large{
+                height: 450px;
             }
             .popupOK, .popupOK[disabled=disabled]{
                 display: block;
@@ -70,18 +74,29 @@
                 background-color: lime;
                 color:white;
                 border: 0px transparent none;
+                font-weight:bold;
+                cursor:pointer;
             }
+                .popupOK[disabled],
                 .popupOK[disabled="disabled"]{
                     background-color: lightslategray;
+                    font-weight:normal;
                 }
 
            
         }
     }
 }
-#popupCanvas.closed{
+#popupCanvas.closed, #popupCanvas .hide{
+    display:none !important;
+}
+#popupCanvas.opened, #popupCanvas .show{
+    display:block !important;
+}
+
+.popupSection{
     display:none;
 }
-#popupCanvas.opened{
+.popupSection.active{
     display:block;
 }

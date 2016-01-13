@@ -35,6 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Layout\Tabs.less" />
     <Content Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts.map" />
     <Content Include="Scripts\SIOCC-TS\SIOCC-TS.js.map" />
     <Content Include="Static\Content\HaxeCam.swf" />
@@ -67,12 +68,14 @@
     <TypeScriptCompile Include="Helpers\PatternHelper.ts" />
     <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
     <TypeScriptCompile Include="Helpers\DownloadHelper.ts" />
+    <TypeScriptCompile Include="Helpers\UserMediaHelper.ts" />
     <TypeScriptCompile Include="ImageProcessors\FlashImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\Html5ImageProcessor.ts" />
     <TypeScriptCompile Include="ImageProcessors\IImageProcessor.ts" />
     <TypeScriptCompile Include="Facades\ImageProcessorFacade.ts" />
     <TypeScriptCompile Include="ImageProcessors\UploadImageProcessor.ts" />
     <Content Include="package.json" />
+    <TypeScriptCompile Include="Managers\TabManager.ts" />
     <TypeScriptCompile Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts" />
     <TypeScriptCompile Include="Strict.ts" />
     <TypeScriptCompile Include="Managers\PopupManager.ts" />

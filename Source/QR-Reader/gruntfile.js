@@ -227,7 +227,7 @@ module.exports = function (grunt) {
     // Default task(s).
     grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
     grunt.registerTask('default',
-        ['typescript', 'copy:default', 'concat:app', 'concat:lib',
-        'babel', 'concat:main', 'less', 'htmlmin']);
+        ['typescript', 'concat:lib', 'concat:app', 'babel',
+            'concat:main', 'copy:default', 'less', 'htmlmin']);
 
 };

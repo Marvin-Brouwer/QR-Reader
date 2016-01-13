@@ -28,8 +28,7 @@
     <link rel="canonical" href="https://marvin-brouwer.github.io/QR-Reader" />
 </head>
 <body itemscope itemtype="http://schema.org/WebApplication">
-    <div class="help"></div>
-    <section role="description" id="about">
+    <section role="description" id="about" class="tabSection">
         <header role="heading">
             <img itemprop="thumbnailUrl" src="Content/Images/Thumbnail.png" alt="QR-Reader logo" width="50" height="50" />
             <meta itemprop="image" content="Content/Images/Logo.png" width="500" height="500" />
@@ -43,9 +42,9 @@
             <meta itemprop="isBasedOnUrl" content="//webqr.com"/>
             <nav role="navigation">
                 <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contribution">Contribution</a></li>
-                    <li><a href="#toa">Terms of agreement</a></li>
+                    <li data-tab="about"><a href="#about">About</a></li>
+                    <li data-tab="contribution"><a href="#contribution">Contribution</a></li>
+                    <li data-tab="toa"><a href="#toa">Terms of agreement</a></li>
                 </ul>
             </nav>
         </header>
@@ -61,7 +60,7 @@
             <p>If you want to easily generate QR-Codes, navigate to: <a href="//goqr.me">goqr.me</a>.</p>
         </section>
     </section>
-    <section role="content" id="contribution">
+    <section role="content" id="contribution" class="tabSection">
         <h3>Contribution:</h3>
         <div itemprop="author" itemscope itemtype="http://schema.org/Person">
             <p>Project started by: <span itemprop="name">Marvin Brouwer</span></p>
@@ -92,8 +91,17 @@
             </li>
         </ul>-->
     </section>
-    <section role="disclaimer" id="toa">
+    <section role="disclaimer" id="toa" class="tabSection">
         <h3>Terms of agreement</h3>
+        <p>
+            Bacon ipsum...
+        </p>
+        <p>
+            Bacon ipsum...
+        </p>
+        <p>
+            Bacon ipsum...
+        </p>
         <p>
             Bacon ipsum...
         </p>
@@ -114,13 +122,14 @@
         <!-- ReSharper disable once Html.PathError -->
         <script defer src="Content/Application.js"></script>
     </section>
+    <a class="help" href="#">?</a>
     <div id="popupCanvas" class="closed">
         <div class="overlay"></div>
         <div class="focusPoint">
             <div class="popup">
-                <div class="popupHeader">test</div>
-                <div class="popupContent">test</div>
-                <input type="button" value="OK" class="popupOK" disabled="disabled" />
+                <div class="popupHeader" class="hide"></div>
+                <div class="popupContent"></div>
+                <input type="button" value="OK" class="popupOK" disabled="disabled"/>
             </div>
         </div>
     </div>

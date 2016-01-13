@@ -34,7 +34,7 @@ class UploadImageProcessor implements IImageProcessor {
         label.appendChild(this.errorField);
         label.appendChild(this.cameraInput);
         this.form.appendChild(label);
-        document.body.appendChild(this.form);
+        document.body.querySelector('#appBody').appendChild(this.form);
     }
 
     private initializeUpload() {

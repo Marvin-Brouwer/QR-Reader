@@ -1,0 +1,44 @@
+﻿nav[role=navigation],
+nav[role=navigation] ul,
+nav[role=navigation] ul li,
+nav[role=navigation] ul li a
+{
+    display:block;
+    margin: 0px;
+    padding:0px;
+    list-style-position: outside;
+    list-style-type:none;
+}
+nav[role=navigation] ul li,
+nav[role=navigation] ul li a,
+nav[role=navigation] ul li a:hover
+{
+    display: table-cell;
+    width:130px;
+    text-align: center;
+    vertical-align:middle;
+    height: 45px;
+    background-color:gainsboro;
+    text-decoration:none;
+    color:black;
+}
+nav[role=navigation] ul li.active,
+nav[role=navigation] ul li.active a,
+nav[role=navigation] ul li.active a:hover{
+    background-color: white;
+    font-weight:bold;
+}
+nav[role=navigation] ul li{
+    float: left;
+    margin-right: 5px;
+}
+nav[role=navigation] ul li:last-child{
+    margin-right:0px;
+}
+
+.tabSection{
+    display:none;
+}
+.tabSection.active{
+    display:block;
+}

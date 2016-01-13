@@ -5,20 +5,8 @@ class Html5ImageProcessor implements IImageProcessor {
     public declinedFallback(): void { }
     private video: HTMLVideoElement;
 
-    constructor() {
-        (<any>navigator).getUserMedia =
-            (<any>navigator).getUserMedia ||
-            (<any>navigator).webkitGetUserMedia ||
-            (<any>navigator).mozGetUserMedia ||
-            (<any>navigator).msGetUserMedia;
-    }
-
-    private hasGetUserMedia() {
-        return !!(<any>navigator).getUserMedia;
-    }
-
     public initiate(): void {
-        if (!this.hasGetUserMedia()) {
+        if (!UserMediaHelper.hasGetUserMedia()) {
             this.nextFallback(); return;
         }
 
@@ -34,7 +22,7 @@ class Html5ImageProcessor implements IImageProcessor {
         this.video.autoplay = false;
         this.video.loop = true;
 
-        document.body.appendChild(this.video);
+        document.body.querySelector('#appBody').appendChild(this.video);
     }
 
     private initializeVideo() {
@@ -58,7 +46,7 @@ class Html5ImageProcessor implements IImageProcessor {
             qrcode.decode(dataUrl);
         };
 
-        (<any>navigator).getUserMedia({ audio: false, video: true }, stream => {
+        UserMediaHelper.getUserMedia({ audio: false, video: true }, stream => {
             doVideoParse = true;
             this.video.src = window.URL.createObjectURL(stream);
             this.video.play();
