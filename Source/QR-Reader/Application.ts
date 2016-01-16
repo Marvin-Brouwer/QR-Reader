@@ -48,7 +48,15 @@ class Application extends ioc.ApplicationContext {
         let popupManager = <PopupManager>container.resolve(PopupManager);
         let tabManager = <TabManager>container.resolve(TabManager);
         let popupContent = <any>document.querySelector('.popupContent');
-        let helpButton = <any>document.querySelector('.help');
+        let hasAgreed = (CookieHelper.getCookie('agreedToTOA') || String()) === 'true';
+        if (!hasAgreed)
+            this.setTOAPopup(popupManager, tabManager, popupContent);
+        else {
+            popupManager.setButtonState(true);
+            this.startApp(tabManager, popupManager);
+        }
+    }
+    private setTOAPopup(popupManager: PopupManager, tabManager: TabManager, popupContent) {
         let checkButtonState = () => {
             if (popupContent.scrollHeight <= popupContent.clientHeight
                 || popupContent.scrollTop === (popupContent.scrollHeight - popupContent.offsetHeight)) {
@@ -61,17 +69,14 @@ class Application extends ioc.ApplicationContext {
         popupContent.onscroll = checkButtonState;
         tabManager.setActive('toa');
         popupManager.show(false, false, () => {
-            // Initiate application
-            this.imageProcessorFacade.initiate();
-            helpButton.onclick = () => {
-                tabManager.setActive('about');
-                popupManager.show();
-            };
+            var today = new Date();
+            today.setFullYear(today.getFullYear() + 128);
+            CookieHelper.setCookie('agreedToTOA',true,today);
+            this.startApp(tabManager,popupManager);
             popupManager.hide();
         });
         checkButtonState();
     }
-
     public qrCallback(data: string, errorFunc: (error: string) => void) {
         try {
             this.dataProcessorFacade.calculate(data);
@@ -79,6 +84,16 @@ class Application extends ioc.ApplicationContext {
             errorFunc(e.message);
         }
         return;
+    }
+
+    private startApp(tabManager:TabManager, popupManager:PopupManager) {
+        let helpButton = <any>document.querySelector('.help');
+        // Initiate application
+        this.imageProcessorFacade.initiate();
+        helpButton.onclick = () => {
+            tabManager.setActive('about');
+            popupManager.show();
+        };
     }
 }
 

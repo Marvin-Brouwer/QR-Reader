@@ -205,3 +205,4 @@ FakesAssemblies/
 !server.js
 !/Scripts/*
 !/wwwroot/*
+Source/QR-Reader/wwwroot/

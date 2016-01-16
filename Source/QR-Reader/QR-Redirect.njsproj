@@ -64,6 +64,7 @@
     <TypeScriptCompile Include="DataProcessors\TextDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\UrlDataProcessor.ts" />
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
+    <TypeScriptCompile Include="Helpers\CookieHelper.ts" />
     <TypeScriptCompile Include="Helpers\DeviceHelper.ts" />
     <TypeScriptCompile Include="Helpers\PatternHelper.ts" />
     <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
