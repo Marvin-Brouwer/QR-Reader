@@ -59,7 +59,7 @@ class Application extends ioc.ApplicationContext {
     private setTOAPopup(popupManager: PopupManager, tabManager: TabManager, popupContent) {
         let checkButtonState = () => {
             if (popupContent.scrollHeight <= popupContent.clientHeight
-                || popupContent.scrollTop === (popupContent.scrollHeight - popupContent.offsetHeight)) {
+                || popupContent.scrollTop >= (popupContent.scrollHeight - popupContent.offsetHeight) - (popupContent.scrollHeight / 100)) {
                 popupManager.setButtonState(true);
                 window.onresize = null;
                 popupContent.onscroll = null;
