@@ -51,9 +51,13 @@
     <Content Include="Layout\Popup.less" />
     <Content Include="Static\urllist.txt" />
     <TypeScriptCompile Include="Application.ts" />
+    <TypeScriptCompile Include="Constants.ts" />
     <TypeScriptCompile Include="DataProcessors\NetworkDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\MATMsgDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\EmailDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\RawFileDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\IllustrationDataProcessor.ts" />
+    <TypeScriptCompile Include="DataProcessors\PDFDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\VEventDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\DataType.ts" />
     <TypeScriptCompile Include="DataProcessors\IDataProcessor.ts" />

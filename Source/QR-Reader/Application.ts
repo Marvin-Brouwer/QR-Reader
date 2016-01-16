@@ -34,7 +34,10 @@ class Application extends ioc.ApplicationContext {
                 .addDataProcessor(new VEventDataProcessor())
                 .addDataProcessor(new MATMsgDataProcessor())
                 .addDataProcessor(new EmailDataProcessor())
-                .addDataProcessor(new NetworkDataProcessor()));
+                .addDataProcessor(new NetworkDataProcessor())
+                .addDataProcessor(new IllustrationDataProcessor())
+                .addDataProcessor(new PDFDataProcessor())
+                .addDataProcessor(new RawFileDataProcessor()));
 
         this.initiate(container);
     }
@@ -50,7 +53,7 @@ class Application extends ioc.ApplicationContext {
         let popupManager = <PopupManager>container.resolve(PopupManager);
         let tabManager = <TabManager>container.resolve(TabManager);
         let popupContent = <any>document.querySelector('.popupContent');
-        let hasAgreed = (CookieHelper.getCookie('agreedToTOA') || String()) === 'true';
+        let hasAgreed = (CookieHelper.getCookie(Constants.agreedToTOA) || String()) === 'true';
         if (!hasAgreed)
             this.setTOAPopup(popupManager, tabManager, popupContent);
         else {
@@ -73,7 +76,7 @@ class Application extends ioc.ApplicationContext {
         popupManager.show(false, false, () => {
             var today = new Date();
             today.setFullYear(today.getFullYear() + 128);
-            CookieHelper.setCookie('agreedToTOA',true,today);
+            CookieHelper.setCookie(Constants.agreedToTOA,true,today);
             this.startApp(tabManager,popupManager);
             popupManager.hide();
         });

@@ -40,6 +40,7 @@ var jsFiles = [
     'Scripts/SIOCC-TS/SIOCC-TS.js',
     // Application
     'Strict.js',
+    'Constants.js',
     'Helpers/*.js',
     'Extensions/*.js',
     'ImageProcessors/*.js',
