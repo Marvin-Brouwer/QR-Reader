@@ -14,13 +14,17 @@
     }
 
     public setActive(id: string) {
-        // todo history set hash
         for (let i = 0; i < this.menuItems.length; i++) {
             let item = this.menuItems.item(i);
             let hash = item.getAttribute('data-tab');
             let isSelected = hash === id;
             item.className = isSelected ? 'active' : String();
-            document.querySelector(`#${hash}`).className = isSelected? 'tabSection active' :  'tabSection';
+            document.querySelector(`#${hash}`).className = 'tabSection';
+        };
+        for (let i = 0; i < this.tabElements.length; i++) {
+            let item = this.tabElements.item(i);
+            let isSelected = item.id === id;
+            item.className = isSelected ? 'tabSection active' : 'tabSection';
         };
     }
 

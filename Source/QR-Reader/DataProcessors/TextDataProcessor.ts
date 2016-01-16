@@ -2,8 +2,11 @@
     public dataType: DataType = DataType.Text;
 
     public initiate(data: string): void {
-        // todo: show in an <texarea readonly> <inside a noscript>
-        alert(`Text value: \n${data}`);
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
+        let textContainer = document.createElement('textarea');
+        textContainer.value = data;
+        textContainer.readOnly = true;
+        actionManager.showCallToAction(DataType[this.dataType], textContainer);
     }
 
     // Leave these

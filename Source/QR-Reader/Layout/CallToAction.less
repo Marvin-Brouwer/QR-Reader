@@ -1,0 +1,49 @@
+﻿#callToAction {
+    .invalidMessage{
+        display: inline-block;
+        font-weight:bold;
+        color:red;
+    }
+    @media (max-width: 420px), (max-height: 520px) {
+        .actionContent textarea {
+            resize: none;
+            display: inline-block;
+            position: static;
+            width: 100%;
+            min-height:200px;
+            margin: 0 0 1em 0;
+            border: 0px none;
+            background-color:whitesmoke;
+        }
+    }
+@media (min-height: 520px) and (min-width: 420px) {
+    .actionContentWrapper {
+        position: absolute;
+        top: 60px;
+        right: 6px;
+        bottom: 55px;
+        left: 2px;
+        z-index: 1;
+    }
+
+    .actionContent {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .actionContent textarea {
+        resize: none;
+        display: block;
+        position: absolute;
+        top: 3.1em;
+        right: 0;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        border: 1px solid gray;
+    }
+}
+}

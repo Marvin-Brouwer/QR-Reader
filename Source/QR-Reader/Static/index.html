@@ -57,15 +57,25 @@
                             An online tool for&nbsp;<wbr />reading <span class="no-break">QR-Codes</span>
                         </h2>
                         <h3>About the application:</h3>
-                        <section role="permissions" itemprop="permissions">
+                        <section role="content">
                             <p>
-                                This web application requires JavaScript to run and wil overlay this entire content. <br />
-                                Also this web application requires access to your camera or filesystem
+                                The reason that this application exists is a need for a QR-code scanner without having to install an app.<br/>
+                                Basicaly you can open this site, agree to the terms once and start scanning QR-Codes.
                             </p>
                         </section>
+                        <h3>Specifications:</h3>
+                        <section role="permissions" itemprop="permissions">
+                            <ul>
+                                <noscript><li>This web application requires JavaScript to run and wil overlay this entire content</li></noscript>
+                                <li>This web application requires access to your camera or filesystem</li>
+                                <li>This web application uses cookies to store wether you've agreed to the terms</li>
+                            </ul>
+                        </section>
+                        <h3>Creating QR-Codes:</h3>
                         <section role="content">
                             <!-- A little shoutout because this tool helped me a lot! -->
-                            <p>If you want to easily generate QR-Codes, navigate to: <a href="//goqr.me">goqr.me</a>.</p>
+                            <p>If you want to easily generate QR-Codes, navigate to: <a href="//goqr.me">goqr.me</a>.
+                            </p>
                         </section>
                     </section>
                     <section role="content" id="contribution" class="tabSection">
@@ -100,7 +110,7 @@
                         </ul>-->
                     </section>
                     <section role="disclaimer" id="toa" class="tabSection">
-                        <h3 class="first-child">Terms of agreement</h3> 
+                        <h3 class="first-child">Terms of agreement</h3>
                         <!-- http://www.bennadel.com/coldfusion/privacy-policy-generator.htm -->
                         <h4>
                             1. Terms
@@ -222,6 +232,13 @@
                         <p>
                             By using this site you accept the Terms of agreement as described above.
                         </p>
+                    </section>
+                    <section role="content" id="callToAction" class="tabSection">
+                        <h2 class="typeName first-child"></h2>
+                        <p class="invalidMessage"></p>
+                        <div class="actionContentWrapper">
+                            <div class="actionContent"></div>
+                        </div>
                     </section>
                 </div>
                 <input type="button" value="OK" class="popupOK" disabled="disabled" />

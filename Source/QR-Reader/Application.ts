@@ -14,6 +14,8 @@ class Application extends ioc.ApplicationContext {
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
         container.register<TabManager>(TabManager)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
+        container.register<ActionManager>(ActionManager)
+            .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
         container.register<ImageProcessorFacade>(ImageProcessorFacade)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
             .setResolveFunc(instance => instance
