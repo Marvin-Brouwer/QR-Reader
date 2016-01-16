@@ -9,11 +9,6 @@
         this.popupHeader = <HTMLDivElement>this.popupElement.querySelector('.popupHeader');
         this.popupContent = <HTMLDivElement>this.popupElement.querySelector('.popupContent');
         this.okButton = <HTMLInputElement>this.popupElement.querySelector('.popupOK');
-
-        this.popupHeader.appendChild(document.querySelector('nav[role=navigation'));
-        this.popupContent.appendChild(document.querySelector('#about'));
-        this.popupContent.appendChild(document.querySelector('#contribution'));
-        this.popupContent.appendChild(document.querySelector('#toa'));;
     }
 
     public show(showMenu = true, activateButton = true, onOkClick: () => void = null) {

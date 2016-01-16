@@ -49,13 +49,16 @@ class Application extends ioc.ApplicationContext {
         let tabManager = <TabManager>container.resolve(TabManager);
         let popupContent = <any>document.querySelector('.popupContent');
         let helpButton = <any>document.querySelector('.help');
-        popupContent.onscroll = (ev: WheelEvent) => {
-            let target = <HTMLDivElement>ev.target;
-            if (target.scrollTop === (target.scrollHeight - target.offsetHeight)) {
+        let checkButtonState = () => {
+            if (popupContent.scrollHeight <= popupContent.clientHeight
+                || popupContent.scrollTop === (popupContent.scrollHeight - popupContent.offsetHeight)) {
                 popupManager.setButtonState(true);
+                window.onresize = null;
                 popupContent.onscroll = null;
             }
         };
+        window.onresize = checkButtonState;
+        popupContent.onscroll = checkButtonState;
         tabManager.setActive('toa');
         popupManager.show(false, false, () => {
             // Initiate application
@@ -66,6 +69,7 @@ class Application extends ioc.ApplicationContext {
             };
             popupManager.hide();
         });
+        checkButtonState();
     }
 
     public qrCallback(data: string, errorFunc: (error: string) => void) {
