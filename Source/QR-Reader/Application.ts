@@ -26,6 +26,9 @@ class Application extends ioc.ApplicationContext {
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
             .setResolveFunc(instance => instance
                 .addDataProcessor(new TextDataProcessor())
+                .addDataProcessor(new IllustrationDataProcessor())
+                .addDataProcessor(new PDFDataProcessor())
+                .addDataProcessor(new RawFileDataProcessor())
                 .addDataProcessor(new UrlDataProcessor())
                 .addDataProcessor(new VCardDataProcessor())
                 .addDataProcessor(new SMSDataProcessor())
@@ -34,10 +37,7 @@ class Application extends ioc.ApplicationContext {
                 .addDataProcessor(new VEventDataProcessor())
                 .addDataProcessor(new MATMsgDataProcessor())
                 .addDataProcessor(new EmailDataProcessor())
-                .addDataProcessor(new NetworkDataProcessor())
-                .addDataProcessor(new IllustrationDataProcessor())
-                .addDataProcessor(new PDFDataProcessor())
-                .addDataProcessor(new RawFileDataProcessor()));
+                .addDataProcessor(new NetworkDataProcessor()));
 
         this.initiate(container);
     }
