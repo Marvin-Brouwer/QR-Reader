@@ -2,13 +2,11 @@
     public dataType: DataType = DataType.PhoneCall;
 
     public initiate(data: string): void {
-
-        if (!DeviceHelper.isTouchEnabled()) 
-            alert('tel urls are not supported by your system!');
-        else
-            if (confirm(`Call '${data}'?`))
-                UrlHelper.redirect(data, () => { alert(`Failed to navigate to: '${data}'!`) });
-            
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
+        let linkContainer = document.createElement('a');
+        linkContainer.href = data;
+        linkContainer.className = 'phoneCall';
+        actionManager.showCallToAction(`${DataType[this.dataType]}`, linkContainer);
     }
 
     // Leave these

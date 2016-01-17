@@ -17,8 +17,9 @@ class DataProcessorFacade {
         data = data.trim();
         console.log(`Raw QR-Data: ${data}`);
         if (data === 'error decoding QR Code') {
-            throw new TypeError(data);
+            throw new TypeError('An error occured while decoding the QR-Code');
         }
+        // Todo: stop processing
         let dataType = EnumExtensions.toArray<DataType>(DataType).firstOrDefault((x) => {
             if (DataType[x] === null || !(<any>DataType[x]).test) return false; // Make sure it's a regex
             return (<RegExp><any>DataType[x]).test(data);
@@ -34,6 +35,7 @@ class DataProcessorFacade {
         processor.errorCallback = (errorMessage: string) => {
             alert(errorMessage);
         }
+        // todo: give method to start processing
         processor.initiate(data);
     }
 }

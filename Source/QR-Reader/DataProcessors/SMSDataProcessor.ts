@@ -2,13 +2,13 @@
     public dataType: DataType = DataType.SMS;
 
     public initiate(data: string): void {
-
-        if (!DeviceHelper.isTouchEnabled()) 
-            alert('sms urls are not supported by your system!');
-        else
-            if (confirm('Send an sms?'))
-                UrlHelper.redirect(data, () => { alert(`Failed to navigate to: '${data}'!`) });
-            
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
+        let errorMessage = String();
+        if (!DeviceHelper.isTouchEnabled()) errorMessage = 'Sms urls are not supported by your system!';
+        let linkContainer = document.createElement('a');
+        linkContainer.href = data;
+        linkContainer.className = 'textMessage';
+        actionManager.showCallToAction(`${DataType[this.dataType]}`, linkContainer, errorMessage);  
     }
 
     // Leave these
