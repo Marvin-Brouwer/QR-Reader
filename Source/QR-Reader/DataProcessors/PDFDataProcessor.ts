@@ -2,8 +2,17 @@
     public dataType: DataType = DataType.PDF;
 
     public initiate(data: string): void {
-        let sure = confirm(`PDF`);
-        if (sure) DownloadHelper.presentDownload('QR-PDF', 'pdf', data, 'application/pdf');
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
+        let errorMessage = String();
+        let pdfContainer = DownloadHelper.getDownloadElement('QR-PDF', 'pdf', data, 'application/pdf');
+        pdfContainer.className = 'pdf';
+        if (!Constants.pdfBase.test(data)) {
+            errorMessage = `An error occured while reading the pdf!`;
+            pdfContainer.href = '#';
+            pdfContainer.target = '_self';
+            pdfContainer.removeAttribute('download');
+        }
+        actionManager.showCallToAction(`${DataType[this.dataType]}`, pdfContainer, errorMessage);
     }
 
     // Leave these

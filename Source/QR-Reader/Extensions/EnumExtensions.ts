@@ -7,7 +7,8 @@
             .filter(_ => { var match = i % 2 === 0; i++; return match; });
 
     }
-    public static first<T>(enumerable: IEnumerable<T>, expression: (member: T) => boolean): T {
+    public static first<T>(enumerable: IEnumerable<T>, expression?: (member: T) => boolean): T {
+        if (!expression) return enumerable[0] || null;
         return enumerable
             .find(expression)[0] || null;
     }
@@ -15,7 +16,7 @@
         return (!!enumerable[0]) ? enumerable[0] : null;
     }
 
-    public static firstOrDefault<T>(enumerable: IEnumerable<T>, expression: (member: T) => boolean): T {
+    public static firstOrDefault<T>(enumerable: IEnumerable<T>, expression?: (member: T) => boolean): T {
         return enumerable.first(expression) || enumerable.getDefault();
     }
 
@@ -68,7 +69,7 @@
 
 interface IEnumerable<T> extends ArrayConstructor {
     first: (expression: (x: T) => boolean) => T;
-    firstOrDefault: (expression: (x: T) => boolean) => T;
+    firstOrDefault: (expression?: (x: T) => boolean) => T;
     getDefault: () => T;
     
     filter(callbackfn: (value: T, index: number, array: IEnumerable<T>) => boolean, thisArg?: IEnumerable<T>): IEnumerable<Boolean>;

@@ -2,13 +2,22 @@
     *{
         background-repeat: no-repeat;
     }
-    .invalid{
-        background-position-x: -200px;
+    .actionContent.invalid{
+         img,  a{
+            background-position-x: -200px;
+            cursor:not-allowed;
+        }
     }
     .invalidMessage{
         display: inline-block;
         font-weight:bold;
         color:red;
+    }
+    .actionContent{
+        text-align:center;
+    }
+    .actionContent textarea {
+        text-align:left;
     }
     @media (max-width: 420px), (max-height: 520px) {
         .actionContent textarea {
@@ -20,6 +29,23 @@
             margin: 0 0 1em 0;
             border: 0px none;
             background-color:whitesmoke;
+        }
+        .actionContent img.illustration {
+            max-height:200px;
+            max-width:200px;
+            position:static;
+            margin:0 auto 20% auto;
+            background-position-y:0px;
+        }
+        .actionContent a {
+            display:block;
+            height:200px;
+            width:200px;
+            position:static;
+            margin:0 auto 20% auto;
+        }
+        .actionContent p{
+            margin-top: -.5em;
         }
     }
     @media (min-height: 520px) and (min-width: 420px) {
@@ -51,21 +77,47 @@
             overflow-y: scroll;
             border: 1px solid gray;
         }
+        .actionContent img.illustration {
+            max-height:200px;
+            max-width:200px;
+            position:absolute;
+            right:0px;
+            bottom:0px;
+            left:0px;
+            margin:0 auto 15% auto;
+            z-index:1;
+            background-position-y:0px;
+        }
+        .actionContent a {
+            display:block;
+            position:absolute;
+            height:200px;
+            width:200px;
+            right:0px;
+            bottom:0px;
+            left:0px;
+            margin:0 auto 15% auto;
+            z-index:1;
+            margin:0 auto 20% auto;
+        }
+        .actionContent p{
+            margin-top: 6em;
+        }
     }
-    .actionContent img.illustration {
-        max-height:200px;
-        max-width:200px;
-        position:absolute;
-        right:0px;
-        bottom:0px;
-        left:0px;
-        margin:0 auto 20% auto;
-        z-index:1;
-        background-position-y:0px;
-    }
-    .actionContent img.illustration.invalid {
+    .actionContent.invalid img.illustration {
         height:200px;
         width:200px;
         background-image:url('Images/FileTypes.png');
+    }
+    .actionContent a {
+        height:200px;
+        width:200px;
+        background-image:url('Images/FileTypes.png');
+    }
+    .actionContent a.pdf {
+        background-position-y: -200px;
+    }
+    .actionContent p{
+        text-align: left;
     }
 }
