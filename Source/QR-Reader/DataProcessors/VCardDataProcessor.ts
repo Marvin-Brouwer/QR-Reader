@@ -2,10 +2,11 @@
     public dataType: DataType = DataType.VCard;
 
     public initiate(data: string): void {
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let fullName = data.match(/(FN\:)(.*)/i)[2];
-        // somehow my map wont promt,alert,confirm
-        let sure = confirm(`vCard: \n${fullName}`);
-        if (sure) DownloadHelper.presentDownload(fullName, 'vcf', data);
+        let linkContainer = DownloadHelper.getDownloadElement(fullName, 'vcf', data);
+        linkContainer.className = 'vCard';
+        actionManager.showCallToAction(`${DataType[this.dataType]}: ${fullName}`, linkContainer);
     }
 
     // Leave these
