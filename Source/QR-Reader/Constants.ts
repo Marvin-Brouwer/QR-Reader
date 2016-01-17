@@ -1,6 +1,6 @@
 ﻿class Constants{
     // ReSharper disable once InconsistentNaming
-    public static agreedToTOA = `argreedToTOA/V-1`; // Increment if TOA changes
+    public static agreedToTOA = `agreedToTOA/V-1`; // Increment if TOA changes
     public static pdfBase = /^data:application\/pdf;base64,JVBER/gmi;
     public static imageTypes = {
         jpeg: [/^data:image\/jp(e?)g;base64,\/9j\/4/mi],

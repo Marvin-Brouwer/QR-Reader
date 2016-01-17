@@ -22,6 +22,7 @@
             this.hide.apply(this);
         };
         this.popupElement.className = 'opened';
+        this.popupContent.scrollTop = 0;
     }
     public setButtonState(activateButton = true) {
         this.okButton.disabled = (!activateButton);

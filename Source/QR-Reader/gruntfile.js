@@ -76,7 +76,7 @@ module.exports = function (grunt) {
                 src: ['**/*.ts', '!node_modules/**/*.*', '!wwwroot/**/*.*'],
                 //options: (grunt.file.readJSON('tsconfig.json').compilerOptions)
                 options: {// none of these options work :S
-                    target: 'es6',// todo: fix with babel (I want to use the newest Typescript options)
+                    target: 'es6',
                     //module: 'es2015',
                     noImplicitAny: false,
                     removeComments: false,
@@ -216,7 +216,7 @@ module.exports = function (grunt) {
                     //  new (require('less-plugin-autoprefix'))({ browsers: ["last 2 versions"] }),
                     //  new (require('less-plugin-clean-css'))(cleanCssOptions)
                     //],
-                    banner: projectBanner
+                    banner: projectBanner // todo: find out why this doesn't work
                 },
                 files: {
                     "wwwroot/Content/Application.css": 'Layout/*.less'
