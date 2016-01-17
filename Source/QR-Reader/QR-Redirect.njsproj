@@ -40,6 +40,7 @@
     <Content Include="Scripts\SIOCC-TS\SIOCC-TS.d.ts.map" />
     <Content Include="Scripts\SIOCC-TS\SIOCC-TS.js.map" />
     <Content Include="Static\Content\HaxeCam.swf" />
+    <Content Include="Static\Content\Images\FileTypes.png" />
     <Content Include="Static\Content\Images\Thumbnail.png" />
     <Content Include="Static\Content\Images\FavIcon.ico" />
     <Content Include="Static\Content\Images\Logo.png" />
