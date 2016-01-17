@@ -5,16 +5,24 @@ class GeoLocationDataProcessor implements IDataProcessor {
     private staticMapsUrl: string = 'http://maps.google.com/maps/api/staticmap';
 
     public initiate(data: string): void {
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let coordinates = data.replace(<any>this.dataType, String()).split(',');
-
-        prompt('Show this image', this.buildStaticMapImage(coordinates)); // google map
-        if (!DeviceHelper.isTouchEnabled()) 
-            prompt('Navigate to:', `${this.mapsUrl}/${coordinates[0]},${coordinates[1]}`); // google map
-        else
-            if (confirm('Send an sms?'))
-                UrlHelper.redirect(data, () => { alert(`Failed to navigate to: '${data}'!`) }); // phone
-            
-    }
+        let container = document.createElement('div');
+        container.className = 'geo';
+        let imageContainer = document.createElement('img');
+        imageContainer.src = this.buildStaticMapImage(coordinates);
+        let linkContainer = document.createElement('a');
+        linkContainer.href = data;
+        linkContainer.className = 'map';
+        linkContainer.appendChild(imageContainer);
+        container.appendChild(linkContainer);
+        let googleLinkContainer = document.createElement('a');
+        googleLinkContainer.href = `${this.mapsUrl}/${coordinates[0]},${coordinates[1]}`;
+        googleLinkContainer.innerText = 'Show on Google maps';
+        googleLinkContainer.target = '_blank';
+        googleLinkContainer.className = 'googleMap';
+        container.appendChild(googleLinkContainer);
+        actionManager.showCallToAction(`${DataType[this.dataType]}`, container);    }
 
     private buildStaticMapImage(geoCoordinates: string[]) :string {
         return `${this.staticMapsUrl}?zoom=13&markers=${geoCoordinates[0]},${geoCoordinates[1]}&size=200x200`;

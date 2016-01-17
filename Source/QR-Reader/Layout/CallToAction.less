@@ -88,7 +88,7 @@
             z-index:1;
             background-position-y:0px;
         }
-        .actionContent a {
+        .actionContent > * {
             display:block;
             position:absolute;
             height:200px;
@@ -98,10 +98,6 @@
             left:0px;
             margin:0 auto 15% auto;
             z-index:1;
-            margin:0 auto 20% auto;
-        }
-        .actionContent p{
-            margin-top: 6em;
         }
     }
     .actionContent.invalid img.illustration {
@@ -137,5 +133,26 @@
     }
     .actionContent p{
         text-align: left;
+    }
+    .actionContent .geo {
+        height:240px; 
+        width:200px;
+        margin:0 auto 10% auto;
+        display:inline-block;         
+        * {
+            margin:0;
+            height:auto;
+        }
+        .googleMap{
+            display:table-cell;
+            margin-top:10px;
+            background-color:whitesmoke;
+            vertical-align:middle;
+            height:30px;
+            width:200px;
+        }
+    }
+    .actionContent p{
+        margin-top: 6em;
     }
 }
