@@ -1,7 +1,7 @@
 ﻿class NetworkDataProcessor implements IDataProcessor {
     public dataType: DataType = DataType.WifiData;
 
-    public initiate(data: string): void {
+    public process(data: string): void {
         let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let ssID = PatternHelper.matchBetweenKeyAndSemicolon('S', data);
         let secure = PatternHelper.matchBetweenKeyAndSemicolon('T', data).trim() !== 'nopass';
@@ -10,8 +10,4 @@
         linkContainer.className = 'network';
         actionManager.showCallToAction(`${DataType[this.dataType]}: '${ssID}'${secure ? ' (Secure)' : String()}`, linkContainer);
     }
-
-    // Leave these
-    public afterSuccessCallback: (executionEvent: () => void) => void;
-    public errorCallback: (errorMessage: string) => void;
 }

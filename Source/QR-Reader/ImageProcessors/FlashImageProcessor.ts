@@ -1,6 +1,4 @@
-﻿'use strict';
-
-declare var swfobject :any;
+﻿declare var swfobject :any;
 
 class FlashImageProcessor implements IImageProcessor {
     public nextFallback(): void { }
@@ -33,12 +31,12 @@ class FlashImageProcessor implements IImageProcessor {
     }
 
     private buildHtml() {
-        var flashvars = {
+        let flashvars = {
             deniedMethod: 'FlashImageProcessor.flashDeclined',
             exportDataMethod: 'FlashImageProcessor.renderVideo',
             notSupportedMethod: 'FlashImageProcessor.cameraNotSupported'
         };
-        var params = {
+        let params = {
             //menu: 'false',
             scale: 'noScale',
             allowFullscreen: 'true',
@@ -47,7 +45,7 @@ class FlashImageProcessor implements IImageProcessor {
             movie: 'Content/HaxeCam.swf',
             quality: 'high'
         };
-        var attributes = {
+        let attributes = {
             id: 'flashVideo',
             wmode: 'transparent'
         };

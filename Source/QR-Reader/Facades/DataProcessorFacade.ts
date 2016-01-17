@@ -19,23 +19,15 @@ class DataProcessorFacade {
         if (data === 'error decoding QR Code') {
             throw new TypeError('An error occured while decoding the QR-Code');
         }
-        // Todo: stop processing
+        let application = <Application>Application.applicationContext;
+        application.pauseCapture = true;
         let dataType = EnumExtensions.toArray<DataType>(DataType).firstOrDefault((x) => {
             if (DataType[x] === null || !(<any>DataType[x]).test) return false; // Make sure it's a regex
             return (<RegExp><any>DataType[x]).test(data);
         });
         let selectedProcessor = this.dataProcessors.first(x => x.key === <string><any>dataType);
         if (!selectedProcessor) throw new ReferenceError('The processor for this dataType is missing!');
-        var processor = selectedProcessor.dataProcessor;
-        //processor.afterSuccessCallback = (executionEvent: () => void) =>
-        //{
-        //    var sure = window.confirm('sure?');
-        //    if (sure) executionEvent();
-        //}
-        processor.errorCallback = (errorMessage: string) => {
-            alert(errorMessage);
-        }
-        // todo: give method to start processing
-        processor.initiate(data);
+        let processor = selectedProcessor.dataProcessor;
+        processor.process(data);
     }
 }

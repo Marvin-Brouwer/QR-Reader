@@ -3,6 +3,7 @@
 class Application extends ioc.ApplicationContext {
     private imageProcessorFacade: ImageProcessorFacade;
     private dataProcessorFacade: DataProcessorFacade;
+    public pauseCapture: boolean = false;
 
     constructor() {
         super('QR-Reader');
@@ -83,6 +84,8 @@ class Application extends ioc.ApplicationContext {
         checkButtonState();
     }
     public qrCallback(data: string, errorFunc: (error: string) => void) {
+        let application = <Application>Application.applicationContext;
+        if (application.pauseCapture) return;
         try {
             this.dataProcessorFacade.calculate(data);
         } catch (e) {

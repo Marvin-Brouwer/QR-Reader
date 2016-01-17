@@ -1,10 +1,10 @@
 ﻿class MATMsgDataProcessor extends  EmailDataProcessor {
     public dataType: DataType = DataType.MATMsg;
 
-    public initiate(data: string): void {
+    public process(data: string): void {
         let innerData = data.replace(<any>this.dataType, String());
         let mailtoLink = this.convertToMailto(innerData);
-        super.initiate(mailtoLink);
+        super.process(mailtoLink);
     }
 
     private convertToMailto(innerData: string): string {
@@ -15,8 +15,4 @@
         let body = PatternHelper.matchBetweenKeyAndSemicolon('body', innerData);
         return `mailto:${to}?cc=${cc}&bcc=${bcc}&subject=${subject}&body=${body}`;
     }
-
-    // Leave these
-    public afterSuccessCallback: (executionEvent: () => void) => void;
-    public errorCallback: (errorMessage: string) => void;
 }

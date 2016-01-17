@@ -1,7 +1,7 @@
 ﻿class PDFDataProcessor implements IDataProcessor {
     public dataType: DataType = DataType.PDF;
 
-    public initiate(data: string): void {
+    public process(data: string): void {
         let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let errorMessage = String();
         let pdfContainer = DownloadHelper.getDownloadElement('QR-PDF', 'pdf', data, 'application/pdf');
@@ -14,9 +14,4 @@
         }
         actionManager.showCallToAction(`${DataType[this.dataType]}`, pdfContainer, errorMessage);
     }
-
-    // Leave these
-    public afterSuccessCallback: (executionEvent: () => void) => void;
-    public errorCallback: (errorMessage: string) => void;
-
 }

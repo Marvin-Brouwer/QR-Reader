@@ -4,7 +4,7 @@ class GeoLocationDataProcessor implements IDataProcessor {
     private mapsUrl: string = 'https://www.google.nl/maps/place';
     private staticMapsUrl: string = 'http://maps.google.com/maps/api/staticmap';
 
-    public initiate(data: string): void {
+    public process(data: string): void {
         let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let coordinates = data.replace(<any>this.dataType, String()).split(',');
         let container = document.createElement('div');
@@ -27,8 +27,4 @@ class GeoLocationDataProcessor implements IDataProcessor {
     private buildStaticMapImage(geoCoordinates: string[]) :string {
         return `${this.staticMapsUrl}?zoom=13&markers=${geoCoordinates[0]},${geoCoordinates[1]}&size=200x200`;
     }
-
-    // Leave these
-    public afterSuccessCallback(executionEvent: () => void): void {}
-    public errorCallback(errorMessage: string): void {}
 }

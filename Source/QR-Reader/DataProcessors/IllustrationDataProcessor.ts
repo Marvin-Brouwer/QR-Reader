@@ -1,7 +1,7 @@
 ﻿class IllustrationDataProcessor implements IDataProcessor {
     public dataType: DataType = DataType.Illustration;
 
-    public initiate(data: string): void {
+    public process(data: string): void {
         let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let imageType = (<RegExp><any>this.dataType).exec(data)[2];
         let imageCondition = <IEnumerable<RegExp>>Constants.imageTypes[imageType];
@@ -13,9 +13,4 @@
         imageContainer.className = 'illustration';
         actionManager.showCallToAction(`${DataType[this.dataType]}: ${imageType}`, imageContainer, errorMessage);
     }
-
-    // Leave these
-    public afterSuccessCallback: (executionEvent: () => void) => void;
-    public errorCallback: (errorMessage: string) => void;
-
 }

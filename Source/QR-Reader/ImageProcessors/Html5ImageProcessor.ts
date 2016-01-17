@@ -1,6 +1,4 @@
-﻿'use strict';
-
-class Html5ImageProcessor implements IImageProcessor {
+﻿class Html5ImageProcessor implements IImageProcessor {
     public nextFallback(): void { }
     public declinedFallback(): void { }
     private video: HTMLVideoElement;
@@ -36,6 +34,8 @@ class Html5ImageProcessor implements IImageProcessor {
                 this.declinedFallback(); // It's either broke or declined
                 return;
             }
+            let application = <Application>Application.applicationContext;
+            if (application.pauseCapture) return;
             console.log('video parse');
             let context = thecanvas.getContext('2d');
             // draw the video contents into the canvas x, y, width, height

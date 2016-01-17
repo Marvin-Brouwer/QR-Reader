@@ -12,6 +12,8 @@
     }
 
     public show(showMenu = true, activateButton = true, onOkClick: () => void = null) {
+        let application = <Application>Application.applicationContext;
+        application.pauseCapture = true;
         this.popupHeader.className = (showMenu) ? 'popupHeader show' : 'popupHeader hide';
         this.popupContent.className = (showMenu) ? 'popupContent' : 'popupContent large';
         this.okButton.disabled = (!activateButton);
@@ -30,6 +32,8 @@
         this.popupElement.className = 'closed';
         this.popupHeader.className = 'popupHeader show';
         this.popupContent.className = 'popupContent';
+        let application = <Application>Application.applicationContext;
+        application.pauseCapture = false;
     }
 
 }
