@@ -2,14 +2,13 @@
     public dataType: DataType = DataType.WifiData;
 
     public initiate(data: string): void {
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let ssID = PatternHelper.matchBetweenKeyAndSemicolon('S', data);
         let secure = PatternHelper.matchBetweenKeyAndSemicolon('T', data).trim() !== 'nopass';
-
-        if (!DeviceHelper.isTouchEnabled())
-            alert('Wifi urls are not supported by your system!');
-        else
-            if (confirm(`Are you sure you want to add the${secure ? ' secure' : String()} network '${ssID}'?`))
-                UrlHelper.redirect(data);
+        let linkContainer = document.createElement('a');
+        linkContainer.href = data;
+        linkContainer.className = 'network';
+        actionManager.showCallToAction(`${DataType[this.dataType]}: '${ssID}'${secure ? ' (Secure)' : String()}`, linkContainer);
     }
 
     // Leave these
