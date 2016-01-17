@@ -2,15 +2,15 @@
     public dataType: DataType = DataType.Url;
 
     public initiate(data: string): void {
-        // todo blacklist
-        if (false) this.errorCallback(`'${encodeURI(data)}' has been found on our list of dangerous url's`);
-
-        // show nice window with question
-        let sure = window.confirm(`Are you sure you want to navigate to '${data}'?`);
-        if (sure) UrlHelper.redirect(data, () => {alert(`Failed to navigate to: '${data}'!`)});
-        else this.afterSuccessCallback(() => {
-            // close future window
-        });
+        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
+        let errorMessage = String();
+        if (Constants.invalidUrls.map(x => x.indexOf(data) > -1 || data.indexOf(x) > -1).firstOrDefault())
+            errorMessage = `Warning the url you've scanned is part of our blacklist!`;
+        let linkContainer = document.createElement('a');
+        linkContainer.href = data;
+        linkContainer.target = '_blank';
+        linkContainer.className = 'url';
+        actionManager.showCallToAction(`${DataType[this.dataType]}`, linkContainer, errorMessage);
     }
 
     // Leave these

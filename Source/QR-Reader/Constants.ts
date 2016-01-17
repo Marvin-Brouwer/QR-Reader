@@ -1,7 +1,6 @@
 ﻿class Constants{
-    public static version = '1.0.0';
     // ReSharper disable once InconsistentNaming
-    public static agreedToTOA = `argreedToTOA/V-1`; // update if TOA changes
+    public static agreedToTOA = `argreedToTOA/V-1`; // Increment if TOA changes
     public static pdfBase = /^data:application\/pdf;base64,JVBER/gmi;
     public static imageTypes = {
         jpeg: [/^data:image\/jp(e?)g;base64,\/9j\/4/mi],
@@ -12,7 +11,7 @@
         //tiff : ['?']
     };
     // https://gist.github.com/gruber/f7d2a569b3fb51d48a89
-    public static invalidUrls = [
+    public static invalidUrls : IEnumerable<string> = <any>[
         'adclick.g.doubleclick.net', 'addthis.com', 'adgardener.com', 'adnxs.com',
         'ads.pointroll.com', 'ads.shorttail.net', 'apture.com', 'bop.fm', 'cdn.taboolasyndication.com',
         'chartbeat.com', 'chartbeat.net', 'd1.openx.org', 'doubleclick.net', 'doubleverify.com',
