@@ -88,6 +88,21 @@ declare module ioc {
 }
 
 declare module ioc {
+    /**
+     * A base class for libraries using an IOC Container
+     * This is used to provide an easy way to register all the libraries components
+     */
+    abstract class LibraryContext {
+        /**
+         * A method to override where you register your intances into the IOC Container
+         * @param container The IOC container created for the ApplicationContext of the using app
+         * @returns {}
+         */
+        static register(container: Container): void;
+    }
+}
+
+declare module ioc {
     interface IRegistryBase<T> {
         /**
          * Set the type of this Registry

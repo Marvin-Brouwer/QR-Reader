@@ -37,7 +37,7 @@ var libFiles = [
 ];
 var jsFiles = [
     // IOC
-    'Scripts/SIOCC-TS/SIOCC-TS.js',
+    'node_modules/siocc-ts/SIOCC-TS/SIOCC-TS.js',
     // Application
     'Strict.js',
     'Constants.js',
@@ -175,6 +175,17 @@ module.exports = function (grunt) {
             }
         },
         copy: {
+            lib: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['node_modules/siocc-ts/SIOCC-TS/SIOCC-TS.d.ts'],
+                        flatten: true,
+                        dest: 'Scripts/typings',
+                        filter: 'isFile'
+                    },
+                ]
+            },
             default: {
                 files: [
                     {
@@ -228,7 +239,7 @@ module.exports = function (grunt) {
     // Default task(s).
     grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
     grunt.registerTask('default',
-        ['typescript', 'concat:lib', 'concat:app', 'babel',
+        ['copy:lib', 'typescript', 'concat:lib', 'concat:app', 'babel',
             'concat:main', 'copy:default', 'less', 'htmlmin']);
 
 };
