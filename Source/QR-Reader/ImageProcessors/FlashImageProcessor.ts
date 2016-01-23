@@ -1,23 +1,23 @@
-﻿declare var swfobject :any;
+﻿declare var swfobject: any;
 
 class FlashImageProcessor implements IImageProcessor {
-    public nextFallback(): void { }
-    public declinedFallback(): void { }
-    private flashVideo: HTMLObjectElement;
-    private flashVideoEmbed: HTMLEmbedElement;
-
     // This is necessary for the ExternalModule flash implementation
     private static currentFlashImageProcessor: FlashImageProcessor;
-    public static flashDeclined() {
+
+    private flashVideo: HTMLObjectElement;
+
+    public static flashDeclined(): void {
         this.currentFlashImageProcessor.declinedFallback();
     }
-    public static cameraNotSupported() {
+    public static cameraNotSupported(): void {
         this.currentFlashImageProcessor.nextFallback();
     }
-    public static renderVideo(data:string) {
-        //console.log(data);
+    public static renderVideo(data: string): void {
         qrcode.decode(data);
     }
+
+    public nextFallback(): void { }
+    public declinedFallback(): void { }
 
     public initiate(): void {
         if (swfobject.getFlashPlayerVersion().major === 0) {
@@ -30,30 +30,34 @@ class FlashImageProcessor implements IImageProcessor {
         qrcode.callback = this.qrCallback.bind(this);
     }
 
-    private buildHtml() {
+    public qrCallback(data: string): void {
+        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error: string) => { });
+    }
+
+    private buildHtml(): void {
+        let attributes = {
+            id: 'flashVideo',
+            wmode: 'transparent'
+        };
         let flashvars = {
             deniedMethod: 'FlashImageProcessor.flashDeclined',
             exportDataMethod: 'FlashImageProcessor.renderVideo',
             notSupportedMethod: 'FlashImageProcessor.cameraNotSupported'
         };
         let params = {
-            //menu: 'false',
-            scale: 'noScale',
-            allowFullscreen: 'true',
             allowScriptAccess: 'always',
+            allowFullscreen: 'true',
             bgcolor: '#000',
+            menu: 'false',
+            scale: 'noScale',
             movie: 'Content/HaxeCam.swf',
             quality: 'high'
         };
-        let attributes = {
-            id: 'flashVideo',
-            wmode: 'transparent'
-        };
-        swfobject.embedSWF(params.movie, document.querySelector('#appBody'), '100%', '100%', 20,null,flashvars,params,attributes);
+        swfobject.embedSWF(params.movie, document.querySelector('#appBody'), '100%', '100%', 20, null, flashvars, params, attributes);
         this.flashVideo = <HTMLObjectElement>document.querySelector('object');
     }
 
-    private initializeFlash() {
+    private initializeFlash(): void {
         (<any>this.flashVideo).onload = () => {
             this.flashVideo.focus();
             this.flashVideo.click();
@@ -63,9 +67,6 @@ class FlashImageProcessor implements IImageProcessor {
             this.flashVideo.click();
         };
         this.flashVideo.style.visibility = 'visible';
-    }
 
-    public qrCallback(data: string): void {
-        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error) => { });
     }
 }

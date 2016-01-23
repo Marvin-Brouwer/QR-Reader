@@ -13,7 +13,7 @@
         this.actionContent = <HTMLDivElement>document.querySelector('#callToAction .actionContent');
     }
 
-    public showCallToAction(typeName: string, content: HTMLElement, invalidMessage: string = String()) {
+    public showCallToAction(typeName: string, content: HTMLElement, invalidMessage: string = String()): void {
         let isValid = invalidMessage === String();
         this.tabManager.setActive('callToAction');
         this.title.innerText = typeName;

@@ -11,7 +11,7 @@
         this.okButton = <HTMLInputElement>this.popupElement.querySelector('.popupOK');
     }
 
-    public show(showMenu = true, activateButton = true, onOkClick: () => void = null) {
+    public show(showMenu: boolean = true, activateButton: boolean = true, onOkClick: () => void = null): void {
         let application = <Application>Application.applicationContext;
         application.pauseCapture = true;
         this.popupHeader.className = (showMenu) ? 'popupHeader show' : 'popupHeader hide';
@@ -24,10 +24,10 @@
         this.popupElement.className = 'opened';
         this.popupContent.scrollTop = 0;
     }
-    public setButtonState(activateButton = true) {
+    public setButtonState(activateButton: boolean = true): void {
         this.okButton.disabled = (!activateButton);
     }
-    public hide() {
+    public hide(): void {
         this.okButton.onclick = () => false;
         this.okButton.disabled = true;
         this.popupElement.className = 'closed';

@@ -1,7 +1,7 @@
 ﻿class Html5ImageProcessor implements IImageProcessor {
+    private video: HTMLVideoElement;
     public nextFallback(): void { }
     public declinedFallback(): void { }
-    private video: HTMLVideoElement;
 
     public initiate(): void {
         if (!UserMediaHelper.hasGetUserMedia()) {
@@ -13,7 +13,11 @@
         qrcode.callback = this.qrCallback.bind(this);
     }
 
-    private buildHtml() {
+    public qrCallback(data: string): void {
+        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error: string) => { });
+    }
+
+    private buildHtml(): void {
         this.video = document.createElement('video');
         this.video.id = 'mainVideo';
         this.video.muted = true;
@@ -23,7 +27,7 @@
         document.body.querySelector('#appBody').appendChild(this.video);
     }
 
-    private initializeVideo() {
+    private initializeVideo(): void {
         let animationFrame = null;
         let doVideoParse = false;
         let thecanvas = document.createElement('canvas');
@@ -46,27 +50,25 @@
             qrcode.decode(dataUrl);
         };
 
-        UserMediaHelper.getUserMedia({ audio: false, video: true }, stream => {
-            doVideoParse = true;
-            this.video.src = window.URL.createObjectURL(stream);
-            this.video.play();
-            animationFrame = window.setInterval(parseVideo, 200);
-        }, e => {
-            this.video.style.display = 'none';
-            doVideoParse = false;
-            if (animationFrame != null) {
-                window.clearInterval(animationFrame);
-                animationFrame = null;
-            }
-            this.declinedFallback(); // It's either broke or declined
-        });
+        UserMediaHelper.getUserMedia(
+            { audio: false, video: true },
+            (stream: any) => {
+                doVideoParse = true;
+                this.video.src = window.URL.createObjectURL(stream);
+                this.video.play();
+                animationFrame = window.setInterval(parseVideo, 200);
+            },
+            (e: Error) => {
+                this.video.style.display = 'none';
+                doVideoParse = false;
+                if (animationFrame != null) {
+                    window.clearInterval(animationFrame);
+                    animationFrame = null;
+                }
+                this.declinedFallback(); // It's either broke or declined
+            });
 
         this.video.style.display = 'block';
 
     }
-
-    public qrCallback(data: string): void {
-        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error) => {});
-    }
-
 }

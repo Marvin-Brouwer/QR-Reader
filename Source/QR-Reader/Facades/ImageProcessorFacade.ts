@@ -1,16 +1,16 @@
 ﻿class ImageProcessorFacade {
-    private imageProcessors : Array<IImageProcessor>;
+    private imageProcessors: Array<IImageProcessor>;
     private defaultImageProcessor: IImageProcessor;
 
     constructor() {
         this.imageProcessors = new Array<IImageProcessor>();
     }
 
-    public addImageProcessor(imageProcessor: IImageProcessor) : ImageProcessorFacade {
+    public addImageProcessor(imageProcessor: IImageProcessor): ImageProcessorFacade {
         this.imageProcessors.push(imageProcessor);
         return this;
     }
-    public setDefaultImageProcessor(defaultImageProcessor: IImageProcessor) : ImageProcessorFacade {
+    public setDefaultImageProcessor(defaultImageProcessor: IImageProcessor): ImageProcessorFacade {
         this.defaultImageProcessor = defaultImageProcessor;
         return this;
     }

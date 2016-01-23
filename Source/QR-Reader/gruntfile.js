@@ -59,6 +59,7 @@ module.exports = function (grunt) {
         .substr(0, solutionFolder.lastIndexOf('/'));
     
     // Load the plugins.
+    grunt.loadNpmTasks('grunt-tslint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -68,10 +69,24 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-file-append');
+    var test = grunt.file.readJSON(solutionFolder + '/tslint.json');
     
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        tslint: {
+            default: { 
+                options: {
+                    formatter: 'json',
+                    configuration:  grunt.file.readJSON(solutionFolder + '/tslint.json'),
+                    rulesDirectory: 'customRules/', // can be an array of directories 
+                    formattersDirectory: 'customFormatters/'
+                },
+                files: {
+                    src: ['**/*.ts', '!Extensions/**/*.*', '!Scripts/**/*.*', '!node_modules/**/*.*', '!wwwroot/**/*.*']
+                }
+            }
+        },
         typescript: {
             base: {
                 src: ['**/*.ts', '!node_modules/**/*.*', '!wwwroot/**/*.*'],
@@ -88,7 +103,7 @@ module.exports = function (grunt) {
                     //outDir: 'bin', <-- not working
                     sourceMap: true,
                     noResolve: true,
-                    jsx: 'preserve'
+                    fast: 'never'
                 }
             }
         },
@@ -286,7 +301,7 @@ module.exports = function (grunt) {
 // Default task(s).
 grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
 grunt.registerTask('default',
-    ['copy:lib', 'typescript', 'concat:lib', 'concat:app', 'babel',
+    ['tslint','copy:lib', 'typescript', 'concat:lib', 'concat:app', 'babel',
         'concat:main', 'file_append:fix_eof', 'copy:default', 'less', 'htmlmin']);
 
 };

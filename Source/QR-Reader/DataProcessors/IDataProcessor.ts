@@ -1,4 +1,4 @@
 ﻿interface IDataProcessor {
-    dataType:DataType;
+    dataType: DataType;
     process: (data: string) => void;
 }

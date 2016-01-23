@@ -13,7 +13,7 @@
         }
     }
 
-    public setActive(id: string) {
+    public setActive(id: string): void {
         for (let i = 0; i < this.menuItems.length; i++) {
             let item = this.menuItems.item(i);
             let hash = item.getAttribute('data-tab');
