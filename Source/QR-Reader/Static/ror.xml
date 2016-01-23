@@ -10,8 +10,6 @@
      <link>https://marvin-brouwer.github.io/QR-Reader/</link>
      <title>QR-Reader</title>
      <description>An online tool for reading QR-Codes</description>
-     <!--todo: switch to montly when the first version is finished<ror:updatePeriod>monthly</ror:updatePeriod>-->
-     <changefreq>daily</changefreq>
      <ror:sortOrder>0</ror:sortOrder>
      <ror:resourceOf>sitemap</ror:resourceOf>
 </item>
