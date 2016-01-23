@@ -21,6 +21,10 @@ declare module ioc {
     }
 }
 
+declare module ioc {
+    function resolveProp(namespace: string): any;
+    function resolveParam<T extends Function>(namespace: Function): T | any;
+}
 
 declare module ioc {
     /**

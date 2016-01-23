@@ -1,6 +1,4 @@
-﻿'use strict';
-
-interface IDataProcessor {
+﻿interface IDataProcessor {
     dataType:DataType;
     process: (data: string) => void;
 }

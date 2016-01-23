@@ -1,6 +1,4 @@
-﻿'use strict';
-
-class DataProcessorFacade {
+﻿class DataProcessorFacade {
     private dataProcessors: IEnumerable<{ key: String, dataProcessor: IDataProcessor }>;
     
     constructor() {
