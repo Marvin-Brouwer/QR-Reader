@@ -1,6 +1,4 @@
-﻿'use strict';
-
-class ImageProcessorFacade {
+﻿class ImageProcessorFacade {
     private imageProcessors : Array<IImageProcessor>;
     private defaultImageProcessor: IImageProcessor;
 
