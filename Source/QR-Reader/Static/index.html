@@ -1,4 +1,4 @@
-﻿<!-- htmlmin:ignore --><?xml version="1.0" encoding="UTF-8"?>
+﻿<!-- htmlmin:ignore --><?xml version="1.0" encoding="UTF-8" ?>
 <!--
    - Copyright 2015, Multiple autors
    -
@@ -11,7 +11,8 @@
    - authors and contributors see:
    - https://github.com/Marvin-Brouwer/QR-Redirect#credits
    -
-   --><!-- htmlmin:ignore --><!DOCTYPE html>
+   -->
+<!-- htmlmin:ignore --><!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -23,18 +24,18 @@
     <meta name="author" content="meta-tags generator">
     <meta name="robots" content="index, follow" />
     <link async rel="shortcut icon" href="Content/Images/FavIcon.ico">
-    <link async rel="stylesheet" href="Content/Application.css" type="text/css"/>
+    <link async rel="stylesheet" href="Content/Application.css" type="text/css" />
     <link rel="canonical" href="https://marvin-brouwer.github.io/QR-Reader" />
 </head>
-<body itemscope itemtype="http://schema.org/WebApplication">
-    <a class="help" href="#help">?</a>
+<body itemscope itemtype="http://schema.org/WebApplication" role="application">
+    <a class="help" href="#help" role="button">?</a>
     <div id="popupCanvas" class="closed">
         <div class="overlay"></div>
         <div class="focusPoint">
-            <div class="popup">
+            <div class="popup" role="dialog">
                 <div class="popupHeader" class="hide">
                     <nav role="navigation">
-                        <ul>
+                        <ul role="menubar">
                             <li data-tab="about"><a href="#about">About</a></li>
                             <li data-tab="contribution"><a href="#contribution">Contribution</a></li>
                             <li data-tab="toa"><a href="#toa">Terms of agreement</a></li>
@@ -50,7 +51,7 @@
                         <meta itemprop="isBasedOnUrl" content="//webqr.com" />
                     </header>
                 </div>
-                <div class="popupContent">
+                <div class="popupContent" role="contentinfo">
                     <section role="description" id="about" class="tabSection">
                         <h2 itemprop="description" class="clear first-child">
                             An online tool for&nbsp;<wbr />reading <span class="no-break">QR-Codes</span>
@@ -58,11 +59,11 @@
                         <h3>About the application:</h3>
                         <section role="content">
                             <p>
-                                The reason that this application exists is a need for a QR-code scanner without having to install an app.<br/>
+                                The reason that this application exists is a need for a QR-code scanner without having to install an app.<br />
                                 Basicaly you can open this site, agree to the terms once and start scanning QR-Codes.
                             </p>
                             <p>
-                                Having trouble scanning QR-Codes? <br/>
+                                Having trouble scanning QR-Codes? <br />
                                 Try disabling your camera flashlight.
                             </p>
                             <p>You can open this application by browsing to:</p>
@@ -82,8 +83,14 @@
                         <h3>Creating QR-Codes:</h3>
                         <section role="content">
                             <!-- A little shoutout because this tool helped me a lot! -->
-                            <p>If you want to easily generate QR-Codes, navigate to: <a href="//goqr.me">goqr.me</a>.
+                            <p>
+                                If you want to easily generate QR-Codes, navigate to: <a href="//goqr.me">goqr.me</a>.
                             </p>
+                        </section>
+                        <h3>Share this app:</h3>
+                        <section role="content">
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_sharing_toolbox"></div>
                         </section>
                     </section>
                     <section role="content" id="contribution" class="tabSection">
@@ -223,19 +230,20 @@
                         <p>
                             We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
                         </p>
-                        <h3>Copyright <span itemprop="copyrightYear">2015</span>, Multiple autors
+                        <h3>
+                            Copyright <span itemprop="copyrightYear">2015</span>, Multiple autors
                         </h3>
                         <p>
-                            Licensed under the Apache License, Version 2.0 (the "License");<br/>
-                            you may not use this file except in compliance with the License.<br/>
-                            You may obtain a copy of the License at<br/>
+                            Licensed under the Apache License, Version 2.0 (the "License");<br />
+                            you may not use this file except in compliance with the License.<br />
+                            You may obtain a copy of the License at<br />
                             <a itemprop="license" href="//www.apache.org/licenses/LICENSE-2.0">www.apache.org/licenses/LICENSE-2.0</a>
                         </p>
                         <p>
-                            For more information about the used libraries, licenses, authors and contributors see: <br/>
+                            For more information about the used libraries, licenses, authors and contributors see: <br />
                             <a href="//github.com/Marvin-Brouwer/QR-Redirect#credits">github.com/Marvin-Brouwer/QR-Redirect#credits</a>
                         </p>
-                        <hr/>
+                        <hr />
                         <p>
                             By using this site you accept the Terms of agreement as described above.
                         </p>
@@ -248,13 +256,18 @@
                         </div>
                     </section>
                 </div>
-                <input type="button" value="OK" class="popupOK" disabled="disabled" />
+                <input type="button" value="OK" class="popupOK" disabled="disabled" role="button" />
             </div>
         </div>
     </div>
-    <section id="appBody" role="mainContent">
+    <section id="appBody" role="main">
         <!-- ReSharper disable once Html.PathError -->
         <script defer src="Content/Application.js"></script>
+    </section>
+    <!-- External libraries that should be loaded dynamically: -->
+    <section role="region" class="hide">
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-569cf50b0707847c" async="async"></script>
     </section>
 </body>
 </html>
