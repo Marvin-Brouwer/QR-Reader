@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Layout\CallToAction.less" />
+    <Content Include="Layout\ShareThis.less" />
     <Content Include="Layout\Tabs.less" />
     <Content Include="Static\Content\HaxeCam.swf" />
     <Content Include="Static\Content\Images\FileTypes.png" />
