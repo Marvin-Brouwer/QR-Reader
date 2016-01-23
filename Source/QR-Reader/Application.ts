@@ -44,8 +44,8 @@ class Application extends ioc.ApplicationContext {
     }
 
     public initiate(container: ioc.Container): void {
-        this.imageProcessorFacade = container.resolve(ImageProcessorFacade);
-        this.dataProcessorFacade = container.resolve(DataProcessorFacade);
+        this.imageProcessorFacade = container.resolve<ImageProcessorFacade>(ImageProcessorFacade);
+        this.dataProcessorFacade = container.resolve<DataProcessorFacade>(DataProcessorFacade);
 
         // Check consent
         UserMediaHelper.getUserMedia({ video: true, audio: false });
