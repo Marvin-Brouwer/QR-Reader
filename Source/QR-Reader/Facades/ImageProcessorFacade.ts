@@ -17,8 +17,7 @@
 
     public initiate(): ImageProcessorFacade {
         if (!this.defaultImageProcessor)
-            throw new ReferenceError('You need to set a default processor before instantiating, ' +
-                'use: setDefaultImageProcessor(defaultImageProcessor: IImageProcessor)');
+            throw new ReferenceError(TextDefinitions.noDefaultImageProcessorError);
         for (let i = 0; i < this.imageProcessors.length; i++) {
             let imageProcessor = this.imageProcessors[i];
             let nextImageProcessor = this.imageProcessors[i + 1] || null;

@@ -51,7 +51,8 @@
     <Content Include="Layout\Popup.less" />
     <Content Include="Static\urllist.txt" />
     <TypeScriptCompile Include="Application.ts" />
-    <TypeScriptCompile Include="Constants.ts" />
+    <TypeScriptCompile Include="Constants\Constants.ts" />
+    <TypeScriptCompile Include="Constants\TextDefinitions.ts" />
     <TypeScriptCompile Include="DataProcessors\NetworkDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\MATMsgDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\EmailDataProcessor.ts" />
@@ -93,6 +94,7 @@
     <Folder Include="Facades\" />
     <Folder Include="Helpers\" />
     <Folder Include="Managers\" />
+    <Folder Include="Constants\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Static\Content\Images\" />
     <Folder Include="Layout\" />

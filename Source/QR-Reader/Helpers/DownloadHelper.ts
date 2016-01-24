@@ -10,7 +10,7 @@
 
         let downloadAnchor = document.createElement('a');
         downloadAnchor.href = `data:${dataType},${encodeURI(data)}`;
-        downloadAnchor.target = '_blank';
+        downloadAnchor.target = TextDefinitions.blankLinkTarget;
         downloadAnchor.setAttribute('download', `${fileName} (${new Date().toISOString().slice(0, 10)}).${extension}`);
         return downloadAnchor;
     }

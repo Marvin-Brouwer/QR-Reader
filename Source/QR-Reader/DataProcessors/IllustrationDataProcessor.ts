@@ -6,9 +6,9 @@
         let imageType = (<RegExp><any>this.dataType).exec(data)[2];
         let imageCondition = <IEnumerable<RegExp>>Constants.imageTypes[imageType];
         let errorMessage = String();
-        if (!imageCondition) errorMessage = `The image of type '${imageType}' is not supported!`;
+        if (!imageCondition) errorMessage = TextDefinitions.getImageTypeError(imageType);
         if (!!imageCondition && !imageCondition.map((x: RegExp) => x.test(data)).firstOrDefault())
-            errorMessage = `An error occured while reading the image!`;
+            errorMessage = TextDefinitions.imageReadError;
         let imageContainer = document.createElement('img');
         imageContainer.src = errorMessage === String() ? data : Constants.transparentGif;
         imageContainer.className = 'illustration';

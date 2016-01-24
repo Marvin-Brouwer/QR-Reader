@@ -18,8 +18,8 @@ class GeoLocationDataProcessor implements IDataProcessor {
         container.appendChild(linkContainer);
         let googleLinkContainer = document.createElement('a');
         googleLinkContainer.href = `${this.mapsUrl}/${coordinates[0]},${coordinates[1]}`;
-        googleLinkContainer.innerText = 'Show on Google maps';
-        googleLinkContainer.target = '_blank';
+        googleLinkContainer.innerText = TextDefinitions.showOnGoogleMaps;
+        googleLinkContainer.target = TextDefinitions.blankLinkTarget;
         googleLinkContainer.className = 'googleMap';
         container.appendChild(googleLinkContainer);
         actionManager.showCallToAction(`${DataType[this.dataType]}`, container);

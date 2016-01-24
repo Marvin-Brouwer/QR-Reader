@@ -25,7 +25,7 @@
         let label = document.createElement('label');
         let innerLabel = document.createElement('div');
         innerLabel.setAttribute('class', 'label');
-        innerLabel.innerHTML = 'Tap to select<wbr/> <span class="no-break">QR-Code</span>';
+        innerLabel.innerHTML = TextDefinitions.uploadImageProcessorTitle;
         this.errorField = document.createElement('div');
         this.errorField.setAttribute('class', 'error');
         this.cameraInput = document.createElement('input');

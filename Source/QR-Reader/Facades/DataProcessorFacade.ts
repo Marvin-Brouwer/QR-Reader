@@ -14,8 +14,8 @@
     public calculate(data: string): void {
         data = data.trim();
         console.log(`Raw QR-Data: ${data}`);
-        if (data === 'error decoding QR Code') {
-            throw new TypeError('An error occured while decoding the QR-Code');
+        if (data === TextDefinitions.libraryCodeReadError) {
+            throw new TypeError(TextDefinitions.codeReadingErrorMessage);
         }
         let application = <Application>Application.applicationContext;
         application.pauseCapture = true;
@@ -25,7 +25,7 @@
         });
         let selectedProcessor = this.dataProcessors.first(
             (x: { key: String, dataProcessor: IDataProcessor }) => x.key === <string><any>dataType);
-        if (!selectedProcessor) throw new ReferenceError('The processor for this dataType is missing!');
+        if (!selectedProcessor) throw new ReferenceError(TextDefinitions.dataProcessorMissingError);
         let processor = selectedProcessor.dataProcessor;
         processor.process(data);
     }

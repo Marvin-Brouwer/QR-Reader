@@ -40,7 +40,7 @@ var jsFiles = [
     'node_modules/siocc-ts/SIOCC-TS/SIOCC-TS.js',
     // Application
     'Strict.js',
-    'Constants.js',
+    'Constants/*.js',
     'Helpers/*.js',
     'Extensions/*.js',
     'ImageProcessors/*.js',
@@ -69,7 +69,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-file-append');
-    var test = grunt.file.readJSON(solutionFolder + '/tslint.json');
     
     // Project configuration.
     grunt.initConfig({
@@ -199,9 +198,9 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    '../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
+                    //'../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
                     // To check if uglify doesn't break:
-                    //'wwwroot/Content/Application.js': ['wwwroot/Content/Application.js']
+                    'wwwroot/Content/Application.js': ['wwwroot/Content/Application.js']
                 }
             }
         },
