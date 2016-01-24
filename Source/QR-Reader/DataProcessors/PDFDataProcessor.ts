@@ -7,9 +7,9 @@
         let pdfContainer = DownloadHelper.getDownloadElement('QR-PDF', 'pdf', data, 'application/pdf');
         pdfContainer.className = 'pdf';
         if (!Constants.pdfBase.test(data)) {
-            errorMessage = `An error occured while reading the pdf!`;
+            errorMessage = TextDefinitions.pdfReadError;
             pdfContainer.href = '#';
-            pdfContainer.target = '_self';
+            pdfContainer.target = TextDefinitions.selfLinkTarget;
             pdfContainer.removeAttribute('download');
         }
         actionManager.showCallToAction(`${DataType[this.dataType]}`, pdfContainer, errorMessage);

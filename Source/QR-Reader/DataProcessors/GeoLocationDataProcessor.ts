@@ -5,7 +5,7 @@ class GeoLocationDataProcessor implements IDataProcessor {
     private staticMapsUrl: string = 'http://maps.google.com/maps/api/staticmap';
 
     public process(data: string): void {
-        let actionManager = <ActionManager>ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
+        let actionManager = ioc.Container.getCurrent().resolve<ActionManager>(ActionManager);
         let coordinates = data.replace(<any>this.dataType, String()).split(',');
         let container = document.createElement('div');
         container.className = 'geo';
@@ -18,13 +18,14 @@ class GeoLocationDataProcessor implements IDataProcessor {
         container.appendChild(linkContainer);
         let googleLinkContainer = document.createElement('a');
         googleLinkContainer.href = `${this.mapsUrl}/${coordinates[0]},${coordinates[1]}`;
-        googleLinkContainer.innerText = 'Show on Google maps';
-        googleLinkContainer.target = '_blank';
+        googleLinkContainer.innerText = TextDefinitions.showOnGoogleMaps;
+        googleLinkContainer.target = TextDefinitions.blankLinkTarget;
         googleLinkContainer.className = 'googleMap';
         container.appendChild(googleLinkContainer);
-        actionManager.showCallToAction(`${DataType[this.dataType]}`, container);    }
+        actionManager.showCallToAction(`${DataType[this.dataType]}`, container);
+    }
 
-    private buildStaticMapImage(geoCoordinates: string[]) :string {
+    private buildStaticMapImage(geoCoordinates: string[]): string {
         return `${this.staticMapsUrl}?zoom=13&markers=${geoCoordinates[0]},${geoCoordinates[1]}&size=200x200`;
     }
 }

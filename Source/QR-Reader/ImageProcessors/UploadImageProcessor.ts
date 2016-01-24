@@ -1,9 +1,10 @@
 ﻿class UploadImageProcessor implements IImageProcessor {
-    public nextFallback(): void { }
-    public declinedFallback(): void { }
     private form: HTMLFormElement;
     private cameraInput: HTMLInputElement;
     private errorField: HTMLDivElement;
+
+    public nextFallback(): void { }
+    public declinedFallback(): void { }
 
     public initiate(): void {
         this.buildHtml();
@@ -11,16 +12,20 @@
         qrcode.callback = this.qrCallback.bind(this);
     }
 
-    private buildHtml() {
+    public qrCallback(data: string): void {
+        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error: string) => this.setError(error));
+    }
+
+    private buildHtml(): void {
         this.form = document.createElement('form');
         this.form.id = 'mainForm';
         this.form.action = String();
         this.form.method = 'POST';
         this.form.enctype = 'multipart/form-data';
-        var label = document.createElement('label');
-        var innerLabel = document.createElement('div');
+        let label = document.createElement('label');
+        let innerLabel = document.createElement('div');
         innerLabel.setAttribute('class', 'label');
-        innerLabel.innerHTML = 'Tap to select<wbr/> <span class="no-break">QR-Code</span>';
+        innerLabel.innerHTML = TextDefinitions.uploadImageProcessorTitle;
         this.errorField = document.createElement('div');
         this.errorField.setAttribute('class', 'error');
         this.cameraInput = document.createElement('input');
@@ -35,7 +40,7 @@
         document.body.querySelector('#appBody').appendChild(this.form);
     }
 
-    private initializeUpload() {
+    private initializeUpload(): void {
         this.cameraInput.onfocus = (ev: Event) => document.body.focus();
 
         this.form.onsubmit = (ev: Event) => {
@@ -58,31 +63,27 @@
         };
     }
 
-    private readQR() {
-        var file = this.cameraInput.files[0];
+    private readQR(): void {
+        let file = this.cameraInput.files[0];
         if (!file) return;
 
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onloadend = () => {
             console.log(`Created DataUrl: ${reader.result}`);
             qrcode.decode(reader.result);
-        }
+        };
         reader.readAsDataURL(file);
     }
 
-    private reset() {
+    private reset(): void {
         this.cameraInput.value = null;
     }
 
-    private clearErrors() {
+    private clearErrors(): void {
         this.errorField.innerText = String();
     }
 
-    private setError(text: string) {
+    private setError(text: string): void {
         this.errorField.innerText = text;
-    }
-
-    public qrCallback(data: string): void {
-        (<Application>ioc.ApplicationContext.applicationContext).qrCallback(data, (error) => this.setError(error));
     }
 }

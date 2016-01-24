@@ -40,7 +40,7 @@ var jsFiles = [
     'node_modules/siocc-ts/SIOCC-TS/SIOCC-TS.js',
     // Application
     'Strict.js',
-    'Constants.js',
+    'Constants/*.js',
     'Helpers/*.js',
     'Extensions/*.js',
     'ImageProcessors/*.js',
@@ -59,6 +59,7 @@ module.exports = function (grunt) {
         .substr(0, solutionFolder.lastIndexOf('/'));
     
     // Load the plugins.
+    grunt.loadNpmTasks('grunt-tslint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -67,15 +68,30 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-typescript');
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-file-append');
     
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        tslint: {
+            default: { 
+                options: {
+                    formatter: 'json',
+                    configuration:  grunt.file.readJSON(solutionFolder + '/tslint.json'),
+                    rulesDirectory: 'customRules/', // can be an array of directories 
+                    formattersDirectory: 'customFormatters/'
+                },
+                files: {
+                    src: ['**/*.ts', '!Extensions/**/*.*', '!Scripts/**/*.*', '!node_modules/**/*.*', '!wwwroot/**/*.*']
+                }
+            }
+        },
         typescript: {
             base: {
                 src: ['**/*.ts', '!node_modules/**/*.*', '!wwwroot/**/*.*'],
                 //options: (grunt.file.readJSON('tsconfig.json').compilerOptions)
-                options: {// none of these options work :S
+                options: {
+                    // none of these options work :S
                     target: 'es6',
                     //module: 'es2015',
                     noImplicitAny: false,
@@ -86,7 +102,7 @@ module.exports = function (grunt) {
                     //outDir: 'bin', <-- not working
                     sourceMap: true,
                     noResolve: true,
-                    jsx: 'preserve'
+                    fast: 'never'
                 }
             }
         },
@@ -94,7 +110,9 @@ module.exports = function (grunt) {
             lib: {
                 options: {
                     stripBanners: false,
-                    sourceMap: true
+                    sourceMap: true,
+                    sourceMapStyle: 'embed',
+                    separator: '\n'
                 },
                 src: libFiles,
                 dest: 'bin/Content/Library.js'
@@ -102,7 +120,9 @@ module.exports = function (grunt) {
             app: {
                 options: {
                     stripBanners: false,
-                    sourceMap: true
+                    separator: '\n',
+                    sourceMap: true,
+                    sourceMapStyle: 'embed'
                 },
                 src: jsFiles,
                 dest: 'bin/Content/Bundle.js'
@@ -110,9 +130,11 @@ module.exports = function (grunt) {
             main: {
                 options: {
                     stripBanners: false,
-                    sourceMap: true
+                    separator: '\n;\n\n',
+                    sourceMap: true,
+                    sourceMapStyle: 'embed'
                 },
-                src: [ 'bin/Content/Library.js','bin/Content/Babel.js'],
+                src: ['bin/Content/Library.js', 'bin/Content/Babel.js'],
                 dest: 'bin/Content/Application.js'
             }
         },
@@ -133,13 +155,15 @@ module.exports = function (grunt) {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files: [{
-                    'wwwroot/index.html': ['Static/index.html']
-                }, {
-                    'wwwroot/ror.xml': ['Static/ror.xml']
-                }, {
-                    'wwwroot/sitemap.xml': ['Static/sitemap.xml']
-                }]
+                files: [
+                    {
+                        'wwwroot/index.html': ['Static/index.html']
+                    }, {
+                        'wwwroot/ror.xml': ['Static/ror.xml']
+                    }, {
+                        'wwwroot/sitemap.xml': ['Static/sitemap.xml']
+                    }
+                ]
             }
         },
         cssmin: {
@@ -147,12 +171,14 @@ module.exports = function (grunt) {
                 options: {
                     banner: projectBanner // <-- This doesn't work, why U no work???
                 },
-                files: [{
-                    expand: false,
-                    src: ['Static/Content/Application.css'],
-                    dest: 'wwwroot/Content/Application.css',
-                    ext: '.css'
-                }]
+                files: [
+                    {
+                        expand: false,
+                        src: ['Static/Content/Application.css'],
+                        dest: 'wwwroot/Content/Application.css',
+                        ext: '.css'
+                    }
+                ]
             }
         },
         uglify: {
@@ -161,16 +187,20 @@ module.exports = function (grunt) {
                     banner: projectBanner,
                     enclose: true,
                     wrap: true,
+                    squeeze: {dead_code: true},
+                    codegen: {quote_keys: true},
                     mangle: {
                         'sort': true,
                         'toplevel': true
                     },
-                    compressor: {
+                    compress: {
                         'drop_console': true
                     }
                 },
                 files: {
-                    '../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
+                    //'../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
+                    // To check if uglify doesn't break:
+                    'wwwroot/Content/Application.js': ['wwwroot/Content/Application.js']
                 }
             }
         },
@@ -218,7 +248,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        less:{
+        less: {
             default: {
                 options: {
                     compress: true,
@@ -233,13 +263,44 @@ module.exports = function (grunt) {
                     "wwwroot/Content/Application.css": 'Layout/*.less'
                 }
             }
+        },
+        obfuscator_node: {
+            default: {
+                options: {
+                    strings: true,
+                    compressor: {
+                        conditionals: true,
+                        evaluate: true,
+                        booleans: true,
+                        loops: true,
+                        unused: true,
+                        hoist_funs: true
+                    }
+                },
+                files: [{
+                    src: ['bin/Content/Application.js'],
+                    dest: 'bin/Content/Obfuscated.js',
+                    expand: false
+                }]
+            }
+        },
+        file_append: {
+            fix_eof: {
+                files: [
+                  {
+                      append: '\n//#eof\n',
+                      input: 'bin/Content/Application.js',
+                      output: 'bin/Content/Application.js'
+                }
+            ]
         }
-    });
+    }
+});
     
-    // Default task(s).
-    grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
-    grunt.registerTask('default',
-        ['copy:lib', 'typescript', 'concat:lib', 'concat:app', 'babel',
-            'concat:main', 'copy:default', 'less', 'htmlmin']);
+// Default task(s).
+grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
+grunt.registerTask('default',
+    ['tslint','copy:lib', 'typescript', 'concat:lib', 'concat:app', 'babel',
+        'concat:main', 'file_append:fix_eof', 'copy:default', 'less', 'htmlmin']);
 
 };
