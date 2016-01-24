@@ -48,7 +48,7 @@ class Application extends ioc.ApplicationContext {
         this.imageProcessorFacade = container.resolve<ImageProcessorFacade>(ImageProcessorFacade);
         this.dataProcessorFacade = container.resolve<DataProcessorFacade>(DataProcessorFacade);
         // Check consent
-        UserMediaHelper.getUserMedia({ video: true, audio: false });
+        UserMediaHelper.checkPermissions();
         // Let agree to terms
         let popupManager = <PopupManager>container.resolve(PopupManager);
         let tabManager = <TabManager>container.resolve(TabManager);

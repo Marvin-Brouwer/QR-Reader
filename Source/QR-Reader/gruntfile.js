@@ -198,9 +198,9 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    //'../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
+                    '../../Publish/Content/Application.js': ['wwwroot/Content/Application.js']
                     // To check if uglify doesn't break:
-                    'wwwroot/Content/Application.js': ['wwwroot/Content/Application.js']
+                    //'wwwroot/Content/Application.js': ['wwwroot/Content/Application.js']
                 }
             }
         },

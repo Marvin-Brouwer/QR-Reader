@@ -24,4 +24,12 @@
     ];
     // https://commons.wikimedia.org/wiki/File:Transparent.gif
     public static transparentGif: string = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    public static basicCameraSettings: { audio: boolean | Object; video: boolean | Object } = { video: true, audio: false };
+
+    public static getCameraSettings(source: string): { audio: boolean | Object; video: boolean | Object } {
+        return { video: { sourceId: source, facingMode: { exact: 'environment' } }, audio: false };
+    }
+    public static getLegacyCameraSettings(source: string): { audio: boolean | Object; video: boolean | Object } {
+        return { video: { sourceId: source }, audio: false };
+    }
 }

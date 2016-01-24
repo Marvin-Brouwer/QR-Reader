@@ -16,6 +16,7 @@
     public static noDefaultImageProcessorError: string =
         `You need to set a default processor before instantiating, \n` +
         `use: setDefaultImageProcessor(defaultImageProcessor: IImageProcessor)`;
+    public static htmlMalformedConstraints: string = `Malformed constraints object`;
 
     public static libraryCodeReadError: string = `error decoding QR Code`;
 
