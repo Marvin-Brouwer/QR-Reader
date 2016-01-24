@@ -51,7 +51,6 @@
         };
 
         UserMediaHelper.getUserMedia(
-            { audio: false, video: true },
             (stream: any) => {
                 doVideoParse = true;
                 this.video.src = window.URL.createObjectURL(stream);
