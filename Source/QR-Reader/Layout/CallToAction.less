@@ -4,8 +4,10 @@
     }
     .actionContent.invalid{
          img,  a{
-            background-position-x: -200px;
             cursor:not-allowed;
+        }
+        a{
+            opacity:.5;
         }
     }
     .invalidMessage{
@@ -35,7 +37,6 @@
             max-width:200px;
             position:static;
             margin:0 auto 20% auto;
-            background-position-y:0px;
         }
         .actionContent a {
             display:block;
@@ -87,7 +88,6 @@
             left:0px;
             margin:0 auto 15% auto;
             z-index:1;
-            background-position-y:0px;
         }
         .actionContent > * {
             display:block;
@@ -105,6 +105,8 @@
         height:200px;
         width:200px;
         background-image:url('Images/FileTypes.png');
+            background-position-y:0px;
+            background-position-x:0px;
     }
     .actionContent a {
         height:200px;
@@ -113,24 +115,31 @@
     }
     .actionContent a.pdf {
         background-position-y: -200px;
+        background-position-x: 0px;
     }
     .actionContent a.textMessage {
         background-position-y: -400px;
+        background-position-x: 0px;
     }
     .actionContent a.phoneCall {
         background-position-y: -600px;
+        background-position-x: 0px;
     }
     .actionContent a.vCard {
-        background-position-y: -800px;
+        background-position-y: 0px;
+        background-position-x: -200px;
     }
     .actionContent a.vEvent {
-        background-position-y: -1000px;
+        background-position-y: -200px;
+        background-position-x: -200px;
     }
     .actionContent a.network {
-        background-position-y: -1200px;
+        background-position-y: -400px;
+        background-position-x: -200px;
     }
     .actionContent a.url {
-        background-position-y: -1400px;
+        background-position-y: -600px;
+        background-position-x: -200px;
     }
     .actionContent p{
         text-align: left;
