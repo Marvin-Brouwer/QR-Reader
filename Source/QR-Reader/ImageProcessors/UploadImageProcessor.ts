@@ -2,9 +2,14 @@
     private form: HTMLFormElement;
     private cameraInput: HTMLInputElement;
     private errorField: HTMLDivElement;
+    private popupManager: PopupManager;
 
     public nextFallback(): void { }
     public declinedFallback(): void { }
+
+    constructor() {
+        this.popupManager = ioc.Container.getCurrent().resolve<PopupManager>(PopupManager);
+    }
 
     public initiate(): void {
         this.buildHtml();
@@ -50,6 +55,7 @@
         };
         this.cameraInput.onclick = (ev: Event) => this.clearErrors();
         this.cameraInput.onchange = (ev: Event) => {
+            this.popupManager.showSpinner();
             this.clearErrors();
             ev.cancelBubble = true;
             ev.preventDefault();
