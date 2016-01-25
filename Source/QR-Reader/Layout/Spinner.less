@@ -1,0 +1,59 @@
+﻿.spinner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    z-index: 999;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    border:1px solid silver;
+    box-shadow: 0px 0px 10px silver;
+
+    -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@media (max-height: 520px) , (max-width: 420px) {
+    .spinner {
+        background-color: #888888;
+        border:1px solid black;
+        box-shadow: 0px 0px 10px black;
+    }
+}
+
+@-webkit-keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+    }
+
+    80% {
+        -webkit-transform: scale(1.0);
+    }
+    100%  {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    80%, 100% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+
+    80%, 100% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+        opacity: 0;
+    }
+}
