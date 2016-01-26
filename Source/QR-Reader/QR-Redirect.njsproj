@@ -40,10 +40,10 @@
     <Content Include="Layout\Spinner.less" />
     <Content Include="Layout\Tabs.less" />
     <Content Include="Static\Content\HaxeCam.swf" />
-    <Content Include="Static\Content\Images\FileTypes.png" />
-    <Content Include="Static\Content\Images\Thumbnail.png" />
+    <Content Include="Static\Content\Images\FileTypes.svg" />
     <Content Include="Static\Content\Images\FavIcon.ico" />
-    <Content Include="Static\Content\Images\Logo.png" />
+    <Content Include="Static\Content\Images\Logo.svg" />
+    <Content Include="Static\Content\Images\Thumbnail.svg" />
     <Content Include="Static\robots.txt" />
     <Content Include="Static\index.html" />
     <Content Include="Static\ror.xml" />
