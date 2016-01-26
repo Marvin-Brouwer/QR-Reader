@@ -9,18 +9,18 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="500"
-   height="500"
-   viewBox="0 0 499.99998 499.99998"
+   width="100"
+   height="100"
+   viewBox="0 0 99.999996 99.999996"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Logo.svg"
+   sodipodi:docname="Thumbnail.svg"
    inkscape:export-filename="C:\Users\marvi\Documents\Repositories\QR-Reader\Resource\FavIcon\16.png"
    inkscape:export-xdpi="2.8800001"
    inkscape:export-ydpi="2.8800001">
   <title
-     id="title4706">Logo</title>
+     id="title4706">Thumbnail</title>
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -30,9 +30,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12374369"
-     inkscape:cx="-278.75523"
-     inkscape:cy="-205.55926"
+     inkscape:zoom="0.24748738"
+     inkscape:cx="307.49375"
+     inkscape:cy="176.00209"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -43,15 +43,19 @@
      inkscape:window-height="705"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
     <sodipodi:guide
-       position="249.99999,249.99999"
+       position="249.99999,250.00002"
        orientation="1,0"
        id="guide4684"
        inkscape:label=""
        inkscape:color="rgb(0,0,255)" />
     <sodipodi:guide
-       position="249.99999,0"
+       position="249.99999,3.0666774e-005"
        orientation="0,1"
        id="guide4686"
        inkscape:label=""
@@ -61,25 +65,25 @@
        orientation="0,1"
        id="guide4688" />
     <sodipodi:guide
-       position="249.99999,499.99998"
+       position="249.99999,500.00001"
        orientation="0,1"
        id="guide4690"
        inkscape:label=""
        inkscape:color="rgb(0,0,255)" />
     <sodipodi:guide
-       position="0,249.99999"
+       position="0,250.00002"
        orientation="1,0"
        id="guide4692"
        inkscape:label=""
        inkscape:color="rgb(0,0,255)" />
     <sodipodi:guide
-       position="499.99998,249.99999"
+       position="499.99998,250.00002"
        orientation="1,0"
        id="guide4694"
        inkscape:label=""
        inkscape:color="rgb(0,0,255)" />
     <sodipodi:guide
-       position="249.99999,249.99999"
+       position="249.99999,250.00002"
        orientation="0,1"
        id="guide4696"
        inkscape:label=""
@@ -93,7 +97,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>Logo</dc:title>
+        <dc:title>Thumbnail</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -101,47 +105,48 @@
      inkscape:label="Laag 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-552.36209)">
+     transform="translate(0,-952.36207)">
     <g
        id="g4190"
        inkscape:export-xdpi="7.1999993"
        inkscape:export-ydpi="7.1999993"
-       inkscape:export-filename="C:\Users\marvi\Documents\Repositories\QR-Reader\Resource\FavIcon\40.png">
+       inkscape:export-filename="C:\Users\marvi\Documents\Repositories\QR-Reader\Resource\FavIcon\40.png"
+       transform="matrix(0.19999998,0,0,0.19999998,0,841.88967)">
       <rect
          y="552.36206"
          x="0"
          height="250"
          width="250"
          id="rect4698"
-         style="fill:#000000;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill-opacity:1" />
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <rect
          y="552.36206"
          x="250"
          height="250"
          width="250"
          id="rect4700"
-         style="fill:#ffffff;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill-opacity:1" />
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <rect
          y="802.36206"
          x="250"
          height="250"
          width="250"
          id="rect4702"
-         style="fill:#000000;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill-opacity:1" />
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <rect
          y="802.36206"
          x="0"
          height="250"
          width="250"
          id="rect4704"
-         style="fill:#ffffff;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;fill-opacity:1" />
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <rect
          y="614.86206"
          x="312.5"
          height="124.99998"
          width="124.99998"
          id="rect4700-9"
-         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:36.99999559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:36.99999619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <rect
          y="864.86206"
          x="62.500019"

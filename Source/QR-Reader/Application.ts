@@ -1,9 +1,10 @@
 ﻿declare var qrcode: any;
 
 class Application extends ioc.ApplicationContext {
+    public pauseCapture: boolean = false;
+
     private imageProcessorFacade: ImageProcessorFacade;
     private dataProcessorFacade: DataProcessorFacade;
-    public pauseCapture: boolean = false;
 
     constructor() {
         super('QR-Reader');
@@ -19,13 +20,13 @@ class Application extends ioc.ApplicationContext {
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance);
         container.register<ImageProcessorFacade>(ImageProcessorFacade)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
-            .setResolveFunc(instance => instance
+            .setResolveFunc((instance: ImageProcessorFacade) => instance
                 .addImageProcessor(new Html5ImageProcessor())
                 .addImageProcessor(new FlashImageProcessor())
                 .setDefaultImageProcessor(new UploadImageProcessor()));
         container.register<DataProcessorFacade>(DataProcessorFacade)
             .setLifetimeScope(ioc.LifetimeScope.SingleInstance)
-            .setResolveFunc(instance => instance
+            .setResolveFunc((instance: DataProcessorFacade) => instance
                 .addDataProcessor(new TextDataProcessor())
                 .addDataProcessor(new IllustrationDataProcessor())
                 .addDataProcessor(new PDFDataProcessor())
@@ -44,25 +45,35 @@ class Application extends ioc.ApplicationContext {
     }
 
     public initiate(container: ioc.Container): void {
-        this.imageProcessorFacade = container.resolve(ImageProcessorFacade);
-        this.dataProcessorFacade = container.resolve(DataProcessorFacade);
-
+        this.imageProcessorFacade = container.resolve<ImageProcessorFacade>(ImageProcessorFacade);
+        this.dataProcessorFacade = container.resolve<DataProcessorFacade>(DataProcessorFacade);
         // Check consent
-        UserMediaHelper.getUserMedia({ video: true, audio: false });
-        
+        UserMediaHelper.checkPermissions();
         // Let agree to terms
         let popupManager = <PopupManager>container.resolve(PopupManager);
         let tabManager = <TabManager>container.resolve(TabManager);
-        let popupContent = <any>document.querySelector('.popupContent');
+        let popupContent = <HTMLDivElement>document.querySelector('.popupContent');
         let hasAgreed = (CookieHelper.getCookie(Constants.agreedToTOA) || String()) === 'true';
-        if (!hasAgreed)
+        if (!hasAgreed) {
             this.setTOAPopup(popupManager, tabManager, popupContent);
-        else {
+        } else {
             popupManager.setButtonState(true);
             this.startApp(tabManager, popupManager);
         }
     }
-    private setTOAPopup(popupManager: PopupManager, tabManager: TabManager, popupContent) {
+
+    public qrCallback(data: string, errorFunc: (error: string) => void): void {
+        let application = <Application>Application.applicationContext;
+        if (application.pauseCapture) return;
+        try {
+            this.dataProcessorFacade.calculate(data);
+        } catch (e) {
+            errorFunc(e.message);
+        }
+        return;
+    }
+
+    private setTOAPopup(popupManager: PopupManager, tabManager: TabManager, popupContent: HTMLDivElement): void {
         let checkButtonState = () => {
             if (popupContent.scrollHeight <= popupContent.clientHeight
                 || popupContent.scrollTop >= (popupContent.scrollHeight - popupContent.offsetHeight) - (popupContent.scrollHeight / 100)) {
@@ -75,26 +86,16 @@ class Application extends ioc.ApplicationContext {
         popupContent.onscroll = checkButtonState;
         tabManager.setActive('toa');
         popupManager.show(false, false, () => {
-            var today = new Date();
+            let today = new Date();
             today.setFullYear(today.getFullYear() + 128);
-            CookieHelper.setCookie(Constants.agreedToTOA,true,today);
-            this.startApp(tabManager,popupManager);
+            CookieHelper.setCookie(Constants.agreedToTOA, true, today);
+            this.startApp(tabManager, popupManager);
             popupManager.hide();
         });
         checkButtonState();
     }
-    public qrCallback(data: string, errorFunc: (error: string) => void) {
-        let application = <Application>Application.applicationContext;
-        if (application.pauseCapture) return;
-        try {
-            this.dataProcessorFacade.calculate(data);
-        } catch (e) {
-            errorFunc(e.message);
-        }
-        return;
-    }
 
-    private startApp(tabManager:TabManager, popupManager:PopupManager) {
+    private startApp(tabManager: TabManager, popupManager: PopupManager): void {
         let helpButton = <any>document.querySelector('.help');
         // Initiate application
         this.imageProcessorFacade.initiate();
@@ -103,6 +104,7 @@ class Application extends ioc.ApplicationContext {
             popupManager.show();
         };
     }
+
 }
 
 window.onload = () => {

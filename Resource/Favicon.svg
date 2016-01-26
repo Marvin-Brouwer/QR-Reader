@@ -20,7 +20,7 @@
    inkscape:export-xdpi="2.8800001"
    inkscape:export-ydpi="2.8800001">
   <title
-     id="title4706">Logo</title>
+     id="title4706">FavIcon</title>
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -30,9 +30,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.12374369"
-     inkscape:cx="-278.75523"
-     inkscape:cy="-205.55926"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-497.15577"
+     inkscape:cy="286.57122"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -93,7 +93,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>Logo</dc:title>
+        <dc:title>FavIcon</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -149,6 +149,48 @@
          width="124.99996"
          id="rect4700-9-8"
          style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:36.99999619;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4190-8"
+       transform="translate(589.92902,0)"
+       inkscape:export-filename="C:\Users\marvi\Documents\Repositories\QR-Reader\Resource\FavIcon\40png"
+       inkscape:export-xdpi="7.1999993"
+       inkscape:export-ydpi="7.1999993">
+      <rect
+         y="552.36206"
+         x="0"
+         height="250"
+         width="250"
+         id="rect4698-7"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="552.36206"
+         x="250"
+         height="250"
+         width="250"
+         id="rect4700-6"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="802.36206"
+         x="250"
+         height="250"
+         width="250"
+         id="rect4702-3"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="802.36206"
+         x="0"
+         height="250"
+         width="250"
+         id="rect4704-7"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.69999981;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="614.86206"
+         x="312.50003"
+         height="124.99995"
+         width="124.99995"
+         id="rect4700-9-8-4"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:24.99999702;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     </g>
   </g>
 </svg>

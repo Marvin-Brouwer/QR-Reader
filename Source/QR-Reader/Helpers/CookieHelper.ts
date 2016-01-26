@@ -9,14 +9,14 @@
         }
         return null;
     }
-    public static setCookie(name: string, value: any, expires: Date = null, secure = true) {
+    public static setCookie(name: string, value: any, expires: Date = null, secure: boolean = true): void {
         let expiryDate = String();
         if (expires) {
             expiryDate = `; expires=${expires.toUTCString()}`;
-        } 
+        }
         document.cookie = `${name}=${value.toString()}${expiryDate}${secure ? '; secure' : String()}; path=/`;
     }
-    public static eraseCookie(name) {
+    public static eraseCookie(name: string): void {
         CookieHelper.setCookie(name, String());
     }
 }

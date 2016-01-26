@@ -220,7 +220,7 @@ interface IEnumerable<T> extends ArrayConstructor {
 // ReSharper disable once Lambda => arrow functions can't resolve argumenst.callee aparently
 // So apparently Enumerator isn't a javscript library object, Array doesn't even have moveNext();
 // I wonder why this is part of lib.ts
-//Enumerator.prototype.first = function(filter: (member) => boolean) {
+//Enumerator.prototype.first = function(filter: (member) => boolean): void {
 //    return EnumExtensions.first(arguments.callee(), filter);
 //};
 Array.prototype['first'] = function (expression) { return EnumExtensions.first(this, expression); };

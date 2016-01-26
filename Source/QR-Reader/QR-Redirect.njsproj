@@ -36,12 +36,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Layout\CallToAction.less" />
+    <Content Include="Layout\ShareThis.less" />
+    <Content Include="Layout\Spinner.less" />
     <Content Include="Layout\Tabs.less" />
     <Content Include="Static\Content\HaxeCam.swf" />
-    <Content Include="Static\Content\Images\FileTypes.png" />
-    <Content Include="Static\Content\Images\Thumbnail.png" />
+    <Content Include="Static\Content\Images\FileTypes.svg" />
     <Content Include="Static\Content\Images\FavIcon.ico" />
-    <Content Include="Static\Content\Images\Logo.png" />
+    <Content Include="Static\Content\Images\Logo.svg" />
+    <Content Include="Static\Content\Images\Thumbnail.svg" />
     <Content Include="Static\robots.txt" />
     <Content Include="Static\index.html" />
     <Content Include="Static\ror.xml" />
@@ -50,7 +52,8 @@
     <Content Include="Layout\Popup.less" />
     <Content Include="Static\urllist.txt" />
     <TypeScriptCompile Include="Application.ts" />
-    <TypeScriptCompile Include="Constants.ts" />
+    <TypeScriptCompile Include="Constants\Constants.ts" />
+    <TypeScriptCompile Include="Constants\TextDefinitions.ts" />
     <TypeScriptCompile Include="DataProcessors\NetworkDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\MATMsgDataProcessor.ts" />
     <TypeScriptCompile Include="DataProcessors\EmailDataProcessor.ts" />
@@ -70,6 +73,7 @@
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Helpers\CookieHelper.ts" />
     <TypeScriptCompile Include="Helpers\DeviceHelper.ts" />
+    <TypeScriptCompile Include="Helpers\DropHelper.ts" />
     <TypeScriptCompile Include="Helpers\PatternHelper.ts" />
     <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
     <TypeScriptCompile Include="Helpers\DownloadHelper.ts" />
@@ -92,6 +96,7 @@
     <Folder Include="Facades\" />
     <Folder Include="Helpers\" />
     <Folder Include="Managers\" />
+    <Folder Include="Constants\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Static\Content\Images\" />
     <Folder Include="Layout\" />

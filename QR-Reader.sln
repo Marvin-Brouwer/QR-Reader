@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Source\QR-Reader\global.json = Source\QR-Reader\global.json
 		LICENSE = LICENSE
 		README.md = README.md
+		tslint.json = tslint.json
 	EndProjectSection
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "QR-Redirect", "Source\QR-Reader\QR-Redirect.njsproj", "{369858F1-4829-4A8F-A631-0623A2877C15}"

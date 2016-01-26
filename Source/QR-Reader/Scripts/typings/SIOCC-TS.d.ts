@@ -21,7 +21,6 @@ declare module ioc {
     }
 }
 
-
 declare module ioc {
     /**
      * The IOC Container
@@ -54,7 +53,7 @@ declare module ioc {
          * Resolve the registered Instance
          * @param type The full namespace of the type you want to resolve
          */
-        resolve<T>(type: Function): any;
+        resolve<T>(type: Function): T;
     }
 }
 
