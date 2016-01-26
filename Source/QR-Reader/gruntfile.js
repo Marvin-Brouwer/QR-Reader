@@ -164,6 +164,21 @@ module.exports = function (grunt) {
                         'wwwroot/sitemap.xml': ['Static/sitemap.xml']
                     }
                 ]
+            },
+            svg: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: [
+                    {
+                        'wwwroot/Content/Images/FileTypes.svg': ['Static/Content/Images/FileTypes.svg']
+                    }, {
+                        'wwwroot/Content/Images/Logo.svg': ['Static/Content/Images/Logo.svg']
+                    }, {
+                        'wwwroot/Content/Images/Thumbnail.svg': ['Static/Content/Images/Thumbnail.svg']
+                    }
+                ]
             }
         },
         cssmin: {
@@ -301,6 +316,6 @@ module.exports = function (grunt) {
 grunt.registerTask('release', ['default', 'copy:release', 'uglify']);
 grunt.registerTask('default',
     ['tslint','copy:lib', 'typescript', 'concat:lib', 'concat:app', 'babel',
-        'concat:main', 'file_append:fix_eof', 'copy:default', 'less', 'htmlmin']);
+        'concat:main', 'file_append:fix_eof', 'copy:default', 'less', 'htmlmin:default', 'htmlmin:svg']);
 
 };
