@@ -14,6 +14,8 @@
     public initiate(): void {
         this.buildHtml();
         this.initializeUpload();
+        if (DropHelper.supportsFileDrop())
+            DropHelper.attachDropHandler(this.form, (file: string) => qrcode.decode(file));
         qrcode.callback = this.qrCallback.bind(this);
     }
 
@@ -30,7 +32,9 @@
         let label = document.createElement('label');
         let innerLabel = document.createElement('div');
         innerLabel.setAttribute('class', 'label');
-        innerLabel.innerHTML = TextDefinitions.uploadImageProcessorTitle;
+        innerLabel.innerHTML = DropHelper.supportsFileDrop() ?
+            TextDefinitions.uploadOrDropImageProcessorTitle :
+            TextDefinitions.uploadImageProcessorTitle;
         this.errorField = document.createElement('div');
         this.errorField.setAttribute('class', 'error');
         this.cameraInput = document.createElement('input');

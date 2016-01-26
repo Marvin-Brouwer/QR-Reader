@@ -73,6 +73,7 @@
     <TypeScriptCompile Include="Extensions\EnumExtensions.ts" />
     <TypeScriptCompile Include="Helpers\CookieHelper.ts" />
     <TypeScriptCompile Include="Helpers\DeviceHelper.ts" />
+    <TypeScriptCompile Include="Helpers\DropHelper.ts" />
     <TypeScriptCompile Include="Helpers\PatternHelper.ts" />
     <TypeScriptCompile Include="Helpers\UrlHelper.ts" />
     <TypeScriptCompile Include="Helpers\DownloadHelper.ts" />
