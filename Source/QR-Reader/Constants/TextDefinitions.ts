@@ -5,7 +5,10 @@
     public static blankLinkTarget: string = `_blank`;
     public static selfLinkTarget: string = `_self`;
     public static notSupportedDescription: string = `You've scanned a QR-Code containing a raw file wich is not supported (yet).`;
-    public static uploadImageProcessorTitle: string = `Tap to select<wbr/> <span class="no-break">QR-Code</span>`;
+    public static uploadImageProcessorTitle: string =
+        `Tap the page to select<wbr/> <span class="no-break">QR-Code</span>`;
+    public static uploadOrDropImageProcessorTitle: string =
+        `Tap the page or Drop an image to select<wbr/> <span class="no-break">QR-Code</span>`;
 
     public static imageReadError: string = `${TextDefinitions.errorOccured} reading the image!`;
     public static pdfReadError: string = `${TextDefinitions.errorOccured} reading the pdf!`;
