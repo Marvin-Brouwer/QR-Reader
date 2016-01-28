@@ -1,6 +1,11 @@
 ﻿class DropHelper {
     public static supportsFileDrop(): boolean {
-        return !!(<any>window).FileReader;
+        if (DeviceHelper.isMobile()) return false;
+        if (!(<any>window).FileReader) return false;
+        let div = document.querySelector('div.hide');
+        if (!(('draggable' in div) || ('ondragstart' in div && 'ondrop' in div))) return false;
+        if (!('files' in DataTransfer.prototype)) return false;
+        return true;
     }
     public static attachDropHandler(element: HTMLElement, callback: (file: string) => void): void {
         element.ondragover = (e: DragEvent) => e.preventDefault();
