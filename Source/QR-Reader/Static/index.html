@@ -1,4 +1,6 @@
-﻿<!-- htmlmin:ignore --><?xml version="1.0" encoding="UTF-8" ?>
+﻿<!DOCTYPE html>
+
+<!-- htmlmin:ignore -->
 <!--
    - Copyright 2015, Multiple autors
    -
@@ -11,20 +13,18 @@
    - authors and contributors see:
    - https://github.com/Marvin-Brouwer/QR-Redirect#credits
    -
-   -->
-<!-- htmlmin:ignore --><!DOCTYPE html>
-
+   --><!-- htmlmin:ignore -->
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR-Reader</title>
     <meta name="description" content="An online tool for reading QR-Codes" />
-    <meta name="keywords" content="QR-Code, free, online" />
+    <meta name="keywords" content="QR-Code, QR-Reader, free, online" />
     <meta name="author" content="meta-tags generator">
     <meta name="robots" content="index, follow" />
-    <link async rel="shortcut icon" href="Content/Images/FavIcon.ico">
-    <link async rel="stylesheet" href="Content/Application.css" type="text/css" />
+    <link rel="shortcut icon" href="Content/Images/FavIcon.ico">
+    <link rel="stylesheet" href="Content/Application.css" type="text/css" />
     <link rel="canonical" href="https://marvin-brouwer.github.io/QR-Reader" />
 </head>
 <body itemscope itemtype="http://schema.org/WebApplication" role="application">
@@ -34,7 +34,7 @@
         <div class="focusPoint">
             <div class="spinner hide"></div>
             <div class="popup hide" role="dialog">
-                <div class="popupHeader" class="hide">
+                <div class="popupHeader hide">
                     <nav role="navigation">
                         <ul role="menubar">
                             <li data-tab="about"><a href="#about">About</a></li>
@@ -44,7 +44,7 @@
                     </nav>
                     <header role="heading">
                         <img itemprop="thumbnailUrl" src="Content/Images/Thumbnail.svg" alt="QR-Reader logo" width="50" height="50" />
-                        <meta itemprop="image" content="Content/Images/Logo.svg" width="500" height="500" />
+                        <meta itemprop="image" content="Content/Images/Logo.svg" />
                         <h1 itemprop="name">QR-Reader</h1>
                         <meta itemprop="applicationCategory" content="http://schema.org/WebApplication" />
                         <meta itemprop="applicationSubCategory" content="QR-Code scanner" />
@@ -266,9 +266,9 @@
         <script defer src="Content/Application.js"></script>
     </section>
     <!-- External libraries that should be loaded dynamically: -->
-    <section role="region" class="hide">
+    <div role="region" class="hide">
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-569cf50b0707847c" async="async"></script>
-    </section>
+    </div>
 </body>
 </html>
