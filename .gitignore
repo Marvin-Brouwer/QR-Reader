@@ -207,3 +207,4 @@ FakesAssemblies/
 !/wwwroot/*
 Source/QR-Reader/wwwroot/
 *.stackdump
+Source/QR-Reader/Scripts/typings/
