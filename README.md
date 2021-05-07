@@ -1,5 +1,7 @@
 # QR-Reader
-An online tool for reading QR-Codes
+An online tool for reading QR-Codes.  
+This solution is currently quite stale.  
+However plans to rebuild it into a static AWP exist.  
 
 ## Usage
 Navigate with any smartphone to [tiny.cc/qrr](http://tiny.cc/qrr) and scan the url to navigate to.  
